@@ -1,0 +1,171 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background: #fff;
+  font-family: tahoma, "microsoft yahei", "微软雅黑" !important;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+ul,
+li {
+  list-style: none;
+}
+a,
+button,
+input[type="button"],
+input[type="submit"] {
+  cursor: pointer;
+}
+.clearfix:before,
+.clearfix:after,
+.h-row:before,
+.h-row:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after,
+.h-row:after {
+  clear: both;
+}
+.h-img-link img {
+  border: 0;
+}
+.h-row {
+  margin: 0 -15px;
+}
+.h-col-1,
+.h-col-2,
+.h-col-3,
+.h-col-4,
+.h-col-5,
+.h-col-6,
+.h-col-7,
+.h-col-8,
+.h-col-9,
+.h-col-10,
+.h-col-11,
+.h-col-12 {
+  float: left;
+  padding: 0 15px;
+}
+.h-col-1 {
+  width: 8.3333%;
+}
+.h-col-2 {
+  width: 16.6667%;
+}
+.h-col-3 {
+  width: 25%;
+}
+.h-col-4 {
+  width: 33.3333%;
+}
+.h-col-5 {
+  width: 41.6667%;
+}
+.h-col-6 {
+  width: 50%;
+}
+.h-col-7 {
+  width: 58.3333%;
+}
+.h-col-8 {
+  width: 66.6667%;
+}
+.h-col-9 {
+  width: 75%;
+}
+.h-col-10 {
+  width: 83.3333%;
+}
+.h-col-11 {
+  width: 91.6667%;
+}
+.h-col-12 {
+  width: 100%;
+}
+.main-wrapper,
+.main-top {
+  position: relative;
+  height: 100%;
+}
+.main-top {
+  background: #000;
+  color: #fff;
+}
+.h-container {
+  max-width: 1230px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.h-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 74px;
+}
+.h-header .h-container {
+  height: 100%;
+}
+.h-header .h-container .h-logo {
+  margin-top: 13px;
+  float: left;
+}
+.h-header .h-container .h-menu {
+  float: right;
+  font-size: 14px;
+}
+.h-header .h-container .h-menu li {
+  margin-left: 90px;
+  float: left;
+}
+.h-header .h-container .h-menu li a {
+  display: block;
+  padding: 22px 4px 0;
+  line-height: 28px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.h-header .h-container .h-menu li a.active,
+.h-header .h-container .h-menu li a:hover {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.main-top-box {
+  height: 100%;
+  padding-top: 74px;
+}
+.main-top-box .h-container {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.main-top-box .h-container .h-heading-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+.main-top-box .h-container .h-heading-content .h-index-logo {
+  display: block;
+  margin: 0 auto;
+}
+.main-top-box .h-container .h-heading-content .h-version-title {
+  text-align: center;
+  line-height: 4em;
+  font-size: 24px;
+}
+.main-top-box .h-container .h-heading-content .h-lead {
+  width: 30%;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8em;
+  color: rgba(255, 255, 255, 0.4);
+}
