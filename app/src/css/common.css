@@ -28,8 +28,8 @@ input[type="submit"] {
 p {
   line-height: 1.8em;
 }
-.white60 {
-  color: rgba(255, 255, 255, 0.6) !important;
+.white-light {
+  color: #999999 !important;
 }
 .text-left {
   text-align: left;
@@ -55,7 +55,7 @@ p {
   border: 0;
 }
 .h-row {
-  margin: 30px -30px;
+  margin: 0 -30px;
 }
 .h-col-1,
 .h-col-2,
@@ -114,8 +114,24 @@ p {
   height: 100%;
 }
 .main-top {
+  position: relative;
   background: #000;
   color: #fff;
+}
+.main-top .btn-scroll-down {
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  margin-left: -30px;
+  width: 60px;
+  height: 60px;
+  background: url(../image/btn_arrow_down.png);
+  opacity: .6;
+  transition: .3s;
+}
+.main-top .btn-scroll-down:hover {
+  opacity: 1;
 }
 .h-container {
   max-width: 1230px;
@@ -148,12 +164,19 @@ p {
   display: block;
   padding: 22px 4px 0;
   line-height: 28px;
-  color: rgba(255, 255, 255, 0.4);
+  color: #666666;
 }
 .h-header .h-container .h-menu li a.active,
 .h-header .h-container .h-menu li a:hover {
   color: #fff;
   border-bottom: 2px solid #fff;
+}
+.h-header.header-fixed {
+  position: fixed;
+  min-width: 1110px;
+  background: #000;
+  border-bottom: 1px solid rgba(69, 172, 215, 0.8);
+  z-index: 998;
 }
 .main-top-box {
   height: 100%;
@@ -182,27 +205,65 @@ p {
   margin: 10px auto;
   text-align: center;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.4);
+  color: #666666;
+}
+.h-section {
+  padding: 50px 0;
+}
+.h-section.scroll-down-target {
+  margin-top: -74px;
+  padding-top: 104px;
 }
 .h-cont-box {
   padding: 0 20px;
+  margin-bottom: 30px;
   text-align: center;
   color: #7f7f7f;
 }
 .h-cont-box h4 {
   margin-bottom: 15px;
   font-size: 18px;
-  font-weight: 100;
+  font-weight: 500;
 }
 .h-footer {
   padding: 120px 0;
-  background: #252525;
+  background: #262626;
   color: #fff;
 }
 .h-footer p {
-  color: rgba(255, 255, 255, 0.4);
+  color: #666666;
 }
 .h-footer .h-logo {
   margin-top: 50px;
   text-align: center;
+}
+.h-section-title {
+  margin: 80px 0 50px;
+  text-align: center;
+}
+.h-section-title h3 {
+  display: inline-block;
+  width: 140px;
+  height: 57px;
+  background: url(../image/section_title.png) no-repeat;
+}
+.imgslider-wrapper {
+  height: 420px;
+  margin-bottom: 120px;
+  background: #999;
+}
+.btn-scroll-up {
+  display: none;
+  position: fixed;
+  right: 30px;
+  bottom: 0;
+  width: 42px;
+  height: 40px;
+  background: #333 url(../image/arrow_up.png) center center no-repeat;
+  opacity: .9;
+  border-radius: 4px 4px 0 0;
+  transition: .3s;
+}
+.btn-scroll-up:hover {
+  background-color: #45add8;
 }
