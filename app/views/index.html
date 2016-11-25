@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HUI</title>
+    <link href="../plugins/gallery3D/style.css" rel="stylesheet" type="text/css">
     <link href="../src/css/common.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -70,7 +71,19 @@
             <div class="h-section-title">
                 <h3></h3>
             </div>
-            <div class="imgslider-wrapper"></div>
+            <div class="slider-wrapper">
+                <section id="dg-container" class="dg-container">
+                    <div class="dg-wrapper">
+                        <a><img src="../src/pic/354385.jpg" alt="image01"></a>
+                        <a><img src="../src/pic/463011.jpg" alt="image02"></a>
+                        <a><img src="../src/pic/490646.jpg" alt="image03"></a>
+                    </div>
+                    <nav>
+                        <span class="dg-prev">&lt;</span>
+                        <span class="dg-next">&gt;</span>
+                    </nav>
+                </section>
+            </div>
         </div>
     </div>
     <div class="h-footer">
@@ -95,8 +108,12 @@
 <script type="text/javascript" src="../src/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../plugins/jquery.easing.min.js"></script>
 <script type="text/javascript" src="../plugins/jquery.smooth-scroll.js"></script>
+<script type="text/javascript" src="../plugins/gallery3D/modernizr.custom.53451.js"></script>
+<script type="text/javascript" src="../plugins/gallery3D/jquery.gallery.js"></script>
 <script type="text/javascript">
     $(function(){
+
+        $("#dg-container").gallery();
 
         $(document).on("scroll",function(){
             var scrollTop=$(this).scrollTop();
