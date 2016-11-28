@@ -16,7 +16,7 @@ npm install -g gulp
 
 然后运行
 ```
-gulp dev
+    node app.js
 ```
 
 ## V1.0剩余功能
