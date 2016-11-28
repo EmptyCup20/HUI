@@ -34,7 +34,8 @@ var user = new Schema({
     avatarUrl: {
         type: String,
         default: '/images/default/avatar.jpg'
-    }
+    },
+    create_time: String
 });
 
 var iconSource = new Schema({
@@ -94,14 +95,14 @@ Db_tools.init = function (collection) {
 Db_tools.add = function (collection, addObj) {
     var model = this.init(collection);
     return new Promise((resolve, reject) => {
-            model.create(addObj, function (err, doc) {
+        model.create(addObj, function (err, doc) {
             if (err) {
                 reject(err);
             } else {
                 resolve(doc);
             }
         });
-})
+    })
 };
 
 /**
@@ -117,7 +118,7 @@ Db_tools.edit = function (collection, editObj) {
     var id = editObj.id;
     delete editObj.id;
     return new Promise((resolve, reject) => {
-            model.findOneAndUpdate({_id: id}, {
+        model.findOneAndUpdate({_id: id}, {
             $set: editObj
         }, function (err) {
             if (err) {
@@ -126,7 +127,7 @@ Db_tools.edit = function (collection, editObj) {
                 resolve(successMsg);
             }
         })
-})
+    })
 };
 /**
  * [remove description]
@@ -140,14 +141,14 @@ Db_tools.edit = function (collection, editObj) {
 Db_tools.remove = function (collection, removeId) {
     var model = this.init(collection);
     return new Promise((resolve, reject) => {
-            model.remove({_id: removeId}, function (err) {
+        model.remove({_id: removeId}, function (err) {
             if (err) {
                 reject(err);
             } else {
                 resolve(successMsg);
             }
         });
-})
+    })
 }
 /**
  * [query description]
@@ -169,7 +170,7 @@ Db_tools.query = function (collection, queryObj) {
     query.limit(pageSize);
     //计算分页数据
     return new Promise((resole, reject) => {
-            query.exec(function (err, doc) {
+        query.exec(function (err, doc) {
             if (err) {
                 reject(err);
             } else {
@@ -180,7 +181,7 @@ Db_tools.query = function (collection, queryObj) {
                 });
             }
         });
-})
+    })
 };
 /**
  * 根据单一条件查询
@@ -194,7 +195,7 @@ Db_tools.queryByCondition = function (collection, queryObj) {
     var model = this.init(collection);
     var query = model.find(queryObj);
     return new Promise((resolve, reject) => {
-            query.exec(queryObj, (err, doc) => {
+        query.exec(queryObj, (err, doc) => {
             if (err) {
                 reject(err);
             } else {

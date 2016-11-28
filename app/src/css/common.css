@@ -152,6 +152,15 @@ p {
   margin-top: 13px;
   float: left;
 }
+.h-header .h-container .h-login {
+  display: inline-block;
+  float: right;
+  margin: 22px 0 0 40px;
+  padding: 0 10px;
+  line-height: 28px;
+  color: #666666;
+  text-decoration: none;
+}
 .h-header .h-container .h-menu {
   float: right;
   font-size: 14px;
@@ -165,6 +174,7 @@ p {
   padding: 22px 4px 0;
   line-height: 28px;
   color: #666666;
+  text-decoration: none;
 }
 .h-header .h-container .h-menu li a.active,
 .h-header .h-container .h-menu li a:hover {
