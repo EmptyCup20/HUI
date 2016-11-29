@@ -17,7 +17,7 @@ app.use('/', require('./server/routes/index.router'));
 app.use('/index', require('./server/routes/index.router'));
 app.use('/resource', require('./server/routes/resource.router'));
 app.use('/login', require('./server/routes/login.router'));
-app.use('/upload', require('./server/routes/upload.router'));
+app.use('/admin', require('./server/routes/admin.router'));
 
 app.use('/user', require('./server/routes/user.router'));
 
