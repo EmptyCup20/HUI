@@ -11,9 +11,15 @@ body {
   min-height: 100%;
   min-width: 1110px;
   background: #fff;
-  font-family: tahoma, "microsoft yahei", "微软雅黑" !important;
   font-size: 14px;
   line-height: 1.42857;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font-family: tahoma, "microsoft yahei", "微软雅黑";
 }
 ul,
 li {
@@ -28,6 +34,9 @@ input[type="submit"] {
 p {
   line-height: 1.8em;
 }
+.bg-gray {
+  background-color: #e6e6e6;
+}
 .white-light {
   color: #999999 !important;
 }
@@ -39,6 +48,9 @@ p {
 }
 .text-right {
   text-align: right;
+}
+.h-middle {
+  margin: 0 auto;
 }
 .clearfix:before,
 .clearfix:after,
@@ -107,6 +119,9 @@ p {
 }
 .h-col-12 {
   width: 100%;
+}
+.w400 {
+  width: 400px;
 }
 .h-header {
   width: 100%;
@@ -182,6 +197,54 @@ p {
   margin-top: 50px;
   text-align: center;
 }
+input,
+textarea,
+select {
+  border: 1px solid #e4eaec;
+  line-height: 1.66667;
+  font-size: 12px;
+  border-radius: 3px;
+}
+input,
+textarea {
+  padding: 6px 15px;
+}
+textarea {
+  height: 80px;
+  resize: none;
+}
+select {
+  height: 34px;
+  padding: 0 12px;
+  line-height: 32px;
+}
+.form-group {
+  margin-bottom: 30px;
+}
+.form-group label {
+  display: inline-block;
+  width: 80px;
+  color: #76838f;
+  line-height: 32px;
+  vertical-align: top;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 320px;
+}
+.btn {
+  padding: 6px 15px;
+  border: 1px solid transparent;
+  line-height: 1.66667;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.btn-primary {
+  background: #62A8EA;
+  border-color: #62A8EA;
+  color: #fff;
+}
 .main-wrapper,
 .full-page {
   position: relative;
@@ -208,7 +271,7 @@ p {
   opacity: 1;
 }
 .h-container {
-  max-width: 1230px;
+  max-width: 1260px;
   margin: 0 auto;
   padding: 0 30px;
 }
@@ -288,4 +351,12 @@ p {
 }
 .btn-scroll-up:hover {
   background-color: #45add8;
+}
+.btn-upload {
+  margin-left: 480px;
+}
+.h-building-box {
+  height: 621px;
+  padding: 100px 0;
+  text-align: center;
 }

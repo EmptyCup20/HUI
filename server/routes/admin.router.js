@@ -12,6 +12,8 @@ router.get('/upload', function(req, res) {
 });
 
 //上传图标
-router.post("/icon", icon_source.upload);
+router.post("/iconUpload", icon_source.upload);
+
+router.post("/icon/add", icon_source.add);
 
 module.exports = router;
