@@ -3,6 +3,8 @@
  */
 var express = require("express");
 var router = express.Router();
+var icon_source = require("../controllers/icon.controller");
+
 
 router.get('/uikit', function(req, res) {
     res.render('resource/uikit.ejs', {
@@ -24,7 +26,13 @@ router.get('/coloricon', function(req, res) {
 
 router.get('/iconfont/detail', function(req, res) {
     res.render('resource/iconfontDetail.ejs', {
+router.get('/', function (req, res) {
+    res.render('resource/resource.ejs', {
         title: '资源库'
     });
 });
+
+router.get('/getCollections', icon_source.getCollections);
+router.get('/getIconByCollection', icon_source.getIconByCollection);
+
 module.exports = router;

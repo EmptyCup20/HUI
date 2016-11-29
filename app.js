@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', require('./server/routes/index.router'));
 app.use('/index', require('./server/routes/index.router'));
 app.use('/resource', require('./server/routes/resource.router'));
+app.use('/front-end', require('./server/routes/front-end.router'));
+app.use('/works', require('./server/routes/works.router'));
+app.use('/about', require('./server/routes/about.router'));
 app.use('/login', require('./server/routes/login.router'));
 app.use('/admin', require('./server/routes/admin.router'));
 

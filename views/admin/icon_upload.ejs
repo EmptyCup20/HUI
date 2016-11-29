@@ -5,13 +5,36 @@
     </div>
     <div class="h-section">
         <div class="h-container">
-            <form action="/upload/icon" method="post" enctype="multipart/form-data">
-                <input name="iconName" type="text">
-                <input name="iconFile" type="file">
-                <button id="iconUpload" type="submit">上传图标</button>
+            <form class="h-middle w400" id="iconUploadForm" action="/admin/icon/add" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>名称</label><input type="text" name="name">
+                </div>
+                <div class="form-group">
+                    <label>类型</label><select name="collection">
+                        <option value="0">通用</option>
+                        <option value="1">标识</option>
+                        <option value="2">操作</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>标签</label><textarea name="tag"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>选择文件</label><input id="icon_upload" name="iconFile" type="file" data-url="/admin/iconUpload">
+                </div>
+                <input name="url" type="hidden">
             </form>
+        </div>
+    </div>
+    <div class="h-section bg-gray">
+        <div class="h-container">
+            <button class="btn btn-primary btn-upload" id="iconUpload" type="button">上传</button>
         </div>
     </div>
     <% include ../common/footer.ejs %>
 </div>
 <% include ../common/foot.ejs %>
+<script src="/plugins/fileupload/jquery.ui.widget.js"></script>
+<script src="/plugins/fileupload/jquery.iframe-transport.js"></script>
+<script src="/plugins/fileupload/jquery.fileupload.js"></script>
+<script src="/src/js/icon_upload.js"></script>

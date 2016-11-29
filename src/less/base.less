@@ -14,9 +14,12 @@ body {
   min-height: 100%;
   min-width: 1110px;
   background: @white-base;
-  font-family: tahoma, "microsoft yahei", "微软雅黑" !important;
   font-size: 14px;
   line-height: 1.42857;
+}
+
+body, button, input, select, textarea {
+  font-family: tahoma, "microsoft yahei", "微软雅黑";
 }
 
 ul, li {
@@ -29,6 +32,10 @@ a, button, input[type="button"], input[type="submit"] {
 
 p {
   line-height: 1.8em;
+}
+
+.bg-gray {
+  background-color: @white-ivory;
 }
 
 .white-light {
@@ -45,6 +52,10 @@ p {
 
 .text-right {
   text-align: right;
+}
+
+.h-middle {
+  margin: 0 auto;
 }
 
 .clearfix:before,
@@ -121,4 +132,8 @@ p {
 
 .h-col-12 {
   width: 100%;
+}
+
+.w400 {
+  width: 400px;
 }
