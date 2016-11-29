@@ -6,7 +6,7 @@ var router = express.Router();
 
 router.get('/', function (req, res) {
     res.render('about/about.ejs', {
-        title: '关于我们'
+        model: 'about'
     });
 });
 

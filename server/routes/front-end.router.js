@@ -6,7 +6,7 @@ var router = express.Router();
 
 router.get('/', function (req, res) {
     res.render('front-end/front-end.ejs', {
-        title: '前端开发'
+        model: 'front-end'
     });
 });
 

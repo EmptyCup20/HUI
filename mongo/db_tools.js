@@ -49,9 +49,16 @@ var iconSource = new Schema({
     //标签
     tags: String,
     //分类
-    type: String,
+    type: {
+        type: String,
+        require: true
+    },
     //文件路径
-    url: String
+    url: {
+        type: String,
+        require: true,
+        unique: true
+    }
 });
 
 var iconClassify = new Schema({

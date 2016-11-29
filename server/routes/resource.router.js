@@ -8,7 +8,7 @@ var icon_source = require("../controllers/icon.controller");
 
 router.get('/', function (req, res) {
     res.render('resource/resource.ejs', {
-        title: '资源库'
+        model: 'resource'
     });
 });
 

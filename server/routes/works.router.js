@@ -6,7 +6,7 @@ var router = express.Router();
 
 router.get('/', function (req, res) {
     res.render('works/works.ejs', {
-        title: '作品池'
+        model: 'works'
     });
 });
 
