@@ -1,0 +1,65 @@
+@import "color.less";
+
+.h-header {
+  width: 100%;
+  height: 74px;
+  .h-container {
+    height: 100%;
+    .h-logo {
+      margin-top: 13px;
+      float: left;
+    }
+    .h-quick-menu {
+      display: inline-block;
+      float: right;
+      line-height: 28px;
+      li {
+        float: left;
+        a {
+          display: inline-block;
+          float: right;
+          margin: 22px 0 0 40px;
+          padding: 0 10px;
+          color: @white-lighter;
+          text-decoration: none;
+        }
+        a:hover {
+          color: #fff;
+        }
+      }
+    }
+    .h-menu {
+      float: right;
+      font-size: 14px;
+      li {
+        margin-left: 90px;
+        float: left;
+        a {
+          display: block;
+          padding: 22px 4px 0;
+          line-height: 28px;
+          color: @white-lighter;
+          text-decoration: none;
+        }
+        a.active, a:hover {
+          color: #fff;
+          border-bottom: 2px solid #fff;
+        }
+      }
+    }
+  }
+}
+
+.full-page .h-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.h-header.header-fixed {
+  position: fixed;
+  min-width: 1110px;
+  background: @dark-base;
+  border-bottom: 1px solid rgba(69, 172, 215, .8);
+  z-index: 998;
+}

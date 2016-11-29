@@ -1,12 +1,12 @@
 /**
- * Created by zhengjunling on 2016/11/25.
+ * Created by zhengjunling on 2016/11/29.
  */
 var express = require("express");
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    res.render('index.ejs', {
-        title: '首页'
+    res.render('resource.ejs', {
+        title: '资源库'
     });
 });
 

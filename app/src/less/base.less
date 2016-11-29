@@ -1,0 +1,124 @@
+@import "color.less";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  min-width: 1110px;
+  background: @white-base;
+  font-family: tahoma, "microsoft yahei", "微软雅黑" !important;
+  font-size: 14px;
+  line-height: 1.42857;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a, button, input[type="button"], input[type="submit"] {
+  cursor: pointer;
+}
+
+p {
+  line-height: 1.8em;
+}
+
+.white-light {
+  color: @white-light !important;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.clearfix:before,
+.clearfix:after,
+.h-row:before,
+.h-row:after {
+  display: table;
+  content: " ";
+}
+
+.clearfix:after,
+.h-row:after {
+  clear: both;
+}
+
+.h-img-link {
+  img {
+    border: 0;
+  }
+}
+
+.h-row {
+  margin: 0 -30px;
+}
+
+.h-col-1, .h-col-2, .h-col-3, .h-col-4, .h-col-5, .h-col-6, .h-col-7, .h-col-8, .h-col-9, .h-col-10, .h-col-11, .h-col-12 {
+  float: left;
+  padding: 0 30px;
+}
+
+.h-col-1 {
+  width: 8.3333%;
+}
+
+.h-col-2 {
+  width: 16.6667%;
+}
+
+.h-col-3 {
+  width: 25%;
+}
+
+.h-col-4 {
+  width: 33.3333%;
+}
+
+.h-col-5 {
+  width: 41.6667%;
+}
+
+.h-col-6 {
+  width: 50%;
+}
+
+.h-col-7 {
+  width: 58.3333%;
+}
+
+.h-col-8 {
+  width: 66.6667%;
+}
+
+.h-col-9 {
+  width: 75%;
+}
+
+.h-col-10 {
+  width: 83.3333%;
+}
+
+.h-col-11 {
+  width: 91.6667%;
+}
+
+.h-col-12 {
+  width: 100%;
+}

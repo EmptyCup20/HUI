@@ -14,7 +14,7 @@ gulp.task('lessToCss', function () {
 
 gulp.task('browser-sync',function(){
     browserSync.init({
-        proxy:"http://localhost:8080/",
+        proxy:"http://localhost:7080/",
         files:["app/src/css/**/*","app/views/**/*"],
         port: 7000
     });
