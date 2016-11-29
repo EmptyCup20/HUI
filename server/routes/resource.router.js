@@ -8,7 +8,7 @@ var co = require('co');
 
 router.get('/uikit', function (req, res) {
     res.render('resource/uikit.ejs', {
-        title: '资源库'
+        model: "resource"
     });
 });
 
@@ -16,7 +16,8 @@ router.get('/iconfont', function (req, res) {
     co(function*() {
         var data = yield icon_source.getCollections();
         res.render('resource/iconfont.ejs', {
-            allIcon:data
+            allIcon:data,
+            model: "resource"
         });
     });
 
@@ -24,13 +25,13 @@ router.get('/iconfont', function (req, res) {
 
 router.get('/coloricon', function (req, res) {
     res.render('resource/coloricon.ejs', {
-        title: '资源库'
+        model: "resource"
     });
 });
 
 router.get('/iconfont/detail', function (req, res) {
     res.render('resource/iconfontDetail.ejs', {
-        title: '资源库'
+        model: "resource"
     });
 });
 
