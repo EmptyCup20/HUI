@@ -289,3 +289,110 @@ p {
 .btn-scroll-up:hover {
   background-color: #45add8;
 }
+/*
+ * 资源库样式
+ */
+.h-bg {
+  background-color: #f0f0f0;
+}
+.h-block {
+  margin: 40px 0 60px 0;
+}
+/*资源库切换标签*/
+.h-tag li {
+  padding-left: 1px;
+  padding-right: 1px;
+  display: inline-block;
+  width: 33.33%;
+  float: left;
+  text-align: center;
+}
+.h-tag li a {
+  display: block;
+  height: 40px;
+  background-color: #f8f8f8;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 40px;
+  font-size: 13px;
+  font-family: 'Agency FB';
+  font-weight: bold;
+  text-decoration: none;
+}
+.h-tag li a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.h-tag li .active {
+  background-color: #ffffff;
+}
+/*搜索框*/
+.search {
+  width: 300px;
+  height: 40px;
+  margin-right: 20px;
+  padding-left: 20px;
+  padding-right: 10px;
+  float: right;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  border: 0;
+}
+.search:focus {
+  color: rgba(0, 0, 0, 0.8);
+  outline: none;
+  outline-offset: 0;
+}
+/*按类展示*/
+.block-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.block-collection {
+  width: 540px;
+  margin-left: 30px;
+  float: left;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all .4s;
+  cursor: pointer;
+}
+.block-collection:first-child {
+  margin-right: 30px;
+  margin-left: 0;
+}
+.block-collection:hover {
+  transform: translateY(-2%);
+}
+.block-collection-title {
+  font-weight: normal;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 20px 20px 0 30px;
+}
+.icons-container {
+  padding: 10px 40px 40px 40px;
+}
+.icons-container li {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.icons-container li:first-child {
+  margin-left: 0;
+  margin-top: 0;
+}
+.icons-container li img {
+  width: 100%;
+}
+/*显示图标数量*/
+.total-num {
+  float: right;
+  padding: 0 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-style: normal;
+}
