@@ -16,7 +16,7 @@ router.get('/iconfont', function (req, res) {
     co(function*() {
         var data = yield icon_source.getCollections();
         res.render('resource/iconfont.ejs', {
-            allIcon:data,
+            allIcon: data,
             model: "resource"
         });
     });
@@ -30,9 +30,14 @@ router.get('/coloricon', function (req, res) {
 });
 
 router.get('/iconfont/detail', function (req, res) {
-    res.render('resource/iconfontDetail.ejs', {
-        model: "resource"
+    co(function*() {
+        var data = yield icon_source.getIconByCollection(req.query.type);
+        res.render('resource/iconfontDetail.ejs', {
+            model: "resource",
+            iconList: data
+        });
     });
+
 });
 
 //router.get('/getCollections', icon_source.getCollections);

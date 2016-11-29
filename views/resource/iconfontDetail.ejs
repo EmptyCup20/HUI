@@ -17,14 +17,9 @@
                     <i class="total-num">20</i>
                 </h4>
                 <ul class="icons-container clearfix">
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
+                    <% iconList.forEach(function(value){ %>
+                        <li><img src=<%- value.url %> alt=""></li>
+                    <%})%>
                 </ul>
             </div>
         </div>

@@ -85,6 +85,7 @@ module.exports = {
                     });
                     allIcon.push({
                         collection: item.name,
+                        typeId: item.id,
                         icon: data
                     })
                 }
@@ -93,12 +94,14 @@ module.exports = {
         });
     },
 
-    getIconByCollection: function (req, res) {
-        co(function*() {
-            var data = yield db_tools.queryByCondition('iconSource', {
-                type: req.query.type
-            });
-            res.send(data);
-        })
+    getIconByCollection: function (type) {
+        return new Promise((resolve, reject) => {
+            co(function*() {
+                var data = yield db_tools.queryByCondition('iconSource', {
+                    type: type
+                });
+                resolve(data);
+            })
+        });
     }
 }
