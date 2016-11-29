@@ -5,7 +5,7 @@ var express = require("express");
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    res.render('resource.ejs', {
+    res.render('resource/resource.ejs', {
         title: '资源库'
     });
 });

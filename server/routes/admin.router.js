@@ -6,7 +6,7 @@ var express = require("express");
 var router = express.Router();
 
 router.get('/upload', function(req, res) {
-    res.render('icon_upload.ejs', {
+    res.render('admin/icon_upload.ejs', {
         title: '上传图标'
     });
 });

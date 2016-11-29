@@ -7,7 +7,7 @@ global.rootPath = path.join(__dirname, 'app/');
 
 app.set("view engine", "ejs");
 
-app.set('views', path.join(__dirname, 'app/views'));
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'app')));
 app.use(bodyParser.json());

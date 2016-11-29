@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create();
 
 gulp.task('lessToCss', function () {
-    gulp.src('app/src/less/common.less')
+    gulp.src('src/less/common.less')
         .pipe(less())
         .pipe(gulp.dest('app/src/css'));
 });
@@ -15,10 +15,10 @@ gulp.task('lessToCss', function () {
 gulp.task('browser-sync',function(){
     browserSync.init({
         proxy:"http://localhost:7080/",
-        files:["app/src/css/**/*","app/views/**/*"],
+        files:["src/less/**/*","views/**/*"],
         port: 7000
     });
-    gulp.watch('app/src/less/**/*', ['lessToCss']);
+    gulp.watch('src/less/**/*', ['lessToCss']);
 })
 
 gulp.task('dev', ['browser-sync','lessToCss']);

@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    res.render('login.ejs', {
+    res.render('user/login.ejs', {
         title: '登录'
     });
 });
