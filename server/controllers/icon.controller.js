@@ -10,7 +10,7 @@ var co = require('co')
 module.exports = {
     //svg图标上传
     upload: function (req, res) {
-        var uploadDir = path.join('files', 'icon', 'svg');
+        var uploadDir = path.join('/','files', 'icon', 'svg');
         var form = new formidable.IncomingForm();
         form.encoding = 'utf-8';		//设置编辑
         form.uploadDir = global.rootPath + uploadDir;	 //设置上传目录
@@ -62,22 +62,24 @@ module.exports = {
     //获取图标集
     getCollections: function (req, res) {
         var allIcon = [];
-        co(function*() {
-            for (var i = 0, item; item = iconCollections[i]; i++) {
-                var data =yield db_tools.queryByCondition('iconSource', {
-                    type: item.id
-                });
-                allIcon.push({
-                    collection: item.name,
-                    icon: data
-                })
-            }
-            res.send(allIcon);
+        return new Promise((resolve, reject) => {
+            co(function*() {
+                for (var i = 0, item; item = iconCollections[i]; i++) {
+                    var data = yield db_tools.queryByCondition('iconSource', {
+                        type: item.id
+                    });
+                    allIcon.push({
+                        collection: item.name,
+                        icon: data
+                    })
+                }
+                resolve(allIcon);
+            });
         });
     },
-    getIconByCollection:function(req,res){
-        co(function*() {
 
+    getIconByCollection: function (req, res) {
+        co(function*() {
             var data = yield db_tools.queryByCondition('iconSource', {
                 type: req.query.type
             });

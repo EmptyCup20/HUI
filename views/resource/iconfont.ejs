@@ -19,77 +19,23 @@
     <div class="h-block">
         <div class="h-container clearfix">
             <p class="block-title">公共图标</p>
-            <div class="block-collection">
-                <h4 class="block-collection-title">
-                    <span>标示类图标</span>
-                    <i class="total-num">20</i>
-                </h4>
-                <div class="icons-container">
-                    <ul class="clearfix">
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    </ul>
+            <% allIcon.forEach(function(value){ %>
+                <div class="block-collection">
+                    <h4 class="block-collection-title">
+                        <span><%= value.collection %></span>
+                        <i class="total-num">20</i>
+                    </h4>
+                    <div class="icons-container">
+                        <ul class="clearfix">
+                            <% value.icon.forEach(function(value){ %>
+                                <li>
+                                    <%- value.url %>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="block-collection">
-                <h4 class="block-collection-title">标示类图标</h4>
-                <div class="icons-container">
-                    <ul class="clearfix">
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="h-block">
-        <div class="h-container clearfix">
-            <p class="block-title">公共图标</p>
-            <div class="block-collection">
-                <h4 class="block-collection-title">
-                    <span>标示类图标</span>
-                    <i class="total-num">20</i>
-                </h4>
-                <div class="icons-container">
-                    <ul class="clearfix">
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="block-collection">
-                <h4 class="block-collection-title">标示类图标</h4>
-                <div class="icons-container">
-                    <ul class="clearfix">
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                        <li><img src="/files/icon/svg/upload_872bf7e0cfd7b20cf091780aa536f3e1.png" alt=""></li>
-                    </ul>
-                </div>
-            </div>
+            <% }); %>
         </div>
     </div>
 

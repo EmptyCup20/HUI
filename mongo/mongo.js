@@ -3,7 +3,7 @@
  */
 
 var mongoose = require("mongoose");
-
+mongoose.Promise = require('bluebird');
 var db = mongoose.connect("mongodb://10.33.31.234/hui", function (err) {
     if (err) {
         console.log(err);
