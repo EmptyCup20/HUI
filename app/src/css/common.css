@@ -413,10 +413,10 @@ select {
 }
 .block-collection {
   width: 540px;
-  margin-left: 30px;
+  height: 400px;
+  margin-bottom: 60px;
   float: left;
   border-radius: 6px;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
   background-color: #fff;
   transition: all .4s;
   cursor: pointer;
@@ -426,6 +426,7 @@ select {
   margin-left: 0;
 }
 .block-collection:hover {
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
   transform: translateY(-2%);
 }
 .block-collection-title {
@@ -441,15 +442,17 @@ select {
   display: inline-block;
   width: 100px;
   height: 100px;
+  padding-top: 26px;
   margin-left: 10px;
   margin-top: 10px;
+  text-align: center;
 }
 .icons-container li:first-child {
   margin-left: 0;
   margin-top: 0;
 }
 .icons-container li img {
-  width: 100%;
+  height: 48px;
 }
 /*显示图标数量*/
 .total-num {

@@ -10,7 +10,7 @@ var co = require('co')
 module.exports = {
     //svg图标上传
     upload: function (req, res) {
-        var uploadDir = path.join('/','files', 'icon', 'svg');
+        var uploadDir = path.join('files', 'icon', 'svg');
         var form = new formidable.IncomingForm();
         form.encoding = 'utf-8';		//设置编辑
         form.uploadDir = global.rootPath + uploadDir;	 //设置上传目录
@@ -25,7 +25,7 @@ module.exports = {
             var paths = files.iconFile.path.split('\\');
             var response = {
                 name: files.iconFile.name.replace(reg, ''),
-                url: uploadDir + paths[paths.length - 1]
+                url: '\\' + uploadDir +'\\' + paths[paths.length - 1]
             }
             res.send(response);
             //var formData = {

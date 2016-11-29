@@ -20,6 +20,10 @@
         <div class="h-container clearfix">
             <p class="block-title">公共图标</p>
             <% allIcon.forEach(function(value){ %>
+            <% if(!value.icon.length){
+                return;
+            }%>
+            <div class="h-col-6">
                 <div class="block-collection" data-typeid="<%= value.typeId%>">
                     <h4 class="block-collection-title">
                         <span><%= value.collection %></span>
@@ -39,6 +43,7 @@
                         </ul>
                     </div>
                 </div>
+            </div>
             <% }); %>
         </div>
     </div>

@@ -14,7 +14,7 @@
             }).done(function (data) {
                 alert(data.message);
                 if (data.success) {
-                    window.location.href = "/resource";
+                    window.location.reload();
                 }
             })
         }
