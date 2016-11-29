@@ -51,10 +51,25 @@ module.exports = {
             type: params.collection,
             tags: params.tag
         };
+
+        if (!formData.name || !formData.url || !formData.type) {
+            res.send({
+                success: false,
+                message: "数据有误，无法上传！"
+            });
+        }
         db_tools.add('iconSource', formData).then(function (data) {
-            res.send(data);
+            res.send({
+                success: true,
+                message: "上传成功！",
+                data: data
+            });
             return;
         }, function (err) {
+            res.send({
+                success: false,
+                message: "上传失败！"
+            });
             console.log(err);
         });
     },

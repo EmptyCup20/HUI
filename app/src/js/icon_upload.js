@@ -12,7 +12,10 @@
                 method: "post",
                 data: result
             }).done(function (data) {
-
+                alert(data.message);
+                if (data.success) {
+                    window.location.href = "/resource";
+                }
             })
         }
 
