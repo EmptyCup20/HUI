@@ -123,6 +123,9 @@ p {
 .w400 {
   width: 400px;
 }
+.minh-485 {
+  min-height: 485px;
+}
 .h-header {
   width: 100%;
   height: 74px;
