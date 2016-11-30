@@ -6,6 +6,8 @@ var path = require("path");
 var db_tools = require("../../mongo/db_tools");
 var iconCollections = require("../models/icon.collection.model");
 var co = require('co')
+var request = require('request')
+var fs = require('fs')
 
 module.exports = {
     //svg图标上传
@@ -27,7 +29,21 @@ module.exports = {
                 name: files.iconFile.name.replace(reg, ''),
                 url: '\\' + uploadDir +'\\' + paths[paths.length - 1]
             }
-            res.send(response);
+
+            var formData = {
+                upload: fs.createReadStream(files.iconFile.path)
+            };
+
+            request.post({
+                url: "http://10.20.134.55:5566/containers/upload/xxx/" + files.iconFile.name,
+                formData: formData
+            },  function(err, httpResponse, body) {
+                if (err) {
+                    console.log('err:' +  err);
+                }
+                console.log('body:' + body);
+            });
+            // res.send(response);
             //var formData = {
             //    name: fields.iconName,
             //    type: files.iconFile.type
