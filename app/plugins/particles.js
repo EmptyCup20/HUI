@@ -10,8 +10,8 @@
     initAnimation();
 
     function initHeader() {
-        width = 600;
-        height = 362;
+        width = 1000;
+        height = 500;
         target = {
             x: width / 2,
             y: height / 2
@@ -27,10 +27,10 @@
 
         // create points
         points = [];
-        for (var x = 0; x < width; x = x + width / 10) {
-            for (var y = 0; y < height; y = y + height / 10) {
-                var px = x + Math.random() * width / 10;
-                var py = y + Math.random() * height / 10;
+        for (var x = 0; x < width; x = x + width / 15) {
+            for (var y = 0; y < height; y = y + height / 15) {
+                var px = x + Math.random() * width / 15;
+                var py = y + Math.random() * height / 15;
                 var p = {
                     x: px,
                     originX: px,
@@ -148,7 +148,7 @@
     }
 
     function shiftPoint(p) {
-        TweenLite.to(p, 1 + 1 * Math.random(), {
+        TweenLite.to(p, 1 + 5 * Math.random(), {
             x: p.originX - 50 + Math.random() * 100,
             y: p.originY - 50 + Math.random() * 100,
             ease: Circ.easeInOut,

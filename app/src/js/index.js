@@ -22,7 +22,7 @@
 
         $("#scrollToNext").on("click", function () {
             $.smoothScroll({
-                easing: "easeInOutSine",
+                easing: "easeInOutQuint",
                 speed: 500,
                 scrollTarget: ".scroll-down-target"
             });
@@ -31,9 +31,45 @@
         $(".btn-scroll-up").on("click", function () {
             $.smoothScroll({
                 offset: 0,
-                easing: "easeInOutSine",
+                easing: "easeInOutQuint",
                 speed: 500
             });
         })
+
+        //function mouseWheelScroll(e) {
+        //    var scrollTop = $(this).scrollTop();
+        //    var direct = 0;
+        //    e = e || window.event;
+        //    if (e.originalEvent.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
+        //        if (e.originalEvent.wheelDelta > 0) { //当滑轮向上滚动时
+        //            direct = 0;
+        //        }
+        //        if (e.originalEvent.wheelDelta < 0) { //当滑轮向下滚动时
+        //            direct = 1;
+        //        }
+        //    } else if (e.detail) {  //Firefox滑轮事件
+        //        if (e.detail > 0) { //当滑轮向上滚动时
+        //            direct = 0;
+        //        }
+        //        if (e.detail < 0) { //当滑轮向下滚动时
+        //            direct = 1;
+        //        }
+        //    }
+        //    if (scrollTop < $(window).height() && direct) {
+        //        $.smoothScroll({
+        //            easing: "easeInOutQuint",
+        //            speed: 500,
+        //            scrollTarget: ".scroll-down-target",
+        //            beforeScroll: function () {
+        //                $(document).off("mousewheel");
+        //            },
+        //            afterScroll: function () {
+        //                $(document).on("mousewheel", mouseWheelScroll);
+        //            }
+        //        });
+        //    }
+        //}
+        //
+        //$(document).on("mousewheel", mouseWheelScroll)
     })
 })(jQuery);
