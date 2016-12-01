@@ -4,6 +4,11 @@
 (function ($) {
     $(function () {
         $("#dg-container").gallery();
+        $.scrollify({
+            section: ".scroll-section",
+            scrollSpeed: 800
+        });
+
         $(document).on("scroll", function () {
             var scrollTop = $(this).scrollTop();
 
@@ -22,8 +27,8 @@
 
         $("#scrollToNext").on("click", function () {
             $.smoothScroll({
-                easing: "easeInOutQuint",
-                speed: 500,
+                easing: "easeOutExpo",
+                speed: 800,
                 scrollTarget: ".scroll-down-target"
             });
         })
@@ -31,8 +36,8 @@
         $(".btn-scroll-up").on("click", function () {
             $.smoothScroll({
                 offset: 0,
-                easing: "easeInOutQuint",
-                speed: 500
+                easing: "easeOutExpo",
+                speed: 800
             });
         })
 
