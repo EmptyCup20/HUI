@@ -3,8 +3,6 @@ var path = require('path');
 var app = express();
 var bodyParser = require('body-parser');
 
-global.rootPath = path.join(__dirname, 'app/');
-
 app.set("view engine", "ejs");
 
 app.set('views', path.join(__dirname, 'views'));

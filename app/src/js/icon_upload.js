@@ -21,10 +21,11 @@
 
         $("#icon_upload").fileupload({
             done: function (t, result) {
-                if (!result.result) return;
-                uploadForm.find("[name=url]").val(result.result.url);
+                var data = result.result;
+                if (!data || !data.data) return;
+                uploadForm.find("[name=url]").val(data.data.url);
                 if (!uploadForm.find("[name=name]").val()) {
-                    uploadForm.find("[name=name]").val(result.result.name);
+                    uploadForm.find("[name=name]").val(data.data.name);
                 }
             }
         });

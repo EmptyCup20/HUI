@@ -3,44 +3,5 @@
 <script type="text/javascript" src="/plugins/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/plugins/jquery.easing.min.js"></script>
 <script type="text/javascript" src="/plugins/jquery.smooth-scroll.js"></script>
-<script type="text/javascript" src="/plugins/gallery3D/modernizr.custom.53451.js"></script>
-<script type="text/javascript" src="/plugins/gallery3D/jquery.gallery.js"></script>
-<script type="text/javascript">
-    $(function() {
-
-        $("#dg-container").gallery();
-
-        $(document).on("scroll", function() {
-            var scrollTop = $(this).scrollTop();
-            if (scrollTop > 50) {
-                $(".h-header").addClass("header-fixed");
-            } else {
-                $(".h-header").removeClass("header-fixed");
-            }
-
-            if (scrollTop > 150) {
-                $(".btn-scroll-up").fadeIn(300);
-            } else {
-                $(".btn-scroll-up").fadeOut(300);
-            }
-        })
-
-        $("#scrollToNext").on("click", function() {
-            $.smoothScroll({
-                easing: "easeInOutSine",
-                speed: 500,
-                scrollTarget: ".scroll-down-target"
-            });
-        })
-
-        $(".btn-scroll-up").on("click", function() {
-            $.smoothScroll({
-                offset: 0,
-                easing: "easeInOutSine",
-                speed: 500
-            });
-        })
-    })
-</script>
 </body>
 </html>

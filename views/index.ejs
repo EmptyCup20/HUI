@@ -1,12 +1,18 @@
-<% include common/head.ejs %>
+<% include common/head %>
+<link href="/plugins/gallery3D/style.css" rel="stylesheet" type="text/css">
 <div class="main-wrapper">
     <div class="main-top full-page">
-        <% include common/header.ejs %>
+        <% include common/header %>
         <div class="main-top-box">
             <div class="h-container">
                 <div class="h-heading-content">
-                    <img class="h-index-logo" src="../src/image/index_logo.png">
-                    <h4 class="h-version-title">HUI 1.0</h4>
+                    <div class="h-logo-wrapper">
+                        <div class="h-particles-wrapper" id="particles-animate">
+                            <canvas id="particles-canvas" width="600" height="362"></canvas>
+                        </div>
+                        <img class="h-index-logo" src="../src/image/index_logo.png">
+                        <h4 class="h-version-title">HUI 1.0</h4>
+                    </div>
                     <p class="h-lead">这不仅仅是一个资源共享的平台 , 也是一个搞高效协作的工具 ,更是一个充满生命力量的精灵 . Hi , I am HUI!</p>
                 </div>
             </div>
@@ -18,28 +24,32 @@
             <div class="h-row">
                 <div class="h-col-3">
                     <div class="h-cont-box">
-                        <img src="../src/image/icon_language.png">
+                        <div class="h-cont-icon h-cont-icon-1"></div>
+                        <!--<img src="../src/image/icon_language.png">-->
                         <h4>HUI设计语言</h4>
                         <p>这是一个年轻并迅速成长的专业设计语言，一起来成长吧</p>
                     </div>
                 </div>
                 <div class="h-col-3">
                     <div class="h-cont-box">
-                        <img src="../src/image/icon_collection.png">
+                        <div class="h-cont-icon h-cont-icon-2"></div>
+                        <!--<img src="../src/image/icon_collection.png">-->
                         <h4>资源库</h4>
                         <p>控件与字体图标的强大集合，带来意想不到的便捷</p>
                     </div>
                 </div>
                 <div class="h-col-3">
                     <div class="h-cont-box">
-                        <img src="../src/image/icon_tool.png">
+                        <div class="h-cont-icon h-cont-icon-3"></div>
+                        <!--<img src="../src/image/icon_tool.png">-->
                         <h4>前端开发</h4>
                         <p>大量的开发组件和比较成熟的开发框架，为前端开发者提供方便</p>
                     </div>
                 </div>
                 <div class="h-col-3">
                     <div class="h-cont-box">
-                        <img src="../src/image/icon_art.png">
+                        <div class="h-cont-icon h-cont-icon-4"></div>
+                        <!--<img src="../src/image/icon_art.png">-->
                         <h4>作品池</h4>
                         <p>项目案例的分享交流处，为你提供强大的设计灵感与经验</p>
                     </div>
@@ -63,7 +73,13 @@
             </div>
         </div>
     </div>
-    <% include common/footer.ejs %>
+    <% include common/footer %>
 </div>
-<% include common/foot.ejs %>
+
+<% include common/foot %>
+<script type="text/javascript" src="/plugins/gallery3D/modernizr.custom.53451.js"></script>
+<script type="text/javascript" src="/plugins/gallery3D/jquery.gallery.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js'></script>
+<script type="text/javascript" src="/plugins/particles.js"></script>
+<script type="text/javascript" src="/src/js/index.js"></script>
 
