@@ -3,6 +3,8 @@ var path = require('path');
 var app = express();
 var bodyParser = require('body-parser');
 
+global.basePath = path.join(__dirname, '/');
+
 app.set("view engine", "ejs");
 
 app.set('views', path.join(__dirname, 'views'));
@@ -13,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', require('./server/routes/index.router'));
 app.use('/index', require('./server/routes/index.router'));
+app.use('/design', require('./server/routes/design.router'));
 app.use('/resource', require('./server/routes/resource.router'));
 app.use('/front-end', require('./server/routes/front-end.router'));
 app.use('/works', require('./server/routes/works.router'));

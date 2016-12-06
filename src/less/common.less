@@ -5,6 +5,7 @@
 @import "form.less";
 @import "button.less";
 @import "grid.less";
+@import "sidebar.less";
 
 .main-wrapper,
 .full-page {
@@ -47,24 +48,23 @@
     width: 100%;
     height: 100%;
     .h-heading-content {
+      position: relative;
       display: table-cell;
       vertical-align: middle;
+      .h-particles-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        margin-top: -600px;
+        z-index: 1;
+        canvas {
+          width: 100%;
+          height: 100%;
+        }
+      }
       .h-logo-wrapper {
         position: relative;
-        padding: 100px 0 50px;
-        .h-particles-wrapper {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 50%;
-          width: 1000px;
-          margin-left: -500px;
-          z-index: 1;
-          canvas {
-            width: 100%;
-            height: 100%;
-          }
-        }
         .h-index-logo {
           position: relative;
           display: block;

@@ -1,41 +1,25 @@
-<% include ../common/head.ejs %>
-<div class="main-wrapper">
-    <div class="main-top">
-        <% include ../common/header.ejs %>
+<form class="h-middle w400" id="iconUploadForm" action="/admin/icon/add" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>选择文件</label><input id="icon_upload" name="iconFile" type="file" data-url="/admin/iconUpload" multiple="multiple">
     </div>
-    <div class="h-section">
-        <div class="h-container">
-            <form class="h-middle w400" id="iconUploadForm" action="/admin/icon/add" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label>选择文件</label><input id="icon_upload" name="iconFile" type="file" data-url="/admin/iconUpload" multiple="multiple">
-                </div>
-                <div class="form-group">
-                    <label>名称</label><input type="text" name="name">
-                </div>
-                <div class="form-group">
-                    <label>类型</label><select name="collection">
-                        <option value="0">标识</option>
-                        <option value="1">操作</option>
-                        <option value="2">设备</option>
-                        <option value="3">视频</option>
-                        <option value="4">系统状态</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>标签</label><textarea name="tag"></textarea>
-                </div>
-                <input name="url" type="hidden">
-            </form>
-        </div>
+    <div class="form-group">
+        <label>名称</label><input type="text" name="name">
     </div>
-    <div class="h-section bg-gray">
-        <div class="h-container">
-            <button class="btn btn-primary btn-upload" id="iconUpload" type="button">上传</button>
-        </div>
+    <div class="form-group">
+        <label>类型</label><select name="collection">
+            <option value="0">标识</option>
+            <option value="1">操作</option>
+            <option value="2">设备</option>
+            <option value="3">视频</option>
+            <option value="4">系统状态</option>
+        </select>
     </div>
-    <% include ../common/footer.ejs %>
-</div>
-<% include ../common/foot.ejs %>
+    <div class="form-group">
+        <label>标签</label><textarea name="tag"></textarea>
+    </div>
+    <input name="url" type="hidden">
+</form>
+<button class="btn btn-primary btn-upload" id="iconUpload" type="button">上传</button>
 <script src="/plugins/fileupload/jquery.ui.widget.js"></script>
 <script src="/plugins/fileupload/jquery.iframe-transport.js"></script>
 <script src="/plugins/fileupload/jquery.fileupload.js"></script>

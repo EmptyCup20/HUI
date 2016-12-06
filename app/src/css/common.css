@@ -178,8 +178,10 @@ p {
   color: #666666;
   text-decoration: none;
 }
-.h-header .h-container .h-menu li a.active,
 .h-header .h-container .h-menu li a:hover {
+  color: #fff;
+}
+.h-header .h-container .h-menu li a.active {
   color: #fff;
   border-bottom: 2px solid #fff;
 }
@@ -187,6 +189,7 @@ p {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 .h-header.header-fixed {
   position: fixed;
@@ -550,6 +553,17 @@ select {
 .lt-xs-y-11 {
   margin-top: 91.6667%;
 }
+.h-sidebar {
+  position: fixed;
+  top: 124px;
+}
+.h-sidebar .nav .nav {
+  display: none;
+  padding-bottom: 10px;
+}
+.h-sidenav > li.active .nav {
+  display: block;
+}
 .main-wrapper,
 .full-page {
   position: relative;
@@ -590,25 +604,24 @@ select {
   height: 100%;
 }
 .main-top-box .h-container .h-heading-content {
+  position: relative;
   display: table-cell;
   vertical-align: middle;
 }
-.main-top-box .h-container .h-heading-content .h-logo-wrapper {
-  position: relative;
-  padding: 100px 0 50px;
-}
-.main-top-box .h-container .h-heading-content .h-logo-wrapper .h-particles-wrapper {
+.main-top-box .h-container .h-heading-content .h-particles-wrapper {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1000px;
-  margin-left: -500px;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin-top: -600px;
   z-index: 1;
 }
-.main-top-box .h-container .h-heading-content .h-logo-wrapper .h-particles-wrapper canvas {
+.main-top-box .h-container .h-heading-content .h-particles-wrapper canvas {
   width: 100%;
   height: 100%;
+}
+.main-top-box .h-container .h-heading-content .h-logo-wrapper {
+  position: relative;
 }
 .main-top-box .h-container .h-heading-content .h-logo-wrapper .h-index-logo {
   position: relative;

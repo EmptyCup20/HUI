@@ -11,7 +11,7 @@
 
     function initHeader() {
         width = 1000;
-        height = 500;
+        height = 1000;
         target = {
             x: width / 2,
             y: height / 2
@@ -27,10 +27,10 @@
 
         // create points
         points = [];
-        for (var x = 0; x < width; x = x + width / 15) {
-            for (var y = 0; y < height; y = y + height / 15) {
-                var px = x + Math.random() * width / 15;
-                var py = y + Math.random() * height / 15;
+        for (var x = 0; x < width; x = x + width / 20) {
+            for (var y = 0; y < height; y = y + height / 20) {
+                var px = x + Math.random() * width / 20;
+                var py = y + Math.random() * height / 20;
                 var p = {
                     x: px,
                     originX: px,
@@ -73,7 +73,7 @@
 
         // assign a circle to each point
         for (var i in points) {
-            var c = new Circle(points[i], 1.5 + Math.random() * 2, 'rgba(255,255,255,0.3)');
+            var c = new Circle(points[i], 1 + Math.random() * 2, 'rgba(255,255,255,0.3)');
             points[i].circle = c;
         }
     }
@@ -126,13 +126,13 @@
             ctx.clearRect(0, 0, width, height);
             for (var i in points) {
                 // detect points in range
-                if (Math.abs(getDistance(target, points[i])) < 4000) {
+                if (Math.abs(getDistance(target, points[i])) < 5000) {
                     points[i].active = 0.2;
                     points[i].circle.active = 0.4;
-                } else if (Math.abs(getDistance(target, points[i])) < 20000) {
+                } else if (Math.abs(getDistance(target, points[i])) < 40000) {
                     points[i].active = 0.08;
                     points[i].circle.active = 0.24;
-                } else if (Math.abs(getDistance(target, points[i])) < 40000) {
+                } else if (Math.abs(getDistance(target, points[i])) < 80000) {
                     points[i].active = 0.02;
                     points[i].circle.active = 0.1;
                 } else {

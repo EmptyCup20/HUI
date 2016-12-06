@@ -38,12 +38,21 @@ var user = new Schema({
     create_time: String
 });
 
+var design_doc = new Schema({
+    name: {
+        type: String,
+        index: 1,
+        require: true,
+        unique: false
+    },
+    content: String
+});
+
 var iconSource = new Schema({
     //图标名称
     name: {
         type: String,
         index: 1,
-        require: true,
         unique: false
     },
     //标签
@@ -56,7 +65,6 @@ var iconSource = new Schema({
     //文件路径
     url: {
         type: String,
-        require: true,
         unique: true
     }
 });
@@ -125,12 +133,14 @@ Db_tools.add = function (collection, addObj) {
  * @param  {object}   editObj    [需要修改的数据]
  * @param  {Function} callback   回调函数
  */
-Db_tools.edit = function (collection, editObj) {
+Db_tools.edit = function (collection, editObj, queryObj) {
     var model = this.init(collection);
     var id = editObj.id;
+
     delete editObj.id;
+    queryObj = queryObj || {_id: id};
     return new Promise((resolve, reject) => {
-        model.findOneAndUpdate({_id: id}, {
+        model.findOneAndUpdate(queryObj, {
             $set: editObj
         }, function (err) {
             if (err) {
@@ -203,9 +213,9 @@ Db_tools.query = function (collection, queryObj) {
  * @param  {查询主键}   queryObj   string
  * @return {[type]}              [description]
  */
-Db_tools.queryByCondition = function (collection, queryObj) {
+Db_tools.queryByCondition = function (collection, queryObj, pickObj) {
     var model = this.init(collection);
-    var query = model.find(queryObj);
+    var query = model.find(queryObj, pickObj);
     return new Promise((resolve, reject) => {
         query.exec(queryObj, (err, doc) => {
             if (err) {
@@ -216,4 +226,19 @@ Db_tools.queryByCondition = function (collection, queryObj) {
         })
     })
 };
+
+Db_tools.queryAll = function (collection) {
+    var model = this.init(collection);
+    var query = model.find();
+    return new Promise((resolve, reject) => {
+        query.exec(queryObj, (err, doc) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(doc);
+            }
+        })
+    })
+
+}
 module.exports = Db_tools;

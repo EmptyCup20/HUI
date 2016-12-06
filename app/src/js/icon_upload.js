@@ -22,7 +22,8 @@
         $("#icon_upload").fileupload({
             done: function (t, result) {
                 var data = result.result;
-                if (!data || !data.data) return;
+                alert(data.message);
+                if (!data.data) return;
                 uploadForm.find("[name=url]").val(data.data.url);
                 if (!uploadForm.find("[name=name]").val()) {
                     uploadForm.find("[name=name]").val(data.data.name);

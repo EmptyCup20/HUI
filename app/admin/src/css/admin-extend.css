@@ -1,0 +1,43 @@
+body {
+    font-family: Microsoft YaHei;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-toolbar > li {
+    float: left;
+}
+
+.navbar-toolbar > li > a {
+    line-height: 22px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+
+.site-menubar-unfold .glyphicon {
+    margin-right: 14px;
+    text-align: center;
+    width: 1em;
+    line-height: inherit;
+    vertical-align: middle;
+}
+
+.site-navbar .navbar-header .navbar-brand,
+.site-menubar {
+    font-family: Microsoft YaHei;
+}
+
+.page {
+    min-height: 100%;
+}
+
+.preview-box {
+    overflow: auto;
+}
+
+textarea {
+    resize: none;
+    overflow-x: hidden;
+}

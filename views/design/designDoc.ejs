@@ -1,0 +1,52 @@
+<% include ../common/head %>
+<div class="main-wrapper">
+    <div class="main-top">
+        <% include ../common/header.ejs %>
+    </div>
+    <div class="h-section">
+        <div class="h-container">
+            <div class="h-row">
+                <div class="h-col-9">
+                    <div class="h-doc-section">
+                        <%- content %>
+                    </div>
+                </div>
+                <div class="h-col-3">
+                    <div class="h-sidebar">
+                        <ul class="nav bs-docs-sidenav h-sidenav">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../common/footer %>
+</div>
+
+<% include ../common/foot %>
+<script type="text/javascript" src="/plugins/bootstrap.js"></script>
+<script>
+    $(function () {
+        //自动根据文档内容生成目录
+        var m = -1, n = -1;
+        $(".h-doc-section").find("h1,h3").each(function () {
+            var anchor, text = $(this).text();
+            if ($(this).is("h1")) {
+                m += 1;
+                anchor = "anchor_" + m;
+                $(".h-sidenav").append("<li><a href='#" + anchor + "'>" + text + "</a></li>");
+            } else {
+                var parentLI = $(".h-sidenav").children().eq(m);
+                n += 1;
+                anchor = "anchor_" + m + "_" + n;
+                if (!parentLI.find("ul").length) {
+                    parentLI.append("<ul class='nav'/>");
+                }
+                parentLI.find("ul").append("<li><a href='#" + anchor + "'>" + text + "</a></li>");
+            }
+            $(this).attr("id", anchor);
+        });
+
+        $('body').scrollspy({target: '.h-sidebar'});
+    })
+</script>

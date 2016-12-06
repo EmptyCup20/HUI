@@ -22,9 +22,9 @@
           padding: 0 10px;
           color: @white-lighter;
           text-decoration: none;
-        }
-        a:hover {
-          color: #fff;
+          &:hover {
+            color: #fff;
+          }
         }
       }
     }
@@ -40,10 +40,13 @@
           line-height: 28px;
           color: @white-lighter;
           text-decoration: none;
-        }
-        a.active, a:hover {
-          color: #fff;
-          border-bottom: 2px solid #fff;
+          &:hover {
+            color: #fff;
+          }
+          &.active {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+          }
         }
       }
     }
@@ -54,6 +57,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 .h-header.header-fixed {
