@@ -1,17 +1,21 @@
 /**
  * Created by zhengjunling on 2016/11/25.
  */
-var formidable = require("formidable");
-var path = require("path");
 var db_tools = require("../../mongo/db_tools");
 var iconCollections = require("../models/icon.collection.model");
-var co = require('co');
+var formidable = require("formidable");
 var request = require('request');
 var fs = require('fs');
+var co = require('co');
+var fileModel = ["svg", "png", "psd", "zip"];
 
 module.exports = {
-    //svg图标上传
-    upload: function (req, res) {
+    /**
+     * 文件上传
+     * @param req
+     * @param res
+     */
+    uploadFile : function(req, res) {
         var fileServerPath = "http://10.33.31.234:5566"; //图片服务器路径
         var fileDirName = "hui_svg"; //图片存储文件夹
         var form = new formidable.IncomingForm();
@@ -27,7 +31,7 @@ module.exports = {
                 url: fileServerPath + "/containers/upload",
                 formData: {
                     dirName: fileDirName,
-                    fileName: files.iconFile.name,
+                    // fileName: files.iconFile.name, //不传名字自动生成图片
                     upload: fs.createReadStream(files.iconFile.path)
                 }
             }, function (err, httpResponse, body) {
@@ -65,38 +69,77 @@ module.exports = {
             });
         });
     },
-    //图标信息保存到数据库
-    add: function (req, res) {
+    /**
+     * 保存资源
+     * @param req
+     * @param res
+     */
+    saveResource : function (req, res) {
         var params = req.body;
         var formData = {
+            id : params._id,
             name: params.name,
             url: params.url,
+            svgfile: params.svgfile,
+            pngfile: params.pngfile,
+            psdfile: params.psdfile,
+            zipfile: params.zipfile,
+            fileType: params.fileType,
+            otherLink: params.otherLink,
             type: params.collection,
-            tags: params.tag
+            tags: params.tags
         };
-
-        //if (!formData.name || !formData.url || !formData.type) {
-        //    res.send({
-        //        success: false,
-        //        message: "数据有误，无法上传！"
-        //    });
-        //}
-        db_tools.add('iconSource', formData).then(function (data) {
+        var method = formData.id ? "edit" : "add";
+        db_tools[method]('iconSource', formData).then(function (data) {
             res.send({
                 success: true,
-                message: "上传成功！",
+                message: "修改成功！",
                 data: data
             });
             return;
         }, function (err) {
+            console.log(err)
             res.send({
                 success: false,
-                message: "上传失败！"
+                message: "修改失败！" + err
+            });
+        });
+    },
+    /**
+     * 获取所有iconResources 的数据
+     * @param req
+     * @param res
+     */
+    getAllResources : function(req, res){
+        co(function*() {
+            var data = yield db_tools.queryByCondition('iconSource', {});
+            res.render('admin/resourceAll.ejs', {
+                iconList: data
             });
         });
     },
 
-    //获取图标集
+    /**
+     * 获取单个 resources 的数据
+     * @param req
+     * @param res
+     */
+    getResourceById : function(rid){
+        return new Promise((resolve, reject) => {
+            co(function*() {
+                var data = yield db_tools.queryByCondition('iconSource', {
+                    _id : rid
+                });
+                resolve(data);
+            });
+        });
+    },
+    /**
+     * 获取图标集
+     * @param req
+     * @param res
+     * @returns {Promise}
+     */
     getCollections: function (req, res) {
         var allIcon = [];
         return new Promise((resolve, reject) => {
@@ -115,8 +158,33 @@ module.exports = {
             });
         });
     },
-
-    //根据类型获取图标
+    /**
+     * 获取图标添加修改页面
+     * @param req
+     * @param res
+     */
+    getIconEditPage : function (req, res) {
+        var iconId = req.params.iconId;
+        co(function*() {
+            var fileTypes = yield db_tools.queryByCondition('iconClassify', {});
+            var obj = [];
+            if(iconId){
+                obj = yield db_tools.queryByCondition('iconSource', {
+                    _id : iconId
+                });
+            }
+            res.render('admin/icon_upload', {
+                model: 'icon_upload',
+                fileTypes: fileTypes,
+                resource: obj
+            });
+        })
+    },
+    /**
+     * 根据类型获取图标
+     * @param type
+     * @returns {Promise}
+     */
     getIconByCollection: function (type) {
         return new Promise((resolve, reject) => {
             co(function*() {

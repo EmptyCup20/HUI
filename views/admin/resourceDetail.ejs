@@ -1,0 +1,29 @@
+<div class="wrapper" id="resourceAllDiv">
+    <ol class="breadcrumb">
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/admin/#iconManage">iconManage</a></li>
+        <li>icon add/edit</li>
+    </ol>
+    <div class="collection-detail">
+        <% if(results.length > 0){
+            var resource = results[0];
+        %>
+            <!--内容部分-->
+            <div class="collection-detail">
+                <h4>"<%- resource.name %>" icon</h4>
+                <h5>创建人 : <small><%- resource.createUserName %></small></h5>
+                <h5>创建时间 : <small><%- resource.createTime %></small></h5>
+                <h5>全部标签 : <small><%- resource.tags %></small></h5>
+                <h5>png下载地址 : <small><%- resource.pngUrl %></small></h5>
+                <h5>svg下载地址 : <small><%- resource.svgUrl %></small></h5>
+                <h5>相关连接 : <small><%- resource.connectUrl %></small></h5>
+                <h5><a href="/admin/icon/edit/<%- resource.id %>">修改</a> </h5>
+            </div>
+        <% }else{%>
+            <!--内容部分-->
+            <div class="collection-detail">
+                <span>抱歉没有找到你要的资源</span>
+            </div>
+        <%}%>
+    </div>
+</div>

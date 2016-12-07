@@ -37,7 +37,33 @@ router.get('/iconfont/detail', function (req, res) {
             iconList: data
         });
     });
+});
 
+/**
+ * 获取所有的资源
+ */
+router.get('/all', function (req, res) {
+    co(function*() {
+        var data = yield icon_source.getAllResources();
+        res.render('resource/resourceAll.ejs', {
+            model: "resource",
+            iconList: data
+        });
+    });
+});
+
+/**
+ * 所以资源详情页
+ */
+router.get('/detail/:id', function (req, res) {
+    var rid = req.params.id;
+    co(function*() {
+        var data = yield icon_source.getResourceById(rid);
+        res.render('resource/resourceDetail.ejs', {
+            model: "resource",
+            results: data
+        });
+    });
 });
 
 //router.get('/getCollections', icon_source.getCollections);

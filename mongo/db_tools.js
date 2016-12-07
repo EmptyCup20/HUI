@@ -52,7 +52,7 @@ var iconSource = new Schema({
     //图标名称
     name: {
         type: String,
-        index: 1,
+        require: true,
         unique: false
     },
     //标签
@@ -66,16 +66,29 @@ var iconSource = new Schema({
     url: {
         type: String,
         unique: true
-    }
+    },
+    //svg路径
+    svgfile:String,
+    //png路径
+    pngfile:String,
+    //psd路径
+    psdfile:String,
+    //zip路径
+    zipfile:String,
+    //文件类型
+    fileType:String,
+    //相关链接
+    otherLink:String
 });
 
 var iconClassify = new Schema({
     name: {
         type: String,
-        index: 1,
         require: true,
         unique: false
-    }
+    },
+    //文件类型
+    fileType:String
 })
 
 var successMsg = {
@@ -135,7 +148,7 @@ Db_tools.add = function (collection, addObj) {
  */
 Db_tools.edit = function (collection, editObj, queryObj) {
     var model = this.init(collection);
-    var id = editObj.id;
+    var id = editObj.id || editObj._id;
 
     delete editObj.id;
     queryObj = queryObj || {_id: id};

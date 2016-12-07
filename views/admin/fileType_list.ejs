@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <ol class="breadcrumb">
+        <li><a href="/admin">Home</a></li>
+        <li>iconManage</li>
+    </ol>
+    <div class="content-main">
+        <div class="form-group">
+            <label>类型</label><select name="collection">
+                <option value="all">全部</option>
+                <option value="0">svg</option>
+                <option value="1">png</option>
+                <option value="2">psd</option>
+                <option value="3">zip</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <ul>
+                <% typeList.forEach(function(data){ %>
+                    <li><a href="#iconTypeEdit/<%- data.id %>" data-id="<%- data.id %>"><%- data.name %></a>  所属类型: <%- fileModel[data.fileType] %></li>
+                <%})%>
+            </ul>
+            <a href="/admin/#iconTypeAdd">添加</a>
+        </div>
+    </div>
+</div>

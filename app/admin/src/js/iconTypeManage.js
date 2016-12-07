@@ -2,7 +2,7 @@
  * Created by zhengjunling on 2016/12/5.
  */
 define(function () {
-    var IconManage = Backbone.View.extend({
+    var IconTypeManage = Backbone.View.extend({
         events: {
         },
         initialize: function () {
@@ -10,11 +10,11 @@ define(function () {
         },
         render: function () {
             var that = this;
-            $.get("/admin/resource/all").done(function (data) {
+            $.get("/admin/typeList").done(function (data) {
                 $(".page").html(data);
             })
         },
     });
 
-    return IconManage;
+    return IconTypeManage;
 });

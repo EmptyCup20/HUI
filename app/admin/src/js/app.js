@@ -33,8 +33,18 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
             //主路由
             Main: Backbone.Router.extend({
                 routes: {
+                    //文档管理
                     "docManage": "docManage",
+                    //图标管理
                     "iconManage": "iconManage",
+                    "editIcon/:iconId":"editIcon",
+                    "editIcon":"editIcon",
+                    //图标类型管理
+                    "iconTypeManage" : "iconTypeManage",
+                    "iconTypeEdit/:typeID" : "iconTypeEdit",
+                    "iconTypeAdd" : "iconTypeAdd",
+
+                    //特殊
                     "*action": "docManage"
                 },
 
@@ -46,6 +56,30 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
 
                 iconManage: function () {
                     require(["/admin/src/js/iconManage.js"], function (module) {
+                        new module;
+                    });
+                },
+
+                editIcon:function(iconId){
+                    require(["/admin/src/js/icon_upload.js"], function (module) {
+                        new module(iconId);
+                    });
+                },
+
+                iconTypeManage:function(){
+                    require(["/admin/src/js/iconTypeManage.js"], function (module) {
+                        new module;
+                    });
+                },
+
+                iconTypeEdit:function(typeID){
+                    require(["/admin/src/js/iconTypeEdit.js"], function (module) {
+                        new module(typeID);
+                    });
+                },
+
+                iconTypeAdd:function(){
+                    require(["/admin/src/js/iconTypeAdd.js"], function (module) {
                         new module;
                     });
                 }

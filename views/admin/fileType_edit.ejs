@@ -1,0 +1,25 @@
+<div class="wrapper" id="iconTypeEditDiv">
+    <ol class="breadcrumb">
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/admin/#iconTypeManage">iconTypeManage</a></li>
+        <li>add/edit</li>
+    </ol>
+    <div class="content-main">
+        <form class="h-middle w400" id="fileForm" method="post" enctype="multipart/form-data">
+            <% var obj = (data.length > 0) ? data[0] : {} %>
+            <input type="hidden" name="_id" value="<%- obj._id %>" />
+            <div class="form-group">
+                <label>名称</label><input type="text" name="name" value="<%- obj.name %>">
+            </div>
+            <div class="form-group">
+                <label>文件类型</label><select id="fileType" name="fileType" value="<%- obj.fileType %>">
+                    <option value="0">svg</option>
+                    <option value="1">png</option>
+                    <option value="2">psd</option>
+                    <option value="3">zip</option>
+                </select>
+            </div>
+        </form>
+        <button class="btn btn-primary btn-submit" type="button">上传</button>
+    </div>
+</div>
