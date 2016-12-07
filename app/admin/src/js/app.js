@@ -8,7 +8,10 @@ require.config({
         "underscore": "underscore-min",
         "backbone": "backbone-min",
         "bootstrap": "bootstrap/js/bootstrap.min",
-        "markdown": "markdown-js-master/src/markdown"
+        "markdown": "markdown-js/markdown",
+        "jquery-ui/widget": "fileupload/jquery.ui.widget",
+        "iframe-transport": "fileupload/jquery.iframe-transport",
+        "fileupload": "fileupload/jquery.fileupload",
     },
     //定义依赖
     shim: {
@@ -17,6 +20,9 @@ require.config({
         },
         "bootstrap": {
             deps: ["jquery"]
+        },
+        "fileupload": {
+            deps: ["jquery-ui/widget", "iframe-transport"]
         }
     }
 });

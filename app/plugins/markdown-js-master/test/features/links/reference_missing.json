@@ -1,9 +1,0 @@
-["html",
-  ["p",
-    ["a",
-      { "href" : "http://example.com" },
-      "hi"
-    ]
-  ],
-  ["ul", ["li"]]
-]

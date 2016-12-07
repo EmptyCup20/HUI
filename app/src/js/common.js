@@ -6,11 +6,11 @@
         $(document).on("scroll", function () {
             var scrollTop = $(this).scrollTop();
 
-            if (scrollTop > 50) {
-                $(".h-header").addClass("header-fixed");
-            } else {
-                $(".h-header").removeClass("header-fixed");
-            }
+            //if (scrollTop > 50) {
+            //    $(".h-header").addClass("header-fixed");
+            //} else {
+            //    $(".h-header").removeClass("header-fixed");
+            //}
 
             if (scrollTop > 150) {
                 $(".btn-scroll-up").fadeIn(300);
