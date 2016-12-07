@@ -33,8 +33,28 @@ body {
     min-height: 100%;
 }
 
+.panel-heading {
+    padding: 0;
+}
+
+.panel-title {
+    padding: 20px 30px;
+}
+
+.panel-body {
+    padding: 30px;
+}
+
+.panel-heading + .panel-body {
+    padding-top: 0;
+}
+
 .preview-box {
     overflow: auto;
+}
+
+.preview-box img {
+    max-width: 100%;
 }
 
 textarea {

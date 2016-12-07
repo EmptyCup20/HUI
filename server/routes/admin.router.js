@@ -3,6 +3,7 @@
  */
 var icon_source = require("../controllers/icon.controller");
 var docController = require("../controllers/doc.controller");
+var uploadController = require("../controllers/upload.controller");
 var express = require("express");
 var router = express.Router();
 
@@ -26,6 +27,8 @@ router.post('/updateDesignDoc', docController.updateDesignDoc);
 
 //上传图标
 router.post("/iconUpload", icon_source.upload);
+
+router.post("/imgUpload", uploadController.imgUpload);
 
 router.post("/icon/add", icon_source.add);
 

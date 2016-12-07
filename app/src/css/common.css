@@ -875,3 +875,10 @@ select {
   z-index: 10;
   transform: rotateY(0deg);
 }
+.h-doc-section p {
+  margin-bottom: 1em;
+}
+.h-doc-section img {
+  max-width: 100%;
+  margin: 2em 0;
+}
