@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
     co(function*() {
         var data = yield docController.getDesignDocHtml();
         var content = data.length ? data[0].content : "";
-        res.render('design/designDoc.ejs', {
+        res.render('design/design.ejs', {
             content: markdown.toHTML(content),
             model: "design"
         });

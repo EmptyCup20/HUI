@@ -1,19 +1,50 @@
 .h-sidebar {
-  position: fixed;
-  top: 124px;
-}
-
-.h-sidebar .nav .nav {
-  display: none;
-  padding-bottom: 10px;
-}
-
-.h-sidenav {
-  & > li {
-    &.active {
-      .nav {
+  &.h-sidebar-fixed{
+    position: fixed;
+    top: 94px;
+  }
+  .h-sidenav {
+    li > a {
+      display: block;
+      padding: 4px 20px;
+      color: #999;
+      text-decoration: none;
+    }
+    .nav {
+      display: none;
+      padding-bottom: 10px;
+      li > a {
+        font-size: 12px;
+        padding-left: 30px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        &:hover {
+          padding-left: 29px;
+          color: #563d7c;
+          border-left: 1px solid #563d7c;
+        }
+      }
+      .active > a {
+        padding-left: 28px;
+        color: #563d7c;
+        border-left: 2px solid #563d7c;
+      }
+    }
+    & > li > a:hover {
+      padding-left: 19px;
+      color: #563d7c;
+      border-left: 1px solid #563d7c;
+    }
+    & > li.active {
+      & > a {
+        padding-left: 18px;
+        color: #563d7c;
+        border-left: 2px solid #563d7c;
+      }
+      & > .nav {
         display: block;
       }
     }
   }
 }
+

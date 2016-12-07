@@ -6,6 +6,11 @@ $(function () {
     var m = -1, n = -1;
     $(".h-doc-section").find("h1,h3").each(function () {
         var anchor, text = $(this).text();
+        //锚点偏移顶部，防止被导航条遮盖
+        $(this).css({
+            "margin-top": "-90px",
+            "padding-top": "110px"
+        })
         if ($(this).is("h1")) {
             m += 1;
             anchor = "anchor_" + m;
@@ -23,4 +28,13 @@ $(function () {
     });
 
     $('body').scrollspy({target: '.h-sidebar'});
+
+    $(document).on("scroll", function () {
+        var scrollTop = $(document).scrollTop();
+        if (scrollTop > 84) {
+            $(".h-sidebar").addClass("h-sidebar-fixed");
+        } else {
+            $(".h-sidebar").removeClass("h-sidebar-fixed");
+        }
+    })
 })

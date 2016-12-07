@@ -1,0 +1,37 @@
+<% include ../common/head %>
+<div class="main-wrapper">
+    <div class="main-top">
+        <% include ../common/header.ejs %>
+    </div>
+    <div class="h-tabbar">
+        <div class="h-container">
+            <ul class="h-categories">
+                <li><a>移动端</a></li>
+                <li><a class="active">平台</a></li>
+                <li><a>大屏</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="h-section">
+        <div class="h-container">
+            <div class="h-row">
+                <div class="h-col-9">
+                    <div class="h-doc-section">
+                        <%- content %>
+                    </div>
+                </div>
+                <div class="h-col-3">
+                    <div class="h-sidebar">
+                        <ul class="nav bs-docs-sidenav h-sidenav">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../common/footer %>
+</div>
+
+<% include ../common/foot %>
+<script type="text/javascript" src="/plugins/bootstrap.js"></script>
+<script type="text/javascript" src="/src/js/design.js"></script>

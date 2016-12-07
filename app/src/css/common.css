@@ -13,6 +13,7 @@ body {
   background: #fff;
   font-size: 14px;
   line-height: 1.42857;
+  color: #333;
 }
 body,
 button,
@@ -20,6 +21,31 @@ input,
 select,
 textarea {
   font-family: tahoma, "microsoft yahei", "微软雅黑";
+}
+h1 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 20px;
+}
+h1,
+h2,
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+hr {
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
 }
 ul,
 li {
@@ -552,15 +578,47 @@ select {
 .lt-xs-y-11 {
   margin-top: 91.6667%;
 }
-.h-sidebar {
+.h-sidebar.h-sidebar-fixed {
   position: fixed;
-  top: 124px;
+  top: 94px;
 }
-.h-sidebar .nav .nav {
+.h-sidebar .h-sidenav li > a {
+  display: block;
+  padding: 4px 20px;
+  color: #999;
+  text-decoration: none;
+}
+.h-sidebar .h-sidenav .nav {
   display: none;
   padding-bottom: 10px;
 }
-.h-sidenav > li.active .nav {
+.h-sidebar .h-sidenav .nav li > a {
+  font-size: 12px;
+  padding-left: 30px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+.h-sidebar .h-sidenav .nav li > a:hover {
+  padding-left: 29px;
+  color: #563d7c;
+  border-left: 1px solid #563d7c;
+}
+.h-sidebar .h-sidenav .nav .active > a {
+  padding-left: 28px;
+  color: #563d7c;
+  border-left: 2px solid #563d7c;
+}
+.h-sidebar .h-sidenav > li > a:hover {
+  padding-left: 19px;
+  color: #563d7c;
+  border-left: 1px solid #563d7c;
+}
+.h-sidebar .h-sidenav > li.active > a {
+  padding-left: 18px;
+  color: #563d7c;
+  border-left: 2px solid #563d7c;
+}
+.h-sidebar .h-sidenav > li.active > .nav {
   display: block;
 }
 .main-wrapper,
@@ -642,6 +700,26 @@ select {
   text-align: center;
   font-size: 13px;
   color: #666666;
+}
+.h-tabbar {
+  position: relative;
+  height: 54px;
+  background: #f8f8f8;
+  z-index: 10;
+}
+.h-categories li {
+  float: left;
+}
+.h-categories li a {
+  display: block;
+  padding: 0 40px;
+  line-height: 54px;
+}
+.h-categories li a:hover {
+  background: #eee;
+}
+.h-categories li a.active {
+  background: #fff;
 }
 .h-section {
   padding: 50px 0;
@@ -875,7 +953,14 @@ select {
   z-index: 10;
   transform: rotateY(0deg);
 }
+.h-doc-section h1 {
+  margin-top: 50px;
+}
+.h-doc-section h1:first-child {
+  margin-top: 0;
+}
 .h-doc-section p {
+  font-size: 14px;
   margin-bottom: 1em;
 }
 .h-doc-section img {
