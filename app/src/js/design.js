@@ -23,4 +23,13 @@ $(function () {
     });
 
     $('body').scrollspy({target: '.h-sidebar'});
+
+    $(document).on("scroll", function () {
+        var scrollTop = $(document).scrollTop();
+        if (scrollTop > 84) {
+            $(".h-sidebar").addClass("h-sidebar-fixed");
+        } else {
+            $(".h-sidebar").removeClass("h-sidebar-fixed");
+        }
+    })
 })
