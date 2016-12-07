@@ -2,6 +2,10 @@ body {
     font-family: Microsoft YaHei;
 }
 
+.btn {
+    transition: .3s;
+}
+
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
@@ -51,13 +55,91 @@ body {
 
 .preview-box {
     overflow: auto;
+    padding: 15px;
+    border: 1px solid #e4eaec;
+    box-shadow: none;
+}
+
+.preview-box h1 {
+    margin-top: 50px;
+    font-size: 32px;
+}
+
+.preview-box h3 {
+    font-size: 20px;
+}
+
+.preview-box h1:first-child {
+    margin-top: 0;
+}
+
+.preview-box p {
+    font-size: 14px;
+    margin-bottom: 1em;
 }
 
 .preview-box img {
     max-width: 100%;
+    margin: 2em 0;
 }
 
 textarea {
     resize: none;
     overflow-x: hidden;
+}
+
+.md-editor {
+    border-radius: 3px;
+    border: 1px solid #e4eaec;
+}
+
+.md-editor .md-input {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 2px 0;
+    border: 0;
+}
+
+.md-editor .md-input:focus {
+    outline: none;
+}
+
+.md-editor .md-footer,
+.md-editor > .md-header {
+    padding: 6px;
+    margin: 0;
+    background: #f3f7f9;
+}
+
+.md-editor .md-footer {
+    padding: 6px 15px;
+}
+
+.md-editor .md-header .btn-default {
+    border: 0;
+    background: none;
+    color: #a3afb7;
+}
+
+.md-editor .md-header .btn-default:hover,
+.img-upload:hover .btn-default {
+    color: #37474f;
+}
+
+.img-upload {
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+.img-upload input[type="file"] {
+    display: block;
+    position: absolute;
+    left: -10%;
+    top: -200%;
+    width: 120%;
+    height: 320%;
+    opacity: 0;
+    cursor: pointer;
 }

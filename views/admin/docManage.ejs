@@ -9,23 +9,21 @@
         <div class="panel-body container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="pull-left"><h4>编辑</h4></div>
-                    <div class="pull-right">
-                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-picture"></i></button>
-                        <input id="docImgUpload" type="file">
-                    </div>
-                    <div class="form-group">
-                        <textarea style="height: 526px" class="form-control" id="md_field" rows="3" placeholder="请在此输入文本 ..."></textarea>
+                    <div class="md-editor">
+                        <div class="md-header btn-toolbar">
+                            <div class="img-upload">
+                                <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-picture"></i></button>
+                                <input id="docImgUpload" type="file">
+                            </div>
+                        </div>
+                        <textarea class="md-input" style="height: 500px" id="md_field" rows="3" placeholder="请在此输入文本 ..."></textarea>
+                        <div class="md-footer">
+                            <button class="btn btn-success" id="doc_submit" type="button">提交修改</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4>预览</h4>
-                    <div class="form-control preview-box" style="height: 526px" id="preview"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-primary" type="button" id="doc_submit">提交修改</button>
+                    <div class="form-control preview-box" style="height: 596px" id="preview"></div>
                 </div>
             </div>
         </div>
