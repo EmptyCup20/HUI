@@ -145,37 +145,36 @@ module.exports = {
      * @param req
      * @param res
      */
-    getResourceById : function(rid){
-        return new Promise((resolve, reject) => {
-            co(function*() {
-                var data = yield db_tools.queryByCondition('iconSource', {
-                    _id : rid
-                });
-                resolve(data);
+    getResourceById : function (req, res) {
+        var iconId = req.params.iconId;
+        co(function*() {
+            var data = yield db_tools.queryByCondition('iconSource', {
+                _id : iconId
+            })
+            res.render('resource/iconDetail.ejs', {
+                model: "resource",
+                results: data
             });
         });
     },
     /**
-     * 获取图标集
+     * 获取svg图标集
      * @param req
      * @param res
      * @returns {Promise}
      */
     getCollections: function (req, res) {
-        var allIcon = [];
-        return new Promise((resolve, reject) => {
-            co(function*() {
-                for (var i = 0, item; item = iconCollections[i]; i++) {
-                    var data = yield db_tools.queryByCondition('iconSource', {
-                        type: item.id
-                    });
-                    allIcon.push({
-                        collection: item.name,
-                        typeId: item.id,
-                        icon: data
-                    })
-                }
-                resolve(allIcon);
+        co(function*() {
+            var iconTypes = yield db_tools.queryByCondition('iconClassify', {
+                fileType : 0
+            });
+            var icons = yield db_tools.queryByCondition('iconSource', {
+                fileType : 0
+            });
+            res.render('resource/iconfont.ejs', {
+                model: "resource",
+                icons : icons,
+                iconTypes: iconTypes
             });
         });
     },
@@ -201,18 +200,20 @@ module.exports = {
         })
     },
     /**
-     * 根据类型获取图标
+     * 根据类型获取图标集
      * @param type
      * @returns {Promise}
      */
-    getIconByCollection: function (type) {
-        return new Promise((resolve, reject) => {
-            co(function*() {
-                var data = yield db_tools.queryByCondition('iconSource', {
-                    type: type
-                });
-                resolve(data);
-            })
+    getIconByCollection: function (req, res) {
+        var typeId = req.params.typeId;
+        co(function*() {
+            var data = yield db_tools.queryByCondition('iconSource', {
+                type: typeId
+            });
+            res.render('resource/iconfontType.ejs', {
+                model: "resource",
+                iconList: data
+            });
         });
     }
 }

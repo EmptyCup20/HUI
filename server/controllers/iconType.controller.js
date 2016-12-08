@@ -81,6 +81,27 @@ module.exports = {
             });
         });
     },
+    /**
+     * 删除类型
+     * @param req
+     * @param res
+     */
+    delType : function (req, res) {
+        var params = req.body;
+        db_tools.remove('iconClassify', params.iconTypeId).then(function (data) {
+            res.send({
+                success: true,
+                message: "删除成功！"
+            });
+            return;
+        }, function (err) {
+            console.log(err)
+            res.send({
+                success: false,
+                message: "删除失败！" + err
+            });
+        });
+    },
 
     /**
      * 根据tid去查找资源对象

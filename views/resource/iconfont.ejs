@@ -18,41 +18,29 @@
     </div>
     <div class="h-block">
         <div class="h-container clearfix">
-            <% allIcon.forEach(function(value){ %>
-            <% if(!value.icon.length){
-                return;
-            }%>
-            <div class="h-col-6">
-                <div class="block-collection" data-typeid="<%= value.typeId%>">
-                    <h4 class="block-collection-title">
-                        <span><%= value.collection %></span>
-                        <i class="total-num">20</i>
-                    </h4>
-                    <div class="icons-container">
-                        <ul class="clearfix">
-                            <% value.icon.forEach(function(value,index){
-                                if(index > 15){
-                                    return;
-                                }
-                            %>
-                                <li>
-                                    <img src=<%- value.url %> alt="">
-                                </li>
-                            <% }); %>
-                        </ul>
+            <% iconTypes.forEach(function(iconType){ %>
+                <div class="h-col-6">
+                    <div class="block-collection" data-typeid="<%= iconType.id%>">
+                        <h4 class="block-collection-title">
+                            <span><a href="iconfont/detail/<%= iconType.id%>"><%= iconType.name %></a></span>
+                            <i class="total-num">20</i>
+                        </h4>
+                        <div class="icons-container">
+                            <ul class="clearfix">
+                                <% icons.forEach(function(icon, index){ %>
+                                    <% if(icon.type == iconType.id && index < 21) {%>
+                                    <li>
+                                        <a href="iconfont/detail/<%= icon.id%>"><img src=<%- icon.svgfile %> alt=""></a>
+                                    </li>
+                                    <% } %>
+                                <% }) %>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <% }); %>
+            <% }) %>
         </div>
     </div>
-
     <% include ../common/footer.ejs %>
-
 </div>
 <% include ../common/foot.ejs %>
-<script>
-    $(document).on('click','.block-collection',function(){
-        window.location.href ='iconfont/detail' + '?type=' +$(this).data('typeid');
-    })
-</script>

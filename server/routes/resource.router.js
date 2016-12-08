@@ -12,16 +12,7 @@ router.get('/uikit', function (req, res) {
     });
 });
 
-router.get('/iconfont', function (req, res) {
-    co(function*() {
-        var data = yield icon_source.getCollections();
-        res.render('resource/iconfont.ejs', {
-            allIcon: data,
-            model: "resource"
-        });
-    });
-
-});
+router.get('/iconfont', icon_source.getCollections);
 
 router.get('/coloricon', function (req, res) {
     res.render('resource/coloricon.ejs', {
@@ -29,29 +20,12 @@ router.get('/coloricon', function (req, res) {
     });
 });
 
-router.get('/iconfont/detail', function (req, res) {
-    co(function*() {
-        var data = yield icon_source.getIconByCollection(req.query.type);
-        res.render('resource/iconfontDetail.ejs', {
-            model: "resource",
-            iconList: data
-        });
-    });
-});
+router.get('/iconfont/type/:typeId', icon_source.getIconByCollection);
 
 /**
  * 所以资源详情页
  */
-router.get('/detail/:id', function (req, res) {
-    var rid = req.params.id;
-    co(function*() {
-        var data = yield icon_source.getResourceById(rid);
-        res.render('resource/.ejs', {
-            model: "resource",
-            results: data
-        });
-    });
-});
+router.get('/iconfont/detail/:iconId', icon_source.getResourceById);
 
 //router.get('/getCollections', icon_source.getCollections);
 //router.get('/getIconByCollection', icon_source.getIconByCollection);
