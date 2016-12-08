@@ -1,0 +1,172 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@2.14.12
+3 info using node@v4.2.5
+4 verbose readDependencies loading dependencies from E:\work\HUI0.1\package.json
+5 warn package.json HUI@1.0.0 No repository field.
+6 verbose install where, deps [ 'E:\\work\\HUI0.1',
+6 verbose install   [ 'bluebird',
+6 verbose install     'body-parser',
+6 verbose install     'co',
+6 verbose install     'express',
+6 verbose install     'mongodb-core',
+6 verbose install     'browser-sync',
+6 verbose install     'ejs',
+6 verbose install     'formidable',
+6 verbose install     'gulp',
+6 verbose install     'gulp-less',
+6 verbose install     'markdown',
+6 verbose install     'mongodb',
+6 verbose install     'mongoose',
+6 verbose install     'node-uuid',
+6 verbose install     'request' ] ]
+7 verbose install where, peers [ 'E:\\work\\HUI0.1', [] ]
+8 verbose installManyTop reading for lifecycle E:\work\HUI0.1\package.json
+9 info preinstall HUI@1.0.0
+10 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\bluebird\package.json
+11 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\body-parser\package.json
+12 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\browser-sync\package.json
+13 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\co\package.json
+14 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\ejs\package.json
+15 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\express\package.json
+16 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\formidable\package.json
+17 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\gulp\package.json
+18 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\gulp-less\package.json
+19 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\markdown\package.json
+20 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\mongodb\package.json
+21 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\mongodb-core\package.json
+22 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\mongoose\package.json
+23 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\node-uuid\package.json
+24 verbose installManyTop reading scoped package data from E:\work\HUI0.1\node_modules\request\package.json
+25 info package.json formidable@1.0.17 No license field.
+26 info package.json node-uuid@1.4.7 No license field.
+27 info package.json markdown@0.5.0 No license field.
+28 verbose readDependencies loading dependencies from E:\work\HUI0.1\package.json
+29 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\bluebird\package.json
+30 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\body-parser\package.json
+31 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\browser-sync\package.json
+32 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\co\package.json
+33 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\ejs\package.json
+34 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\express\package.json
+35 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\formidable\package.json
+36 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\gulp\package.json
+37 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\gulp-less\package.json
+38 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\markdown\package.json
+39 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\mongodb\package.json
+40 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\mongodb-core\package.json
+41 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\mongoose\package.json
+42 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\node-uuid\package.json
+43 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\request\package.json
+44 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\browser-sync\package.json
+45 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\browser-sync.cmd\package.json
+46 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\gulp\package.json
+47 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\gulp.cmd\package.json
+48 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\md2html\package.json
+49 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\md2html.cmd\package.json
+50 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\uuid\package.json
+51 verbose targetResolver reading package data from E:\work\HUI0.1\node_modules\.bin\uuid.cmd\package.json
+52 verbose already installed skipping express@^4.14.0 E:\work\HUI0.1
+53 verbose already installed skipping mongodb-core@^2.0.13 E:\work\HUI0.1
+54 verbose already installed skipping browser-sync@^2.18.2 E:\work\HUI0.1
+55 verbose already installed skipping ejs@^2.5.2 E:\work\HUI0.1
+56 verbose already installed skipping formidable@^1.0.17 E:\work\HUI0.1
+57 verbose already installed skipping gulp@^3.9.1 E:\work\HUI0.1
+58 verbose already installed skipping gulp-less@^3.3.0 E:\work\HUI0.1
+59 silly cache add args [ 'markdown@^0.6.0', null ]
+60 verbose cache add spec markdown@^0.6.0
+61 silly cache add parsed spec Result {
+61 silly cache add   raw: 'markdown@^0.6.0',
+61 silly cache add   scope: null,
+61 silly cache add   name: 'markdown',
+61 silly cache add   rawSpec: '^0.6.0',
+61 silly cache add   spec: '>=0.6.0 <0.7.0',
+61 silly cache add   type: 'range' }
+62 silly addNamed markdown@>=0.6.0 <0.7.0
+63 verbose addNamed ">=0.6.0 <0.7.0" is a valid semver range for markdown
+64 silly addNameRange { name: 'markdown', range: '>=0.6.0 <0.7.0', hasData: false }
+65 silly mapToRegistry name markdown
+66 silly mapToRegistry using default registry
+67 silly mapToRegistry registry https://registry.npmjs.org/
+68 silly mapToRegistry uri https://registry.npmjs.org/markdown
+69 verbose addNameRange registry:https://registry.npmjs.org/markdown not in flight; fetching
+70 verbose already installed skipping mongodb@^2.2.11 E:\work\HUI0.1
+71 verbose already installed skipping mongoose@^4.7.0 E:\work\HUI0.1
+72 verbose already installed skipping node-uuid@^1.4.7 E:\work\HUI0.1
+73 verbose already installed skipping request@^2.79.0 E:\work\HUI0.1
+74 verbose already installed skipping bluebird@^3.4.6 E:\work\HUI0.1
+75 verbose already installed skipping body-parser@^1.15.2 E:\work\HUI0.1
+76 verbose already installed skipping co@^4.6.0 E:\work\HUI0.1
+77 verbose request uri https://registry.npmjs.org/markdown
+78 verbose request no auth needed
+79 info attempt registry request try #1 at 17:58:23
+80 verbose request id 8dd2a67646eccbcb
+81 verbose etag W/"58434965-25e3"
+82 verbose lastModified Sat, 03 Dec 2016 22:38:29 GMT
+83 http request GET https://registry.npmjs.org/markdown
+84 http 304 https://registry.npmjs.org/markdown
+85 verbose headers { date: 'Wed, 07 Dec 2016 09:58:24 GMT',
+85 verbose headers   via: '1.1 varnish',
+85 verbose headers   'cache-control': 'max-age=300',
+85 verbose headers   etag: 'W/"58434965-25e3"',
+85 verbose headers   age: '50',
+85 verbose headers   connection: 'keep-alive',
+85 verbose headers   'x-served-by': 'cache-lcy1149-LCY',
+85 verbose headers   'x-cache': 'HIT',
+85 verbose headers   'x-cache-hits': '1',
+85 verbose headers   'x-timer': 'S1481104704.515946,VS0,VE0',
+85 verbose headers   vary: 'Accept-Encoding' }
+86 silly get cb [ 304,
+86 silly get   { date: 'Wed, 07 Dec 2016 09:58:24 GMT',
+86 silly get     via: '1.1 varnish',
+86 silly get     'cache-control': 'max-age=300',
+86 silly get     etag: 'W/"58434965-25e3"',
+86 silly get     age: '50',
+86 silly get     connection: 'keep-alive',
+86 silly get     'x-served-by': 'cache-lcy1149-LCY',
+86 silly get     'x-cache': 'HIT',
+86 silly get     'x-cache-hits': '1',
+86 silly get     'x-timer': 'S1481104704.515946,VS0,VE0',
+86 silly get     vary: 'Accept-Encoding' } ]
+87 verbose etag https://registry.npmjs.org/markdown from cache
+88 verbose get saving markdown to C:\Users\zhengjunling\AppData\Roaming\npm-cache\registry.npmjs.org\markdown\.cache.json
+89 silly addNameRange number 2 { name: 'markdown', range: '>=0.6.0 <0.7.0', hasData: true }
+90 silly addNameRange versions [ 'markdown',
+90 silly addNameRange   [ '0.1.0',
+90 silly addNameRange     '0.1.1',
+90 silly addNameRange     '0.1.2',
+90 silly addNameRange     '0.2.1',
+90 silly addNameRange     '0.3.0',
+90 silly addNameRange     '0.3.1',
+90 silly addNameRange     '0.4.0',
+90 silly addNameRange     '0.5.0' ] ]
+91 verbose stack Error: No compatible version found: markdown@'>=0.6.0 <0.7.0'
+91 verbose stack Valid install targets:
+91 verbose stack ["0.1.0","0.1.1","0.1.2","0.2.1","0.3.0","0.3.1","0.4.0","0.5.0"]
+91 verbose stack
+91 verbose stack     at installTargetsError (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:284:12)
+91 verbose stack     at next (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:262:19)
+91 verbose stack     at setData (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:236:5)
+91 verbose stack     at RES (C:\Program Files\nodejs\node_modules\npm\node_modules\inflight\inflight.js:23:14)
+91 verbose stack     at f (C:\Program Files\nodejs\node_modules\npm\node_modules\once\once.js:17:25)
+91 verbose stack     at fixName (C:\Program Files\nodejs\node_modules\npm\lib\cache\add-named.js:29:5)
+91 verbose stack     at saved (C:\Program Files\nodejs\node_modules\npm\lib\cache\caching-client.js:173:7)
+91 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\polyfills.js:210:7
+91 verbose stack     at FSReqWrap.oncomplete (fs.js:82:15)
+92 verbose cwd E:\work\HUI0.1
+93 error Windows_NT 6.1.7601
+94 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+95 error node v4.2.5
+96 error npm  v2.14.12
+97 error code ETARGET
+98 error notarget No compatible version found: markdown@'>=0.6.0 <0.7.0'
+98 error notarget Valid install targets:
+98 error notarget ["0.1.0","0.1.1","0.1.2","0.2.1","0.3.0","0.3.1","0.4.0","0.5.0"]
+98 error notarget
+98 error notarget This is most likely not a problem with npm itself.
+98 error notarget In most cases you or one of your dependencies are requesting
+98 error notarget a package version that doesn't exist.
+98 error notarget
+98 error notarget It was specified as a dependency of 'HUI'
+99 verbose exit [ 1, true ]
