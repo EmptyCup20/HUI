@@ -1,11 +1,15 @@
-<div class="wrapper">
+<div class="container" id="iconTypeManageDiv">
     <ol class="breadcrumb">
         <li><a href="/admin">Home</a></li>
-        <li>iconManage</li>
+        <li>iconTypeManage</li>
     </ol>
     <div class="content-main">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="/admin/#iconTypeAdd" role="button">添加</a>
+        </div>
         <div class="form-group">
-            <label>类型</label><select name="collection">
+            <label>类型</label>
+            <select class="form-control" id="typeSelect" name="collection">
                 <option value="all">全部</option>
                 <option value="0">svg</option>
                 <option value="1">png</option>
@@ -14,12 +18,13 @@
             </select>
         </div>
         <div class="form-group">
-            <ul>
+            <div class="row" id="typeArea">
                 <% typeList.forEach(function(data){ %>
-                    <li><a href="#iconTypeEdit/<%- data.id %>" data-id="<%- data.id %>"><%- data.name %></a>  所属类型: <%- fileModel[data.fileType] %></li>
+                    <div class="col-md-12 icon-box" >
+                        <a href="#iconTypeEdit/<%- data.id %>" data-id="<%- data.id %>" data-type="<%- data.fileType %>"><%- data.name %></a>  所属类型: <%- fileModel[data.fileType] %> <a href="javascript:void(0)" class="danger" data-id="<%- data.id %>" >删除</a>
+                    </div>
                 <%})%>
-            </ul>
-            <a href="/admin/#iconTypeAdd">添加</a>
+            <div class="row">
         </div>
     </div>
 </div>

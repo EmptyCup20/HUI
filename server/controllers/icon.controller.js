@@ -106,6 +106,27 @@ module.exports = {
         });
     },
     /**
+     * 删除资源
+     * @param req
+     * @param res
+     */
+    delResource : function (req, res) {
+        var params = req.body;
+        db_tools.remove('iconSource', params.iconId).then(function (data) {
+            res.send({
+                success: true,
+                message: "删除成功！"
+            });
+            return;
+        }, function (err) {
+            console.log(err)
+            res.send({
+                success: false,
+                message: "删除失败！" + err
+            });
+        });
+    },
+    /**
      * 获取所有iconResources 的数据
      * @param req
      * @param res
@@ -113,7 +134,7 @@ module.exports = {
     getAllResources : function(req, res){
         co(function*() {
             var data = yield db_tools.queryByCondition('iconSource', {});
-            res.render('admin/resourceAll.ejs', {
+            res.render('admin/iconManage.ejs', {
                 iconList: data
             });
         });
@@ -173,8 +194,7 @@ module.exports = {
                     _id : iconId
                 });
             }
-            res.render('admin/icon_upload', {
-                model: 'icon_upload',
+            res.render('admin/iconEdit', {
                 fileTypes: fileTypes,
                 resource: obj
             });

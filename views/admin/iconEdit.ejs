@@ -9,6 +9,9 @@
     </div>
     <form class="h-middle w400" id="iconUploadForm" method="post" enctype="multipart/form-data">
         <% var obj = (resource.length > 0) ? resource[0] : {} %>
+        <% if(results.length > 0){
+        var resource = results[0];
+        %>
         <input type="hidden" name="_id" value="<%- obj._id %>" />
         <div class="form-group">
             <label>name:</label>
@@ -74,5 +77,11 @@
         <div class="form-group zip-space">
             <label>zip上传</label><input id="png_upload" data-function="file_upload" name="iconFile" data-type="zip" type="file" data-url="/admin/fileUpload" multiple="multiple">
         </div>
+        <% }else{%>
+        <!--内容部分-->
+        <div class="collection-detail">
+            <span>抱歉没有找到你要的资源</span>
+        </div>
+        <%}%>
     </form>
 </div>

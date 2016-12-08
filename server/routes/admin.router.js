@@ -32,6 +32,9 @@ router.post("/fileUpload", iconController.uploadFile);
 
 router.post("/icon/add", iconController.saveResource);
 
+router.post("/icon/del", iconController.delResource);
+
+
 //--------------------------图片类型管理------------------//
 router.get('/typeList', iconTypeController.getTypeList);
 
@@ -40,6 +43,8 @@ router.get('/typeAdd', iconTypeController.getTypeAddPage);
 router.get('/typeEdit/:typeId', iconTypeController.getTypeEditPage);
 
 router.post('/typeEdit', iconTypeController.saveType);
+
+router.post('/typeDel', iconTypeController.delType);
 
 //------------------文章管理------------------------//
 router.get('/getPage/:pagePath', function (req, res) {

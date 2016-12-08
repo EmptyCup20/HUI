@@ -5,7 +5,7 @@
 define(["fileupload"],function () {
     var IconUpload = Backbone.View.extend({
         events: {
-            "click #fileType": "onbtnFileTypeChange",
+            "change #fileType": "onbtnFileTypeChange",
             "click #iconUpload" : "submit"
         },
         initialize: function (iconId) {

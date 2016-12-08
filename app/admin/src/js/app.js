@@ -61,7 +61,7 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
                 },
 
                 editIcon:function(iconId){
-                    require(["/admin/src/js/icon_upload.js"], function (module) {
+                    require(["/admin/src/js/editIcon.js"], function (module) {
                         new module(iconId);
                     });
                 },
