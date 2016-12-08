@@ -42,6 +42,7 @@
 }
 
 .main-top-box {
+  position: relative;
   height: 100%;
   padding-top: 74px;
   .h-container {
@@ -52,18 +53,6 @@
       position: relative;
       display: table-cell;
       vertical-align: middle;
-      .h-particles-wrapper {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        margin-top: -600px;
-        z-index: 1;
-        canvas {
-          width: 100%;
-          height: 100%;
-        }
-      }
       .h-logo-wrapper {
         position: relative;
         .h-index-logo {
@@ -87,6 +76,18 @@
         font-size: 13px;
         color: @white-lighter;
       }
+    }
+  }
+  .h-particles-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1200px;
+    margin: -550px 0 0 -600px;
+    z-index: 1;
+    canvas {
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -155,6 +156,9 @@
     .h-cont-icon {
       &.h-cont-icon-1 {
         background: url(../image/icon_language.gif);
+      }
+      &.h-cont-icon-2 {
+        background: url(../image/icon_collection.gif);
       }
       &.h-cont-icon-3 {
         background: url(../image/icon_tool.gif);

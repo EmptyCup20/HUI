@@ -580,7 +580,10 @@ select {
 }
 .h-sidebar.h-sidebar-fixed {
   position: fixed;
-  top: 94px;
+  top: 70px;
+}
+.h-sidebar .h-sidenav {
+  margin: 25px 0;
 }
 .h-sidebar .h-sidenav li > a {
   display: block;
@@ -653,6 +656,7 @@ select {
   padding: 0 30px;
 }
 .main-top-box {
+  position: relative;
   height: 100%;
   padding-top: 74px;
 }
@@ -665,18 +669,6 @@ select {
   position: relative;
   display: table-cell;
   vertical-align: middle;
-}
-.main-top-box .h-container .h-heading-content .h-particles-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  margin-top: -600px;
-  z-index: 1;
-}
-.main-top-box .h-container .h-heading-content .h-particles-wrapper canvas {
-  width: 100%;
-  height: 100%;
 }
 .main-top-box .h-container .h-heading-content .h-logo-wrapper {
   position: relative;
@@ -700,6 +692,18 @@ select {
   text-align: center;
   font-size: 13px;
   color: #666666;
+}
+.main-top-box .h-particles-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  margin: -550px 0 0 -600px;
+  z-index: 1;
+}
+.main-top-box .h-particles-wrapper canvas {
+  width: 100%;
+  height: 100%;
 }
 .h-tabbar {
   position: relative;
@@ -758,6 +762,9 @@ select {
 }
 .h-cont-box:hover .h-cont-icon.h-cont-icon-1 {
   background: url(../image/icon_language.gif);
+}
+.h-cont-box:hover .h-cont-icon.h-cont-icon-2 {
+  background: url(../image/icon_collection.gif);
 }
 .h-cont-box:hover .h-cont-icon.h-cont-icon-3 {
   background: url(../image/icon_tool.gif);

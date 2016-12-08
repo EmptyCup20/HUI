@@ -31,7 +31,7 @@ $(function () {
 
     $(document).on("scroll", function () {
         var scrollTop = $(document).scrollTop();
-        if (scrollTop > 84) {
+        if (scrollTop > 110) {
             $(".h-sidebar").addClass("h-sidebar-fixed");
         } else {
             $(".h-sidebar").removeClass("h-sidebar-fixed");

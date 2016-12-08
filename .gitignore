@@ -1,2 +1,5 @@
 .idea
 node_modules
+.gitignore
+.DS_Store
+HUI0.1.iml
