@@ -9,13 +9,10 @@
     </div>
     <form class="h-middle w400" id="iconUploadForm" method="post" enctype="multipart/form-data">
         <% var obj = (resource.length > 0) ? resource[0] : {} %>
-        <% if(results.length > 0){
-        var resource = results[0];
-        %>
         <input type="hidden" name="_id" value="<%- obj._id %>" />
         <div class="form-group">
             <label>name:</label>
-            <input type="text" class="form-control" placeholder="Email" name="name" value="<%- obj.name %>">
+            <input type="text" class="form-control" placeholder="Name" name="name" value="<%- obj.name %>">
         </div>
         <div class="form-group">
             <label>fileType:</label>
@@ -34,12 +31,12 @@
             <label>类型</label>
             <select name="collection" value="<%- obj.type %>" class="form-control">
                 <% fileTypes.forEach(function(data){ %>
-                <option
-                        value="<%- data.id %>"
-                        data-type="<%- data.fileType %>"
-                <% if(obj.fileType != data.fileType){%>style="display:none;"<%}%>
-                <%if(obj.type==data.id){%>selected<%}%>
-                ><%- data.name %></option>
+                    <option
+                            value="<%- data.id %>"
+                            data-type="<%- data.fileType %>"
+                    <% if(obj.fileType != data.fileType){%> style="display:none;" <%}%>
+                    <% if(obj.type==data.id){ %> selected <% } %>
+                    ><%- data.name %></option>
                 <%})%>
             </select>
         </div>
@@ -48,40 +45,35 @@
             <textarea name="tags" class="form-control"><%- obj.tags %></textarea>
         </div>
         <div class="form-group svg-space">
+            <label>svg upload:</label>
+            <input id="svg_upload" data-function="file_upload" name="iconFile" data-type="svg" type="file" data-url="/admin/fileUpload" multiple="multiple">
+        </div>
+        <div class="form-group svg-space">
             <label>svg:</label>
             <input type="text" name="svgfile" value="<%- obj.svgfile %>" class="form-control" readonly>
             <img src="<%- obj.svgfile %>" id="svgimg">
         </div>
-        <div class="form-group svg-space">
-            <label>svg upload:</label>
-            <input id="svg_upload" data-function="file_upload" name="iconFile" data-type="svg" type="file" data-url="/admin/fileUpload" multiple="multiple">
+        <div class="form-group png-space">
+            <label>png upload</label>
+            <input id="png_upload" data-function="file_upload" name="iconFile" data-type="png" type="file" data-url="/admin/fileUpload" multiple="multiple">
         </div>
         <div class="form-group png-space">
             <label>png:</label>
             <input type="text" name="pngfile" value="<%- obj.pngfile %>" class="form-control" readonly>
             <img src="<%- obj.pngfile %>" id="pngimg">
         </div>
-        <div class="form-group png-space">
-            <label>png upload</label>
-            <input id="png_upload" data-function="file_upload" name="iconFile" data-type="png" type="file" data-url="/admin/fileUpload" multiple="multiple">
+        <div class="form-group psd-space">
+            <label>psd upload</label><input id="png_upload" data-function="file_upload" name="iconFile" data-type="psd" type="file" data-url="/admin/fileUpload" multiple="multiple">
         </div>
         <div class="form-group psd-space">
             <label>psd downLoad : </label><a id="psdfile" href="<%- obj.psdfile %>"><%- obj.psdfile %></a>
         </div>
-        <div class="form-group psd-space">
-            <label>psd upload</label><input id="png_upload" data-function="file_upload" name="iconFile" data-type="psd" type="file" data-url="/admin/fileUpload" multiple="multiple">
+        <div class="form-group zip-space">
+            <label>zip上传</label><input id="png_upload" data-function="file_upload" name="iconFile" data-type="zip" type="file" data-url="/admin/fileUpload" multiple="multiple">
         </div>
         <div class="form-group zip-space">
             <label>zip download : </label><a id="zipfile" href="<%- obj.zipfile %>"><%- obj.zipfile %></a>
         </div>
-        <div class="form-group zip-space">
-            <label>zip上传</label><input id="png_upload" data-function="file_upload" name="iconFile" data-type="zip" type="file" data-url="/admin/fileUpload" multiple="multiple">
-        </div>
-        <% }else{%>
-        <!--内容部分-->
-        <div class="collection-detail">
-            <span>抱歉没有找到你要的资源</span>
-        </div>
-        <%}%>
+
     </form>
 </div>
