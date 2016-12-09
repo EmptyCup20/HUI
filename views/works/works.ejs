@@ -1,9 +1,27 @@
-<% include ../common/head.ejs %>
+<% include ../common/head %>
 <div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
-    <% include ../building.ejs %>
-    <% include ../common/footer.ejs %>
+    <div class="h-section">
+        <div class="h-container">
+            <div class="h-row">
+                <% workList.forEach(function(value){ %>
+                <div class="h-col-4">
+                    <a class="block-list" href="/works/workDetail/<%= value._id %>">
+                        <img src="<%= value.cover_url %>" alt="">
+                        <h3 title="<%= value.title %>"><%= value.title %></h3>
+                        <p>作者：<%= value.author %></p>
+                        <p>创建时间：<%=moment(value.create_at).format('YYYY-MM-DD h:mm:ss') %></p>
+                    </a>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+    <% include ../common/footer %>
 </div>
-<% include ../common/foot.ejs %>
+
+<% include ../common/foot %>
+<script type="text/javascript" src="/plugins/bootstrap.js"></script>
+<!--<script type="text/javascript" src="/src/js/design.js"></script>-->

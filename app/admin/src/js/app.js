@@ -8,10 +8,11 @@ require.config({
         "underscore": "underscore-min",
         "backbone": "backbone-min",
         "bootstrap": "bootstrap/js/bootstrap.min",
+        "bootstrap-table": "bootstrap-table/bootstrap-table.min",
         "markdown": "markdown-js/markdown",
         "jquery-ui/widget": "fileupload/jquery.ui.widget",
         "iframe-transport": "fileupload/jquery.iframe-transport",
-        "fileupload": "fileupload/jquery.fileupload",
+        "fileupload": "fileupload/jquery.fileupload"
     },
     //定义依赖
     shim: {
@@ -20,6 +21,9 @@ require.config({
         },
         "bootstrap": {
             deps: ["jquery"]
+        },
+        "bootstrap-table": {
+            deps: ["jquery","bootstrap"]
         },
         "fileupload": {
             deps: ["jquery-ui/widget", "iframe-transport"]
@@ -43,6 +47,10 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
                     "iconTypeManage" : "iconTypeManage",
                     "iconTypeEdit/:typeID" : "iconTypeEdit",
                     "iconTypeAdd" : "iconTypeAdd",
+                    //作品管理
+                    "workPoolManage": "workPoolManage",
+                    "workPoolManage_edit(/:id)": "workPoolEdit",
+
 
                     //特殊
                     "*action": "docManage"
@@ -82,7 +90,19 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
                     require(["/admin/src/js/iconTypeAdd.js"], function (module) {
                         new module;
                     });
-                }
+                },
+
+                workPoolManage: function () {
+                    require(["/admin/src/js/workPoolManage.js","/admin/src/js/base.js"], function (module) {
+                        new module;
+                    });
+                },
+
+                workPoolEdit: function (id) {
+                    require(["/admin/src/js/workPoolEdit.js"], function (module) {
+                        new module(id);
+                    });
+                },
             })
         }
     };

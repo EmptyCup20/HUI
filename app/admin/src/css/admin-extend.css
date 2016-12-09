@@ -41,6 +41,13 @@ body {
     padding: 0;
 }
 
+.panel-heading .work-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    height: auto;
+}
+
 .panel-title {
     padding: 20px 30px;
 }
@@ -142,4 +149,26 @@ textarea {
     height: 320%;
     opacity: 0;
     cursor: pointer;
+}
+
+.cover-img {
+    padding-left: 30px;
+    padding-bottom: 20px;
+}
+
+.cover-img button {
+    color: #d6b3b3;
+}
+
+.cover-img button i {
+    font-size: 30px;
+    padding: 14px;
+    font-weight: normal;
+}
+
+.cover-img img{
+    width: 110px;
+    height: 92px;
+    margin-left: 10px;
+    border-radius: 5px;
 }

@@ -48,6 +48,25 @@ var design_doc = new Schema({
     content: String
 });
 
+var work_pool = new Schema({
+    title: {
+        type: String,
+        require: true,
+        unique: false
+    },
+    content: String,
+    cover_url: String,
+    author: {
+        type: String,
+        default: 'admin'
+    },
+    create_at: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+
 var iconSource = new Schema({
     //图标名称
     name: {
@@ -190,22 +209,22 @@ Db_tools.remove = function (collection, removeId) {
  * @author zhangxin14
  * @date   2016-07-19
  * @param  {string}   collection [新增的类型(User/Article),首字母大写]
- * @param  {object}   queryObj   [查询的pageSize和pageNo]
+ * @param  {object}   queryObj   [查询的pageSize和pageNumber]
  * @param  {Function} callback   回调函数
  * @return {[type]}              [description]
  */
 Db_tools.query = function (collection, queryObj) {
     var model = this.init(collection);
     var pageSize = Number(queryObj.pageSize);
-    var pageNo = Number(queryObj.pageNo);
+    var pageNumber = Number(queryObj.pageNumber);
     var query = model.find({});
     //开头跳过查询的调试
-    query.skip((pageNo - 1) * pageSize);
+    query.skip((pageNumber - 1) * pageSize);
     //最多显示条数
     query.limit(pageSize);
     //计算分页数据
     return new Promise((resole, reject) => {
-        query.exec(function (err, doc) {
+        query.sort('-create_at').exec(function (err, doc) {
             if (err) {
                 reject(err);
             } else {
@@ -242,9 +261,9 @@ Db_tools.queryByCondition = function (collection, queryObj, pickObj) {
 
 Db_tools.queryAll = function (collection) {
     var model = this.init(collection);
-    var query = model.find();
+    var query = model.find({});
     return new Promise((resolve, reject) => {
-        query.exec(queryObj, (err, doc) => {
+        query.sort('-create_at').exec((err, doc) => {
             if (err) {
                 reject(err);
             } else {
