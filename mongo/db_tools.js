@@ -48,32 +48,8 @@ var design_doc = new Schema({
     content: String
 });
 
-<<<<<<< HEAD
 //图标库
 var icon_collection = new Schema({
-=======
-var work_pool = new Schema({
-    title: {
-        type: String,
-        require: true,
-        unique: false
-    },
-    content: String,
-    cover_url: String,
-    author: {
-        type: String,
-        default: 'admin'
-    },
-    create_at: {
-        type: Date,
-        default: Date.now
-    }
-});
-
-
-var iconSource = new Schema({
-    //图标名称
->>>>>>> 531a36954f0dafbe456d2f4d478db6ae5ed289e4
     name: {
         type: String,
         require: true,
@@ -117,6 +93,24 @@ var uikit = new Schema({
 
     content: Array
 })
+
+var work_pool = new Schema({
+    title: {
+        type: String,
+        require: true,
+        unique: false
+    },
+    content: String,
+    cover_url: String,
+    author: {
+        type: String,
+        default: 'admin'
+    },
+    create_at: {
+        type: Date,
+        default: Date.now
+    }
+});
 
 var successMsg = {
     "code": 0,
@@ -271,11 +265,7 @@ Db_tools.queryAll = function (collection) {
     var model = this.init(collection);
     var query = model.find({});
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-        query.exec((err, doc) => {
-=======
         query.sort('-create_at').exec((err, doc) => {
->>>>>>> 531a36954f0dafbe456d2f4d478db6ae5ed289e4
             if (err) {
                 reject(err);
             } else {
