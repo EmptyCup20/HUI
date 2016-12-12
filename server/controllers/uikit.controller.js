@@ -54,6 +54,30 @@ module.exports = {
     },
 
     /**
+     * 编辑类目
+     * @param req
+     * @param res
+     */
+    editCategory: function (req, res) {
+        var params = req.body;
+        var formData = {
+            _id: params.id,
+            name: params.name
+        }
+        db_tools.edit('uikit', formData).then(function (data) {
+            res.send({
+                success: true,
+                message: "修改成功！"
+            });
+        }, function (err) {
+            res.send({
+                success: false,
+                message: err
+            });
+        })
+    },
+
+    /**
      * 删除类目
      * @param req
      * @param res
@@ -115,16 +139,41 @@ module.exports = {
      * @param res
      */
     addContent: function (req, res) {
-        var params = JSON.parse(req.body.formData);
-        var formData = {
-            _id: params.id,
-            content: params.content
-        };
+        var params = req.body;
+        var content = JSON.parse(params.content);
+        var subDoc = {
+            name: content.name,
+            img_url: content.imgUrl,
+            attachment_url: content.attachmentUrl
+        }
 
-        db_tools.edit('uikit', formData).then(function (data) {
+        db_tools.pushSubDoc('uikit', {_id: params.id}, {content: subDoc}).then(function (data) {
             res.send({
                 success: true,
                 message: "添加成功！"
+            });
+        }, function (err) {
+            res.send({
+                success: false,
+                message: err
+            });
+        })
+    },
+
+    /**
+     * 移除内容
+     * @param req
+     * @param res
+     */
+    removeContent: function (req, res) {
+        var params = req.body;
+        var subDoc = {
+            _id: params.contentId
+        };
+        db_tools.pullSubDoc('uikit', {_id: params.id}, {content: subDoc}).then(function (data) {
+            res.send({
+                success: true,
+                message: "删除成功！"
             });
         }, function (err) {
             res.send({

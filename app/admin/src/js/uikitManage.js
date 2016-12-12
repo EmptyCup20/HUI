@@ -5,8 +5,9 @@ define(['bsTable'], function () {
     var UIKITManage = Backbone.View.extend({
         events: {
             "click [data-action=add]": "addCategory",
+            "click [data-action=edit]": "openEditModal",
             "click [data-action=del]": "delCategory",
-            "click [data-action=edit]": "editCategory",
+            "click [data-action=save]": "saveCategory",
             "click [data-action=editContent]": "editContent"
         },
 
@@ -27,9 +28,17 @@ define(['bsTable'], function () {
 
                 that.table = $("#uikitList", that.$el);
 
-                that.modal = $('#addUikitModal', that.$el);
+                that.addModal = $('#addUikitModal', that.$el);
+
+                that.editModal = $('#editUikitModal', that.$el);
 
                 that.loadTable();
+
+
+                that.editModal.on("show.bs.modal", function () {
+                    that.editModal.find("[name=name]").val(that.editData.name);
+                    that.editModal.find("[name=id]").val(that.editData._id);
+                })
             })
         },
 
@@ -40,6 +49,9 @@ define(['bsTable'], function () {
             this.table.bootstrapTable({
                 url: "/admin/uikit/getCategory",
                 columns: [{
+                    field: '_id',
+                    visible: false
+                }, {
                     field: "name",
                     title: "模块名称",
                     formatter: function (v, rowData) {
@@ -56,6 +68,7 @@ define(['bsTable'], function () {
                             "</button>";
                     }
                 }],
+                uniqueId: "_id",
                 toolbar: "#uikitToolbar"
             });
         },
@@ -74,9 +87,19 @@ define(['bsTable'], function () {
                 if (data.success) {
                     alert(data.message);
                     that.table.bootstrapTable('refresh');
-                    that.modal.modal('hide');
+                    that.addModal.modal('hide');
                 }
             })
+        },
+
+        /**
+         * 打开编辑弹框
+         * @param e
+         */
+        openEditModal: function (e) {
+            var rowId = $(e.currentTarget).attr("data-rowid");
+            this.editData = this.table.bootstrapTable("getRowByUniqueId", rowId);
+            this.editModal.modal("show");
         },
 
         /**
@@ -100,9 +123,25 @@ define(['bsTable'], function () {
             })
         },
 
-        editCategory: function () {
-
+        /**
+         * 保存目录编辑
+         */
+        saveCategory: function () {
+            var that = this;
+            var formData = $("#editUikitForm").serialize();
+            $.ajax({
+                url: "/admin/uikit/editCategory",
+                method: "post",
+                data: formData
+            }).done(function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    that.table.bootstrapTable('refresh');
+                    that.editModal.modal('hide');
+                }
+            })
         },
+
 
         /**
          * 编辑内容

@@ -84,6 +84,12 @@ var icon = new Schema({
     url: String
 });
 
+var uikit_content = new Schema({
+    name: String,
+    img_url: String,
+    attachment_url: String
+})
+
 var uikit = new Schema({
     name: {
         type: String,
@@ -91,7 +97,7 @@ var uikit = new Schema({
         unique: true
     },
 
-    content: Array
+    content: [uikit_content]
 })
 
 var work_pool = new Schema({
@@ -274,5 +280,45 @@ Db_tools.queryAll = function (collection) {
         })
     })
 
-}
+};
+
+/**
+ * 子文档插入数据
+ * @param collection
+ * @param queryObj
+ * @param subObj
+ * @returns {Promise}
+ */
+Db_tools.pushSubDoc = function (collection, queryObj, subObj) {
+    var model = this.init(collection);
+    return new Promise((resolve, reject)=> {
+        model.findOneAndUpdate(queryObj, {$push: subObj}, {upsert: true}, function (err, doc) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(doc);
+            }
+        })
+    });
+};
+
+/**
+ * 删除子文档某一项
+ * @param collection
+ * @param queryObj
+ * @param subObj
+ * @returns {Promise}
+ */
+Db_tools.pullSubDoc = function (collection, queryObj, subObj) {
+    var model = this.init(collection);
+    return new Promise((resolve, reject)=> {
+        model.findOneAndUpdate(queryObj, {$pull: subObj}, function (err, doc) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(doc);
+            }
+        })
+    });
+};
 module.exports = Db_tools;

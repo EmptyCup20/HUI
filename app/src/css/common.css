@@ -307,6 +307,17 @@ select {
   border-color: #62A8EA;
   color: #fff;
 }
+.btn-download {
+  padding: 6px 22px;
+  color: #fff;
+  background: #62A8EA;
+  border-radius: 14px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+}
+.btn-download:hover {
+  background: #89bceb;
+}
 [class^="gl-xs-"],
 [class^="lt-xs-"],
 [class*=" gl-xs-"],
@@ -681,6 +692,7 @@ select {
   background: #f5f5f5;
 }
 .h-panel {
+  position: relative;
   margin-bottom: 30px;
   background: #fff;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
@@ -693,6 +705,11 @@ select {
 }
 .h-panel .h-panel-header + .h-panel-body {
   padding-top: 0;
+}
+.h-panel .h-panel-header .h-panel-action {
+  position: absolute;
+  right: 30px;
+  top: 25px;
 }
 .h-panel .h-panel-body {
   padding: 30px;

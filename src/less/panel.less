@@ -1,4 +1,5 @@
 .h-panel {
+  position: relative;
   margin-bottom: 30px;
   background: @white;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
@@ -11,6 +12,11 @@
     }
     + .h-panel-body {
       padding-top: 0;
+    }
+    .h-panel-action {
+      position: absolute;
+      right: 30px;
+      top: 25px;
     }
   }
   .h-panel-body {

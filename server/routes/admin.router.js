@@ -7,6 +7,7 @@ var docController = require("../controllers/doc.controller");
 var iconTypeController = require("../controllers/iconType.controller");
 var uploadCtrl = require("../controllers/upload.controller");
 var uikitCtrl = require("../controllers/uikit.controller");
+//var animateCtrl = require("../controllers/animate.controller");
 var workController = require("../controllers/work.controller");
 var uploadController = require("../controllers/upload.controller");
 var express = require("express");
@@ -85,11 +86,15 @@ router.get('/uikit/uikitEdit/:id', uikitCtrl.uikitEdit);
 
 router.post('/uikit/addCategory', uikitCtrl.addCategory);
 
+router.post('/uikit/editCategory', uikitCtrl.editCategory);
+
 router.post('/uikit/delCategory', uikitCtrl.delCategory);
 
 router.post('/uikit/getContentById', uikitCtrl.getContent);
 
 router.post('/uikit/addContent', uikitCtrl.addContent);
+
+router.post('/uikit/removeContent', uikitCtrl.removeContent);
 
 
 //------------------请求页面------------------------//

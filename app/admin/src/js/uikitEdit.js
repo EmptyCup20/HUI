@@ -4,7 +4,8 @@
 define(["/admin/src/js/util.js", "fileupload"], function () {
     var UIKITEdit = Backbone.View.extend({
         events: {
-            "click [data-action=addContent]": "addContent"
+            "click [data-action=addContent]": "addContent",
+            "click [data-action=close]": "removeContent"
         },
 
         initialize: function (id) {
@@ -83,24 +84,35 @@ define(["/admin/src/js/util.js", "fileupload"], function () {
          * 弹框点击确定添加内容
          */
         addContent: function () {
-            var that = this;
-            var formData;
             var newContent = $("#addUikitContentForm").serializeJson();
-            this.content.push(newContent);
-            formData = JSON.stringify({
-                id: this.id,
-                content: newContent
-            })
             $.ajax({
                 url: "/admin/uikit/addContent",
                 data: {
-                    formData: formData
+                    id: this.id,
+                    content: JSON.stringify(newContent)
                 },
                 method: "post"
             }).done(function (data) {
                 if (data.success) {
                     alert(data.message);
                     $("#addUikitContentModal").modal('hide');
+                }
+            })
+        },
+
+        removeContent: function (e) {
+            var el = $(e.currentTarget);
+            var contentId = el.parents(".panel").attr("data-id");
+            $.ajax({
+                url: "/admin/uikit/removeContent",
+                data: {
+                    id: this.id,
+                    contentId: contentId
+                }, method: "post"
+            }).done(function (data) {
+                if (data.success) {
+                    alert(data.message);
+                    el.parents(".panel").remove();
                 }
             })
         }

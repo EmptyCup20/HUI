@@ -5,6 +5,7 @@ var express = require("express");
 var router = express.Router();
 var iconCtrl = require("../controllers/icon.controller");
 var uikitCtrl = require("../controllers/uikit.controller");
+var animateCtrl = require("../controllers/animate.controller");
 var co = require('co');
 
 
@@ -19,9 +20,15 @@ router.get('/iconfont', iconCtrl.getCollections);
 
 router.get('/iconfont/type/:typeId', iconCtrl.getIconByCollection);
 
+//--------------------彩色图标---------------------
+
 router.get('/coloricon', iconCtrl.getColorIconCollections);
 
 router.get('/coloricon/type/:typeId', iconCtrl.getColorIconByCollection);
+
+//--------------------动效资源---------------------
+
+router.get('/animate', animateCtrl.render);
 
 /**
  * 所以资源详情页
