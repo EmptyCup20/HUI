@@ -7,6 +7,8 @@ var docController = require("../controllers/doc.controller");
 var iconTypeController = require("../controllers/iconType.controller");
 var uploadCtrl = require("../controllers/upload.controller");
 var uikitCtrl = require("../controllers/uikit.controller");
+var workController = require("../controllers/work.controller");
+var uploadController = require("../controllers/upload.controller");
 var express = require("express");
 var co = require("co");
 var router = express.Router();
@@ -44,6 +46,7 @@ router.get('/updateIconCollection', iconCltCtrl.updateIconCollection);
  * 图片管理页, 所有图片
  */
 router.get('/resource/all', iconController.getAllResources);
+router.post('/imgUpload', uploadController.imgUpload);
 
 /**
  * 图片添加修改页面
@@ -100,5 +103,18 @@ router.post('/imgUpload', uploadCtrl.imgUpload);
 router.post('/iconUpload', uploadCtrl.iconUpload);
 
 router.post('/attachmentUpload', uploadCtrl.attachmentUpload);
+
+//------------------作品池管理------------------------//
+router.get('/getWork/:workPath', function (req, res) {
+    res.render('admin/' + req.params.workPath);
+});
+
+router.get('/getWorkMd', workController.getWorkMd);
+
+router.post('/updateWork', workController.updateWork);
+
+router.post('/addWork', workController.addWork);
+
+router.get('/getWorkList', workController.getWorkList);
 
 module.exports = router;

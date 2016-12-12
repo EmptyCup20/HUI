@@ -23,6 +23,9 @@ require.config({
         "bootstrap": {
             deps: ["jquery"]
         },
+        "bootstrap-table": {
+            deps: ["jquery", "bootstrap"]
+        },
         "fileupload": {
             deps: ["jquery-ui/widget", "iframe-transport"]
         },
@@ -59,6 +62,10 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
                     //UIKIT管理
                     "uikit": "uikitManage",
                     "uikit/uikitEdit/:id": "uikitEdit",
+
+                    //作品管理
+                    "workPoolManage": "workPoolManage",
+                    "workPoolManage_edit(/:id)": "workPoolEdit",
 
                     //特殊
                     "*action": "docManage"
@@ -128,7 +135,19 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
                     require(["/admin/src/js/uikitEdit.js"], function (module) {
                         new module(id);
                     });
-                }
+                },
+
+                workPoolManage: function () {
+                    require(["/admin/src/js/workPoolManage.js", "/admin/src/js/base.js"], function (module) {
+                        new module;
+                    });
+                },
+
+                workPoolEdit: function (id) {
+                    require(["/admin/src/js/workPoolEdit.js"], function (module) {
+                        new module(id);
+                    });
+                },
             })
         }
     };
