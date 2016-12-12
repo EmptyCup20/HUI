@@ -8,68 +8,9 @@ var request = require('request');
 var fs = require('fs');
 var co = require('co');
 var fileModel = ["svg", "png", "psd", "zip"];
+var fileServerPath = "http://10.33.31.234:5566"; //图片服务器路径
 
 module.exports = {
-    /**
-     * 文件上传
-     * @param req
-     * @param res
-     */
-    uploadFile: function (req, res) {
-        var fileServerPath = "http://10.33.31.234:5566"; //图片服务器路径
-        var fileDirName = "hui_svg"; //图片存储文件夹
-        var form = new formidable.IncomingForm();
-        form.encoding = 'utf-8';		//设置编辑
-        form.keepExtensions = true;	 //保留后缀
-        form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
-        form.parse(req, function (err, fields, files) {
-            if (err) {
-                res.write('error\n\n');
-                return;
-            }
-            request.post({
-                url: fileServerPath + "/containers/upload",
-                formData: {
-                    dirName: fileDirName,
-                    // fileName: files.iconFile.name, //不传名字自动生成图片
-                    upload: fs.createReadStream(files.iconFile.path)
-                }
-            }, function (err, httpResponse, body) {
-                if (err) {
-                    res.send({
-                        success: false,
-                        message: err
-                    });
-                    return;
-                }
-                body = JSON.parse(body);
-                if (body.type == "success") {
-                    res.send({
-                        success: true,
-                        message: "上传成功！",
-                        data: {
-                            name: files.iconFile.name.replace(/\.\w+$/, ''),
-                            url: fileServerPath + body.url
-                        }
-                    });
-                } else {
-                    var message;
-                    switch (body.message.code) {
-                        case "EEXIST":
-                            message = "文件已存在！";
-                            break;
-                        default:
-                            message = "上传失败！";
-                    }
-                    res.send({
-                        success: false,
-                        message: message
-                    });
-                }
-            });
-        });
-    },
-
     /**
      * 添加图标
      * @param req
@@ -141,16 +82,22 @@ module.exports = {
      */
     delResource: function (req, res) {
         var params = req.body;
-        db_tools.remove('icon', params.id).then(function (data) {
+        var fileDirName = "icon_source";
+        co(function*() {
+            //删除相应的图标
+            var data = yield db_tools.queryByCondition('icon', {
+                _id: params.id
+            })
+            var url = fileServerPath + "/containers/delete/" + fileDirName + "/" + data[0].url.replace(/.*\//,"")
+            request.get({
+                url: url
+            })
+
+            //删除字段
+            yield db_tools.remove('icon', params.id);
             res.send({
                 success: true,
                 message: "删除成功！"
-            });
-        }, function (err) {
-            console.log(err)
-            res.send({
-                success: false,
-                message: "删除失败！" + err
             });
         });
     },
@@ -161,7 +108,7 @@ module.exports = {
      */
     getAllResources: function (req, res) {
         co(function*() {
-            var data = yield db_tools.queryByCondition('iconSource', {});
+            var data = yield db_tools.queryByCondition('icon', {});
             res.render('admin/iconManage.ejs', {
                 iconList: data
             });
@@ -176,7 +123,7 @@ module.exports = {
     getResourceById: function (req, res) {
         var iconId = req.params.iconId;
         co(function*() {
-            var data = yield db_tools.queryByCondition('iconSource', {
+            var data = yield db_tools.queryByCondition('icon', {
                 _id: iconId
             })
             res.render('resource/iconDetail.ejs', {
@@ -240,7 +187,7 @@ module.exports = {
             var fileTypes = yield db_tools.queryByCondition('iconClassify', {});
             var obj = [];
             if (iconId) {
-                obj = yield db_tools.queryByCondition('iconSource', {
+                obj = yield db_tools.queryByCondition('icon', {
                     _id: iconId
                 });
             }

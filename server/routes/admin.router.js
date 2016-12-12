@@ -56,7 +56,7 @@ router.get('/getIconEditPage', iconController.getIconEditPage);
 
 router.get('/getIconEditPage/:iconId', iconController.getIconEditPage);
 
-router.post("/fileUpload", iconController.uploadFile);
+//router.post("/fileUpload", iconController.uploadFile);
 
 router.post("/icon/add", iconController.add);
 

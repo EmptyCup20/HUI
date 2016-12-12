@@ -55,7 +55,7 @@ define(['bsTable'], function () {
                         return "<button class='btn btn-sm btn-icon btn-flat btn-default' type='button' data-action='edit' data-rowid='" + rowData._id + "'>" +
                             "<i class='glyphicon glyphicon-edit'></i>" +
                             "</button>" +
-                            "<button class='btn btn-sm btn-icon btn-flat btn-default' type='button' data-action='del' data-rowid='" + rowData._id + "'>" +
+                            "<button class='btn btn-sm btn-icon btn-flat btn-default hidden' type='button' data-action='del' data-rowid='" + rowData._id + "'>" +
                             "<i class='glyphicon glyphicon-remove'></i>" +
                             "</button>";
                     }
