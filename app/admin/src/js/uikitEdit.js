@@ -21,6 +21,10 @@ define(["/admin/src/js/util.js", "fileupload"], function () {
                 that.setElement("#uikitEdit");
 
                 that.getContent().initFileupload();
+
+                $("#addUikitContentModal").on("hidden.bs.modal", function () {
+                    that.render(that.id);
+                })
             })
         },
 
@@ -79,6 +83,7 @@ define(["/admin/src/js/util.js", "fileupload"], function () {
          * 弹框点击确定添加内容
          */
         addContent: function () {
+            var that = this;
             var formData;
             var newContent = $("#addUikitContentForm").serializeJson();
             this.content.push(newContent);
@@ -93,7 +98,10 @@ define(["/admin/src/js/util.js", "fileupload"], function () {
                 },
                 method: "post"
             }).done(function (data) {
-
+                if (data.success) {
+                    alert(data.message);
+                    $("#addUikitContentModal").modal('hide');
+                }
             })
         }
     });

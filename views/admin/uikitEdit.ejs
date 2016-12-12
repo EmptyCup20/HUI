@@ -2,16 +2,20 @@
     <h1 class="page-title">UIKIT-<%= data.name %></h1>
 </div>
 <div class="page-content" id="uikitEdit">
-    <% data.content.forEach(function(item){ %>
-    <div class="panel">
-        <div class="panel-heading">
-            <h3 class="panel-title"><%= item.name %></h3>
-        </div>
-        <div class="panel-body container-fluid">
-            <img src="<%- item.imgUrl %>">
+    <div class="row">
+        <div class="col-lg-6">
+            <% data.content.forEach(function(item){ %>
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><%= item.name %></h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <img src="<%- item.imgUrl %>">
+                </div>
+            </div>
+            <% }) %>
         </div>
     </div>
-    <% }) %>
 
     <div class="fixed-action-btn">
         <a class="btn-floating" data-toggle="modal" data-target="#addUikitContentModal">
