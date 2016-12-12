@@ -3,11 +3,7 @@
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
-    <ul class="h-tag clearfix">
-        <li><a href="/resource/uikit">UIKIT</a></li>
-        <li><a class="active" href="/resource/iconfont">ICONFONT</a></li>
-        <li><a href="/resource/coloricon">彩色图标</a></li>
-    </ul>
+    <% include ../resource/submenu.ejs %>
     <div class="h-block">
         <div class="h-container">
             <!--内容部分-->
@@ -19,25 +15,25 @@
     <div class="h-block">
         <div class="h-container clearfix">
             <% iconTypes.forEach(function(iconType){ %>
-                <div class="h-col-6">
-                    <div class="block-collection" data-typeid="<%= iconType.id%>">
-                        <h4 class="block-collection-title">
-                            <span><a href="iconfont/type/<%= iconType.id%>"><%= iconType.name %></a></span>
-                            <i class="total-num">20</i>
-                        </h4>
-                        <div class="icons-container">
-                            <ul class="clearfix">
-                                <% icons.forEach(function(icon, index){ %>
-                                    <% if(icon.type == iconType.id && index < 21) {%>
-                                    <li>
-                                        <a href="iconfont/detail/<%= icon.id%>"><img src=<%- icon.svgfile %> alt=""></a>
-                                    </li>
-                                    <% } %>
-                                <% }) %>
-                            </ul>
-                        </div>
+            <div class="h-col-6">
+                <a class="block-collection" href="iconfont/type/<%= iconType.id %>">
+                    <h4 class="block-collection-title">
+                        <span><%= iconType.name %></span>
+                        <i class="total-num">20</i>
+                    </h4>
+                    <div class="icons-container">
+                        <ul class="clearfix">
+                            <% icons.forEach(function(icon, index){ %>
+                            <% if(icon.collection_id == iconType.id && index < 21) { %>
+                            <li>
+                                <img src=<%- icon.url %> alt="">
+                            </li>
+                            <% } %>
+                            <% }) %>
+                        </ul>
                     </div>
-                </div>
+                </a>
+            </div>
             <% }) %>
         </div>
     </div>

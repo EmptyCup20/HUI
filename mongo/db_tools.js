@@ -48,47 +48,50 @@ var design_doc = new Schema({
     content: String
 });
 
-var iconSource = new Schema({
-    //图标名称
+//图标库
+var icon_collection = new Schema({
     name: {
         type: String,
         require: true,
         unique: false
     },
-    //标签
-    tags: String,
-    //分类
+
     type: {
         type: String,
         require: true
     },
-    //文件路径
-    url: {
-        type: String,
-        unique: true
-    },
-    //svg路径
-    svgfile:String,
-    //png路径
-    pngfile:String,
-    //psd路径
-    psdfile:String,
-    //zip路径
-    zipfile:String,
-    //文件类型
-    fileType:String,
-    //相关链接
-    otherLink:String
+
+    attachment_url: String
 });
 
-var iconClassify = new Schema({
+//图标
+var icon = new Schema({
     name: {
         type: String,
         require: true,
         unique: false
     },
-    //文件类型
-    fileType:String
+
+    type: {
+        type: String,
+        require: true
+    },
+
+    tags: String,
+
+    collection_id: String,
+
+    url: String
+});
+
+var uikit = new Schema({
+    name: {
+        type: String,
+        require: true,
+        unique: true
+    },
+
+    content: Array
 })
 
 var successMsg = {
@@ -244,7 +247,7 @@ Db_tools.queryAll = function (collection) {
     var model = this.init(collection);
     var query = model.find();
     return new Promise((resolve, reject) => {
-        query.exec(queryObj, (err, doc) => {
+        query.exec((err, doc) => {
             if (err) {
                 reject(err);
             } else {

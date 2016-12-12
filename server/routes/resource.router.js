@@ -3,29 +3,30 @@
  */
 var express = require("express");
 var router = express.Router();
-var icon_source = require("../controllers/icon.controller");
+var iconCtrl = require("../controllers/icon.controller");
+var uikitCtrl = require("../controllers/uikit.controller");
 var co = require('co');
 
-router.get('/uikit', function (req, res) {
-    res.render('resource/uikit.ejs', {
-        model: "resource"
-    });
-});
 
-router.get('/iconfont', icon_source.getCollections);
+//--------------------uikit---------------------
 
-router.get('/coloricon', function (req, res) {
-    res.render('resource/coloricon.ejs', {
-        model: "resource"
-    });
-});
+router.get('/uikit', uikitCtrl.render);
 
-router.get('/iconfont/type/:typeId', icon_source.getIconByCollection);
+
+//--------------------iconfont---------------------
+
+router.get('/iconfont', iconCtrl.getCollections);
+
+router.get('/iconfont/type/:typeId', iconCtrl.getIconByCollection);
+
+router.get('/coloricon', iconCtrl.getColorIconCollections);
+
+router.get('/coloricon/type/:typeId', iconCtrl.getColorIconByCollection);
 
 /**
  * 所以资源详情页
  */
-router.get('/iconfont/detail/:iconId', icon_source.getResourceById);
+router.get('/iconfont/detail/:iconId', iconCtrl.getResourceById);
 
 //router.get('/getCollections', icon_source.getCollections);
 //router.get('/getIconByCollection', icon_source.getIconByCollection);

@@ -1,0 +1,23 @@
+.h-panel {
+  margin-bottom: 30px;
+  background: @white;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  border-radius: @panel-border-radius;
+  .h-panel-header {
+    .h-panel-title {
+      margin: 0;
+      padding: 20px 30px;
+      font-size: 20px;
+    }
+    + .h-panel-body {
+      padding-top: 0;
+    }
+  }
+  .h-panel-body {
+    padding: 30px;
+    img {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+}

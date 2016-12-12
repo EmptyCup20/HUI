@@ -15,7 +15,7 @@ module.exports = {
      * @param req
      * @param res
      */
-    uploadFile : function(req, res) {
+    uploadFile: function (req, res) {
         var fileServerPath = "http://10.33.31.234:5566"; //图片服务器路径
         var fileDirName = "hui_svg"; //图片存储文件夹
         var form = new formidable.IncomingForm();
@@ -69,55 +69,83 @@ module.exports = {
             });
         });
     },
+
+    /**
+     * 添加图标
+     * @param req
+     * @param res
+     */
+    add: function (req, res) {
+        var params = req.body;
+        var formData = {
+            name: params.name,
+            url: params.url,
+            type: params.type,
+            collection_id: params.collection_id,
+            tags: params.tags
+        };
+        db_tools.add("icon", formData).then(function (data) {
+            res.send({
+                success: true,
+                message: "添加成功！",
+                data: data
+            });
+        }, function (err) {
+            console.log(err);
+            res.send({
+                success: false,
+                message: "添加失败！" + err
+            });
+        })
+    },
     /**
      * 保存资源
      * @param req
      * @param res
      */
-    saveResource : function (req, res) {
-        var params = req.body;
-        var formData = {
-            id : params._id,
-            name: params.name,
-            url: params.url,
-            svgfile: params.svgfile,
-            pngfile: params.pngfile,
-            psdfile: params.psdfile,
-            zipfile: params.zipfile,
-            fileType: params.fileType,
-            otherLink: params.otherLink,
-            type: params.collection,
-            tags: params.tags
-        };
-        var method = formData.id ? "edit" : "add";
-        db_tools[method]('iconSource', formData).then(function (data) {
-            res.send({
-                success: true,
-                message: "修改成功！",
-                data: data
-            });
-            return;
-        }, function (err) {
-            console.log(err)
-            res.send({
-                success: false,
-                message: "修改失败！" + err
-            });
-        });
-    },
+    //saveResource: function (req, res) {
+    //    var params = req.body;
+    //    var formData = {
+    //        id: params._id,
+    //        name: params.name,
+    //        url: params.url,
+    //        svgfile: params.svgfile,
+    //        pngfile: params.pngfile,
+    //        psdfile: params.psdfile,
+    //        zipfile: params.zipfile,
+    //        fileType: params.fileType,
+    //        otherLink: params.otherLink,
+    //        type: params.collection,
+    //        tags: params.tags
+    //    };
+    //    var method = formData.id ? "edit" : "add";
+    //    db_tools[method]('iconSource', formData).then(function (data) {
+    //        res.send({
+    //            success: true,
+    //            message: "修改成功！",
+    //            data: data
+    //        });
+    //        return;
+    //    }, function (err) {
+    //        console.log(err)
+    //        res.send({
+    //            success: false,
+    //            message: "修改失败！" + err
+    //        });
+    //    });
+    //},
     /**
      * 删除资源
      * @param req
      * @param res
      */
-    delResource : function (req, res) {
+    delResource: function (req, res) {
         var params = req.body;
-        db_tools.remove('iconSource', params.iconId).then(function (data) {
+        db_tools.remove('icon', params.id).then(function (data) {
             res.send({
                 success: true,
                 message: "删除成功！"
             });
-            return;
         }, function (err) {
             console.log(err)
             res.send({
@@ -131,7 +159,7 @@ module.exports = {
      * @param req
      * @param res
      */
-    getAllResources : function(req, res){
+    getAllResources: function (req, res) {
         co(function*() {
             var data = yield db_tools.queryByCondition('iconSource', {});
             res.render('admin/iconManage.ejs', {
@@ -145,11 +173,11 @@ module.exports = {
      * @param req
      * @param res
      */
-    getResourceById : function (req, res) {
+    getResourceById: function (req, res) {
         var iconId = req.params.iconId;
         co(function*() {
             var data = yield db_tools.queryByCondition('iconSource', {
-                _id : iconId
+                _id: iconId
             })
             res.render('resource/iconDetail.ejs', {
                 model: "resource",
@@ -165,15 +193,38 @@ module.exports = {
      */
     getCollections: function (req, res) {
         co(function*() {
-            var iconTypes = yield db_tools.queryByCondition('iconClassify', {
-                fileType : 0
+            var iconTypes = yield db_tools.queryByCondition('icon_collection', {
+                type: "svg"
             });
-            var icons = yield db_tools.queryByCondition('iconSource', {
-                fileType : 0
+            var icons = yield db_tools.queryByCondition('icon', {
+                type: "svg"
             });
             res.render('resource/iconfont.ejs', {
                 model: "resource",
-                icons : icons,
+                subModel: "iconfont",
+                icons: icons,
+                iconTypes: iconTypes
+            });
+        });
+    },
+
+    /**
+     * 获取彩色图标库
+     * @param req
+     * @param res
+     */
+    getColorIconCollections: function (req, res) {
+        co(function*() {
+            var iconTypes = yield db_tools.queryByCondition('icon_collection', {
+                type: "png"
+            });
+            var icons = yield db_tools.queryByCondition('icon', {
+                type: "png"
+            });
+            res.render('resource/coloricon.ejs', {
+                model: "resource",
+                subModel: "coloricon",
+                icons: icons,
                 iconTypes: iconTypes
             });
         });
@@ -183,14 +234,14 @@ module.exports = {
      * @param req
      * @param res
      */
-    getIconEditPage : function (req, res) {
+    getIconEditPage: function (req, res) {
         var iconId = req.params.iconId;
         co(function*() {
             var fileTypes = yield db_tools.queryByCondition('iconClassify', {});
             var obj = [];
-            if(iconId){
+            if (iconId) {
                 obj = yield db_tools.queryByCondition('iconSource', {
-                    _id : iconId
+                    _id: iconId
                 });
             }
             res.render('admin/iconEdit', {
@@ -207,11 +258,35 @@ module.exports = {
     getIconByCollection: function (req, res) {
         var typeId = req.params.typeId;
         co(function*() {
-            var data = yield db_tools.queryByCondition('iconSource', {
-                type: typeId
+            var collection = yield db_tools.queryByCondition('icon_collection', {_id: typeId});
+            var data = yield db_tools.queryByCondition('icon', {
+                collection_id: typeId
             });
             res.render('resource/iconfontType.ejs', {
                 model: "resource",
+                subModel: "iconfont",
+                collectionName: collection[0].name,
+                iconList: data
+            });
+        });
+    },
+
+    /**
+     * 根据图标库获取彩色图标
+     * @param req
+     * @param res
+     */
+    getColorIconByCollection: function (req, res) {
+        var typeId = req.params.typeId;
+        co(function*() {
+            var collection = yield db_tools.queryByCondition('icon_collection', {_id: typeId});
+            var data = yield db_tools.queryByCondition('icon', {
+                collection_id: typeId
+            });
+            res.render('resource/iconfontType.ejs', {
+                model: "resource",
+                subModel: "coloricon",
+                iconCollection: collection[0],
                 iconList: data
             });
         });

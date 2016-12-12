@@ -4,10 +4,16 @@
 define(["markdown", "fileupload"], function (markdown) {
     var DocManage = Backbone.View.extend({
         events: {
-            "input #md_field": "preview",
-            "click #doc_submit": "submit",
-            "blur #md_field": "getCursorPosition"
+            //md全屏编辑控制
+            "click .md-control-fullscreen": "editorFullscreen",
+            //实时预览
+            "input #mdEditor .md-input": "preview",
+            //记录textarea失去焦点前的光标位置
+            "blur #mdEditor .md-input": "getCursorPosition",
+            //提交更改
+            "click #doc_submit": "submit"
         },
+
         initialize: function () {
             this.render();
         },
@@ -19,32 +25,24 @@ define(["markdown", "fileupload"], function (markdown) {
             var that = this;
             $.get("/admin/getPage/docManage").done(function (data) {
                 $(".page").html(data);
+
+                //定义视图作用域
                 that.setElement("#docManage");
-                that.textField = $("#md_field");
 
-                that.getDoc();
+                that.editor = $("#mdEditor", that.$el);
+                that.textField = that.editor.find(".md-input");
 
-                $("#docImgUpload").fileupload({
-                    url: "/admin/imgUpload",
-                    paramName: "img",
-                    formData: {
-                        unique: false
-                    },
-                    done: function (t, result) {
-                        var data = result.result;
-                        if (data.success) {
-                            that.insertImgAtCaret(data.data.url);
-                            that.preview();
-                        }
-                    }
-                });
+                //初始化编辑内容
+                that.initEditorContent();
+
+                that.initFileupload();
             })
         },
 
         /**
          * 获取文档内容并填充文本框
          */
-        getDoc: function () {
+        initEditorContent: function () {
             var that = this;
             $.ajax({
                 url: "/admin/getDesignDocMd",
@@ -57,7 +55,27 @@ define(["markdown", "fileupload"], function (markdown) {
         },
 
         /**
-         * md文档预览
+         * 初始化图片上传控件
+         */
+        initFileupload: function () {
+            $("#docImgUpload").fileupload({
+                url: "/admin/imgUpload",
+                paramName: "img",//重要，代替控件name属性
+                formData: {
+                    unique: false //允许多次上传同一张图片
+                },
+                done: function (t, result) {
+                    var data = result.result;
+                    if (data.success) {
+                        that.insertImgAtCaret(data.data.url);
+                        that.preview();
+                    }
+                }
+            });
+        },
+
+        /**
+         * 文档实时预览
          */
         preview: function () {
             var md_str = this.textField.val();
@@ -71,6 +89,7 @@ define(["markdown", "fileupload"], function (markdown) {
         insertImgAtCaret: function (url) {
             var el = this.textField.get(0);
             var imgText = "![](" + url + ")";//md图片插入格式
+
             if (document.selection) { // IE
                 var sel = el.createTextRange();
                 var cursorPosition = $(el).data("cursorPosition");
@@ -117,6 +136,14 @@ define(["markdown", "fileupload"], function (markdown) {
         },
 
         /**
+         * 文档编辑器全屏控制
+         */
+        editorFullscreen: function () {
+            $("body").toggleClass("md-nooverflow");
+            this.editor.toggleClass("md-fullscreen-mode");
+        },
+
+        /**
          * 保存文档
          */
         submit: function () {
@@ -131,5 +158,6 @@ define(["markdown", "fileupload"], function (markdown) {
             })
         }
     });
+
     return DocManage;
 });

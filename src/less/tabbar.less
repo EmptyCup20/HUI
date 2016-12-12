@@ -1,0 +1,38 @@
+.h-tabbar {
+  position: relative;
+  height: 54px;
+  background: #f8f8f8;
+  z-index: 10;
+  .h-categories {
+    li {
+      float: left;
+      a {
+        display: block;
+        padding: 0 40px;
+        line-height: 54px;
+        color: #666;
+        text-decoration: none;
+        &:hover {
+          background: #eee;
+        }
+        &.active {
+          background: #fff;
+          color: #333;
+        }
+      }
+    }
+  }
+  &.white {
+    background: #fff;
+    .h-categories li a {
+      &:hover {
+        background: #fcfcfc;
+      }
+      &.active {
+        background: #f5f5f5;
+      }
+    }
+  }
+
+}
+

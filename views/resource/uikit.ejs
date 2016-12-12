@@ -1,17 +1,65 @@
 <% include ../common/head.ejs %>
-<div class="main-wrapper h-bg">
+<div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
-    <ul class="h-tag">
-        <li><a class="active" href="/resource/uikit">UIKIT</a></li>
-        <li><a href="/resource/iconfont">ICONFONT</a></li>
-        <li><a href="/resource/coloricon">彩色图标</a></li>
-    </ul>
-    <div class="h-section">
+    <% include ../resource/submenu.ejs %>
+    <div class="h-section  bg-lightgray">
         <div class="h-container">
             <!--内容部分-->
-            <% include ../building.ejs %>
+            <div class="h-row">
+                <div class="h-col-9">
+                    <div class="h-doc-section">
+                        <% category.forEach(function(item){ %>
+                        <h1>
+                            <%= item.name %>
+                        </h1>
+                        <hr>
+                        <% item.content.forEach(function(subItem){ %>
+                        <h3 class="fictitious-anchor">
+                            <%= subItem.name %>
+                        </h3>
+                        <div class="h-panel">
+                            <div class="h-panel-header">
+                                <h4 class="h-panel-title">
+                                    <%= subItem.name %>
+                                </h4>
+                            </div>
+                            <div class="h-panel-body">
+                                <img src="<%- subItem.img_url %>">
+                            </div>
+                        </div>
+                        <% }) %>
+                        <% }) %>
+                        <!--<h1>按钮</h1>-->
+                        <!--<hr>-->
+                        <!--<h3 class="fictitious-anchor">功能按钮</h3>-->
+                        <!--<div class="h-panel">-->
+                        <!--<div class="h-panel-header">-->
+                        <!--<h4 class="h-panel-title">功能按钮</h4>-->
+                        <!--</div>-->
+                        <!--<div class="h-panel-body">-->
+                        <!--<img src="/src/pic/test01.jpg">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<h3 class="fictitious-anchor">命令按钮</h3>-->
+                        <!--<div class="h-panel">-->
+                        <!--<div class="h-panel-header">-->
+                        <!--<h4 class="h-panel-title">命令按钮</h4>-->
+                        <!--</div>-->
+                        <!--<div class="h-panel-body">-->
+                        <!--<img src="/src/pic/test02.jpg">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="h-col-3">
+                    <div class="h-sidebar">
+                        <ul class="nav h-sidenav">
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <% include ../common/footer.ejs %>
