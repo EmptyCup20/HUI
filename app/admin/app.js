@@ -44,8 +44,6 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
             //主路由
             Main: Backbone.Router.extend({
                 routes: {
-                    //文档管理
-                    "docManage": "docManage",
                     //图标管理
                     "iconManage": "iconCollection",
                     //添加图标库
@@ -54,97 +52,69 @@ require(["jquery", "underscore", "backbone", "bootstrap"], function () {
                     "iconManage/editCollection/:id": "collectionEdit",
                     "editIcon/:iconId": "editIcon",
                     "editIcon": "editIcon",
-                    //图标类型管理
-                    "iconTypeManage": "iconTypeManage",
-                    "iconTypeEdit/:typeID": "iconTypeEdit",
-                    "iconTypeAdd": "iconTypeAdd",
 
                     //UIKIT管理
                     "uikit": "uikitManage",
                     "uikit/uikitEdit/:id": "uikitEdit",
 
-                    //作品管理
-                    "workPoolManage": "workPoolManage",
-                    "workPoolManage_edit(/:id)": "workPoolEdit",
+                    //作品池管理
+                    "docManage": "docManage",
+                    "docManageEdit(/:id)": "docManageEdit",
 
                     //特殊
                     "*action": "docManage"
                 },
 
-                docManage: function () {
-                    require(["/admin/src/js/docManage.js"], function (module) {
-                        new module;
-                    });
-                },
-
                 iconCollection: function () {
-                    require(["/admin/src/js/collectionManage.js"], function (module) {
+                    require(["/admin/src/js/icon/collectionManage.js"], function (module) {
                         new module;
                     });
                 },
 
                 collectionAdd: function () {
-                    require(["/admin/src/js/collectionAdd.js"], function (module) {
+                    require(["/admin/src/js/icon/collectionAdd.js"], function (module) {
                         new module();
                     });
                 },
 
                 collectionEdit: function (id) {
-                    require(["/admin/src/js/collectionEdit.js"], function (module) {
+                    require(["/admin/src/js/icon/collectionEdit.js"], function (module) {
                         new module(id);
                     });
                 },
 
                 iconManage: function () {
-                    require(["/admin/src/js/iconManage.js"], function (module) {
+                    require(["/admin/src/js/icon/iconManage.js"], function (module) {
                         new module;
                     });
                 },
 
                 editIcon: function (iconId) {
-                    require(["/admin/src/js/editIcon.js"], function (module) {
+                    require(["/admin/src/js/icon/editIcon.js"], function (module) {
                         new module(iconId);
                     });
                 },
 
-                iconTypeManage: function () {
-                    require(["/admin/src/js/iconTypeManage.js"], function (module) {
-                        new module;
-                    });
-                },
-
-                iconTypeEdit: function (typeID) {
-                    require(["/admin/src/js/iconTypeEdit.js"], function (module) {
-                        new module(typeID);
-                    });
-                },
-
-                iconTypeAdd: function () {
-                    require(["/admin/src/js/iconTypeAdd.js"], function (module) {
-                        new module;
-                    });
-                },
-
                 uikitManage: function () {
-                    require(["/admin/src/js/uikitManage.js"], function (module) {
+                    require(["/admin/src/js/uikit/uikitManage.js"], function (module) {
                         new module;
                     });
                 },
 
                 uikitEdit: function (id) {
-                    require(["/admin/src/js/uikitEdit.js"], function (module) {
+                    require(["/admin/src/js/uikit/uikitEdit.js"], function (module) {
                         new module(id);
                     });
                 },
 
-                workPoolManage: function () {
-                    require(["/admin/src/js/workPoolManage.js", "/admin/src/js/base.js"], function (module) {
+                docManage: function () {
+                    require(["/admin/src/js/doc/docManage.js", "/admin/src/js/base.js"], function (module) {
                         new module;
                     });
                 },
 
-                workPoolEdit: function (id) {
-                    require(["/admin/src/js/workPoolEdit.js"], function (module) {
+                docManageEdit: function (id) {
+                    require(["/admin/src/js/doc/docManageEdit.js"], function (module) {
                         new module(id);
                     });
                 },

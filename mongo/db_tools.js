@@ -251,6 +251,7 @@ Db_tools.query = function (collection, queryObj) {
  * @date   2016-07-25
  * @param  {string}   collection 集合名称
  * @param  {查询主键}   queryObj   string
+ * @param  {查询主键}   pickObj   为空是全部查询，可以用keys代替(中间空格符号分割)
  * @return {[type]}              [description]
  */
 Db_tools.queryByCondition = function (collection, queryObj, pickObj) {

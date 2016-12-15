@@ -1,0 +1,73 @@
+<div class="page-header">
+    <h1 class="page-title">UIKIT</h1>
+</div>
+<div class="page-content" id="uikitManage">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">类目</h3>
+        </div>
+        <div class="panel-body container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="uikitToolbar">
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#addUikitModal">添加模块</a>
+                    </div>
+                    <table id="uikitList"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addUikitModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">uikit模块添加</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="addUikitForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                模块名称
+                            </label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" name="name">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" data-action="add">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editUikitModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">uikit模块编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="editUikitForm">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                模块名称
+                            </label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" name="name">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" data-action="save">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
