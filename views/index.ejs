@@ -57,17 +57,23 @@
             </div>
             <div class="h-section-title">
                 <h3></h3>
+                <div id="galleryInfo" class="gallery-info">
+                    <h1><a href="/works/workDetail/<%= docs[0]._id %>" id="docTitle"><%= docs[0].title %></a></h1>
+                    <h5 id="docInfo"><%= docs[0].info %></h5>
+                </div>
             </div>
             <div class="slider-wrapper">
                 <section id="dg-container" class="dg-container">
                     <div class="dg-wrapper">
-                        <a><img src="../src/pic/354385.jpg" alt="image01"></a>
-                        <a><img src="../src/pic/463011.jpg" alt="image02"></a>
-                        <a><img src="../src/pic/490646.jpg" alt="image03"></a>
+                        <% docs.forEach(function(value){ %>
+                            <a class="block-list" data-docId = "<%= value._id %>" data-info = "<%= value.info %>" data-title = "<%= value.title %>" >
+                                <img src="<%= value.cover_url %>" alt="">
+                            </a>
+                        <% }); %>
                     </div>
                     <nav>
-                        <span class="dg-prev">&lt;</span>
-                        <span class="dg-next">&gt;</span>
+                        <span class="dg-prev"></span>
+                        <span class="dg-next"></span>
                     </nav>
                 </section>
             </div>

@@ -6,8 +6,10 @@ var db_tools = require("../../../mongo/db_tools");
 var request = require('request');
 var fs = require('fs');
 
-var fileServerPath = "http://10.33.31.234:5566"; //图片服务器路径
-var imgSourceDir = "img_source";//图片文件夹
+
+var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
+var fileServerPath = settings.fileServerPath; //图片服务器路径
+var fileDocument = settings.fileDocument;//图片文件夹
 
 /**
  * 文件存储到服务器
@@ -37,7 +39,7 @@ var formRequest = function (req, res) {
             return
         }
         var formData = {
-            dirName: imgSourceDir,
+            dirName: fileDocument,
             upload: fs.createReadStream(file.path)
         };
         if (fields.unique) {

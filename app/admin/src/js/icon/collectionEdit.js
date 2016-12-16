@@ -4,7 +4,8 @@
 define(["fileupload", "/admin/src/js/util.js"], function () {
     var EditCollection = Backbone.View.extend({
         events: {
-            "click .icon-del": "iconDel"//删除图标
+            "click .icon-del": "iconDel",//删除图标
+            "click #saveIconCollectionBtn" : "saveIconCollection"
         },
 
         initialize: function (id) {
@@ -32,13 +33,13 @@ define(["fileupload", "/admin/src/js/util.js"], function () {
             $("#attachmentUpload").fileupload({
                 url: "/admin/upload/imgUpload",
                 formData : {
-                    name : "attachmentUpload",
-                    type : "png,jpg"
+                    name : "attachment",
+                    type : "png,jpg,psd,zip"
                 },
                 done: function (t, result) {
                     var data = result.result;
                     if (data.success) {
-                        $("[name=attachmentUrl]", that.form).val(data.data.url);
+                        $("[name=attachment]", that.form).text(data.data.url);
                     } else {
                         alert(data.message);
                     }
@@ -124,6 +125,26 @@ define(["fileupload", "/admin/src/js/util.js"], function () {
                     alert(data.message);
                     parent.remove();
                 }
+            })
+        },
+        /**
+         * 图片集添加
+         */
+        saveIconCollection :function(){
+            var formData = $("#collectionEditForm").serializeJson();
+            //这里type=file的赋值有点不对，先这么处理
+            formData.attachmentUrl = $("[name=attachment]", this.form).text();
+            $.ajax({
+                url: "/admin/iconType/updateIconCollection",
+                method: "post",
+                data: {
+                    collection: JSON.stringify(formData)
+                }
+            }).done(function (data) {
+                alert(data.message);
+                //if (data.success) {
+                //    window.location.href = "#iconManage";
+                //}
             })
         }
     });

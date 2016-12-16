@@ -13,28 +13,41 @@ module.exports = {
         res.render("admin/doc/docManageEdit")
     },
     /**
-     * 获取平台设计md
-     * 暂时先写死
+     * 获取设计md
+     * 这些id暂时先写死
      */
-    getWebDesign: function (req, res) {
-        var docId = "5850e2704175e76cf9a7e84a";
+    getDesign: function (req, res) {
+        var docName,type = req.params.type.toLowerCase().trim();
+        switch (type){
+            case "web" :
+                docName = "平台规范"
+                break
+            case "mobile" :
+                docName = "移动端规范"
+                break
+            case "ls" :
+                docName = "大屏端规范"
+                break
+        }
         co(function*() {
-            var data = yield docModel.getDocById(docId);
+            var data = yield docModel.getDocByQuery({
+                title : docName
+            });
             res.render('design/design.ejs', {
                 content: markdown.toHTML(data[0].content),
-                model: "design"
+                model: "design",
+                type: type
             });
         });
     },
 
     /**
      * 根据id获取
-     * 暂时先写死
      */
     getDocById: function (req, res) {
         var docId = req.query.id;
         co(function*() {
-            var data = yield docModel.getDocById(docId);
+            var data = yield docModel.getDocByQuery({_id : docId});
             res.send({
                 success: true,
                 data: data.length ? data[0] : null
@@ -56,6 +69,15 @@ module.exports = {
         var docObj = req.body;
         co(function*() {
             var data = yield docModel.addDoc(docObj);
+            res.send(data)
+        });
+    },
+
+    //添加文档
+    delDoc: function(req,res){
+        var docId = req.body.id;
+        co(function*() {
+            var data = yield docModel.delDoc(docId);
             res.send(data)
         });
     },

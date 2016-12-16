@@ -40,13 +40,13 @@ define(["fileupload", "wizard", "/admin/src/js/util.js"], function () {
             $("#attachmentUpload").fileupload({
                 url: "/admin/upload/imgUpload",
                 formData : {
-                    name : "attachmentUpload",
-                    type : "psd,zip"
+                    name : "attachment",
+                    type : "psd,zip,png,jpg"
                 },
                 done: function (t, result) {
                     var data = result.result;
                     if (data.success) {
-                        $("[name=attachmentUrl]", that.form).val(data.data.url);
+                        $("[name=attachment]", that.form).text(data.data.url);
                     } else {
                         alert(data.message);
                     }
@@ -116,9 +116,11 @@ define(["fileupload", "wizard", "/admin/src/js/util.js"], function () {
          */
         submit: function () {
             var formData = this.form.serializeJson();
+            //这里type=file的赋值有点不对，先这么处理
+            formData.attachmentUrl = $("[name=attachment]", this.form).text();
             formData.icons = this.getIconDatas();
             $.ajax({
-                url: "/admin/iconType/addIconCollection",
+                url: "/admin/iconType/updateIconCollection",
                 method: "post",
                 data: {
                     collection: JSON.stringify(formData)

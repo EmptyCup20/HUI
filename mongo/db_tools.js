@@ -106,6 +106,7 @@ var work_pool = new Schema({
         require: true,
         unique: false
     },
+    info: String,
     content: String,
     cover_url: String,
     author: {

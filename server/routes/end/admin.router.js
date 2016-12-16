@@ -1,7 +1,7 @@
 /**
  * Created by zhengjunling on 2016/11/25.
  */
-var iconTypeEndRouter = require("./iconManager/iconType.end.router.js");
+var iconTypeEndRouter = require("./iconManager/iconCollection.end.router.js");
 var iconEndRouter = require("./iconManager/icon.end.router.js");
 var docEndRouter = require("./docManager/doc.end.router.js");
 var uikitEndRouter = require("./uikitManager/uikit.end.router.js");

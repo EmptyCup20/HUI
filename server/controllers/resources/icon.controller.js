@@ -2,14 +2,15 @@
  * Created by zhengjunling on 2016/11/25.
  */
 var db_tools = require("../../../mongo/db_tools");
-var formidable = require("formidable");
 var iconModel = require("../../models/resources/icon.model");
 var iconCollectionModel = require("../../models/resources/iconCollection.model");
 var request = require('request');
 var fs = require('fs');
 var co = require('co');
 
-var fileServerPath = "http://10.33.31.234:5566"; //图片服务器路径
+var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
+var fileServerPath = settings.fileServerPath; //图片服务器路径
+var fileDocument = settings.fileDocument;//图片文件夹
 
 module.exports = {
     /**
@@ -38,12 +39,11 @@ module.exports = {
      */
     delIcon: function (req, res) {
         var params = req.body;
-        var fileDirName = "img_source";
         co(function*() {
             //删除相应的图标
             var data = yield iconModel.getIconById(params.id);
 
-            var url = fileServerPath + "/containers/delete/" + fileDirName + "/" + data[0].url.replace(/.*\//,"")
+            var url = fileServerPath + "/containers/delete/" + fileDocument + "/" + data[0].url.replace(/.*\//,"")
             request.get({
                 url: url
             })

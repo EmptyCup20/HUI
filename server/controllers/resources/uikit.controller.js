@@ -9,7 +9,7 @@ module.exports = {
         res.render('admin/uikit/uikit');
     },
 
-    render: function (req, res) {
+    getUikitPage: function (req, res) {
         co(function*() {
             var data = yield db_tools.queryAll('uikit');
             res.render('resource/uikit', {

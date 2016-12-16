@@ -1,7 +1,8 @@
 /**
  * Created by zhengjunling on 2016/12/9.
  */
-var db_tools = require("../../../mongo/db_tools");
+var iconCollectionModel = require("../../models/resources/iconCollection.model");
+var iconModel = require("../../models/resources/icon.model");
 var co = require('co');
 
 module.exports = {
@@ -31,8 +32,8 @@ module.exports = {
     collectionEditRender: function (req, res) {
         var collectionId = req.params.collectionId;
         co(function*() {
-            var collection = yield db_tools.queryByCondition('icon_collection', {_id: collectionId});
-            var icons = yield db_tools.queryByCondition('icon', {collection_id: collectionId});
+            var collection = yield iconCollectionModel.getCollectionByQuery({_id: collectionId});
+            var icons = yield iconModel.getIconsByQuery({collection_id: collectionId});
             res.render("admin/icon/collectionEdit", {
                 collection: collection[0],
                 icons: icons
@@ -50,41 +51,44 @@ module.exports = {
             pageSize: req.query.pageSize,
             pageNo: req.query.pageNo
         }
-        db_tools.query('icon_collection', queryParams).then(function (data) {
+        co(function*() {
+            var data = yield iconCollectionModel.getCollectionByPage(queryParams);
             res.send(data);
-        }, function (err) {
-            res.send(err);
         })
     },
 
     /**
-     * 添加图标库
+     * 添加/修改图标库
      * @param req
      * @param res
      */
-    addCollection: function (req, res) {
+    updateCollection: function (req, res) {
         var params = JSON.parse(req.body.collection);
         var formData = {
+            id: params.id,
             name: params.name,
             type: params.type,
             attachment_url: params.attachmentUrl
         };
-        db_tools.add('icon_collection', formData).then(function (data) {
-            params.icons.forEach(function (e) {
-                e.collection_id = data._id;
-            })
-            db_tools.add('icon', params.icons).then(function (data) {
+        var method = formData.id ? "edit" : "add";
+        co(function*() {
+            var data = yield iconCollectionModel.updateCollection(method, formData);
+            if(params.icons && params.icons.length > 0){
+                params.icons.forEach(function (e) {
+                    e.collection_id = data._id;
+                })
+                iconModel.addIcons(params.icons);
                 res.send({
                     success: true,
-                    message: "添加成功！"
+                    message: formData.id ? "修改成功" : "添加成功！"
                 });
-            })
-        }, function (err) {
-            res.send({
-                success: false,
-                message: err
-            });
-        });
+            }else{
+                res.send({
+                    success: true,
+                    message: formData.id ? "修改成功" : "添加成功！"
+                });
+            }
+        })
     },
 
     /**
@@ -93,27 +97,14 @@ module.exports = {
      * @param res
      */
     delCollection: function (req, res) {
-        db_tools.remove('icon_collection', req.body.id).then(function (data) {
+        co(function*() {
+            var data = yield iconCollectionModel.delCollection(req.body.id);
             res.send({
                 success: true,
                 message: "删除成功！",
                 data: data
             });
-        }, function (err) {
-            res.send({
-                success: false,
-                message: err
-            });
         })
-    },
-
-    /**
-     * 更新图标库
-     * @param req
-     * @param res
-     */
-    updateIconCollection: function (req, res) {
-
     }
 
 };

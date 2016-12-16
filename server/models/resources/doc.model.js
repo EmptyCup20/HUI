@@ -31,6 +31,15 @@ module.exports = {
             });
         })
     },
+    delDoc : function(docId){
+        return new Promise(function(resolve, reject) {
+            db_tools.remove('work_pool', docId).then(function (data) {
+                resolve(data)
+            }, function (err) {
+                reject(err);
+            });
+        })
+    },
     /**
      * 过滤所有文档信息，query为查询条件，
      * @param query object
@@ -50,9 +59,9 @@ module.exports = {
      * @param docId
      * @returns {Promise}
      */
-    getDocById : function(docId){
+    getDocByQuery : function(query){
         return new Promise(function(resolve, reject) {
-            db_tools.queryByCondition('work_pool', {"_id": docId}).then(function (data) {
+            db_tools.queryByCondition('work_pool', query).then(function (data) {
                 resolve(data)
             }, function (err) {
                 reject(err);

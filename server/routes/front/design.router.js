@@ -4,10 +4,7 @@
 var express = require("express");
 var router = express.Router();
 var docController = require("../../controllers/resources/doc.controller.js");
-var co = require('co');
-var markdown = require("markdown").markdown;
 
-
-router.get('/getWebDesign', docController.getWebDesign);
+router.get('/getDesign/:type', docController.getDesign);
 
 module.exports = router;

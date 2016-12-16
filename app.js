@@ -26,4 +26,6 @@ app.use('/admin', require('./server/routes/end/admin.router.js'));
 
 app.use('/user', require('./server/routes/user.router'));
 
+console.log("server model : " + ( process.env.MODEL ? "-" + process.env.MODEL : "-dev"))
+
 var server = app.listen(7080, function () {});

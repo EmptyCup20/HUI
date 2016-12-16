@@ -10,6 +10,7 @@
 define(["bsTable"], function (markdown) {
     var DocManage = Backbone.View.extend({
         events: {
+            "click [data-action=del]": "delDoc",
         },
         initialize: function () {
             this.render();
@@ -64,8 +65,31 @@ define(["bsTable"], function (markdown) {
                     formatter: function(value,row,index){
                         return '<span>' + new Date(value).Format("yyyy-MM-dd hh:mm:ss") + '</span>'
                     }
+                }, {
+                    title: "操作",
+                    formatter: function (v, rowData) {
+                        return "<button class='btn btn-sm btn-icon btn-flat btn-default' type='button' data-action='del' data-rowid='" + rowData._id + "'>" +
+                            "<i class='glyphicon glyphicon-remove'></i>" +
+                            "</button>";
+                    }
                 }]
             });
+        },
+        delDoc : function(e){
+            var that = this;
+            var el = $(e.currentTarget);
+            $.ajax({
+                url: "/admin/doc/delDoc",
+                method: "post",
+                data: {
+                    id: el.attr("data-rowid")
+                }
+            }).done(function (data) {
+                if (data.success) {
+                    alert("删除成功");
+                    el.parents("tr").remove()
+                }
+            })
         }
     });
     return DocManage;

@@ -11,12 +11,10 @@ router.get('/collectionAdd', iconCltCtrl.collectionAddRender);
 
 router.get('/collectionEdit/:collectionId', iconCltCtrl.collectionEditRender);
 
-router.post('/addIconCollection', iconCltCtrl.addCollection);
+router.post('/updateIconCollection', iconCltCtrl.updateCollection);
 
 router.post('/delIconCollection', iconCltCtrl.delCollection);
 
 router.get('/getIconCollection', iconCltCtrl.getCollection);
-
-router.get('/updateIconCollection', iconCltCtrl.updateIconCollection);
 
 module.exports = router;

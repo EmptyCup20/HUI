@@ -679,7 +679,7 @@ select {
   background: #eee;
 }
 .h-tabbar .h-categories li a.active {
-  background: #fff;
+  background: #eee;
   color: #333;
 }
 .h-tabbar.white {
@@ -850,6 +850,8 @@ select {
 .h-section-title {
   margin: 80px 0 50px;
   text-align: center;
+  color: #000;
+  text-decoration: none;
 }
 .h-section-title h3 {
   display: inline-block;
@@ -857,10 +859,13 @@ select {
   height: 57px;
   background: url(../image/section_title.png) no-repeat;
 }
+.h-section-title .gallery-info a {
+  color: #000;
+  text-decoration: none;
+}
 .slider-wrapper {
   height: 420px;
   margin-bottom: 120px;
-  background: #999;
 }
 .btn-scroll-up {
   display: none;
@@ -960,6 +965,10 @@ select {
   font-size: 13px;
   color: rgba(0, 0, 0, 0.8);
   padding: 20px 20px 0 30px;
+}
+.block-collection-title a {
+  color: #000;
+  text-decoration: none;
 }
 .icons-container {
   padding: 10px 40px 40px 40px;

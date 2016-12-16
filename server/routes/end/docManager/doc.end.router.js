@@ -21,6 +21,8 @@ router.post('/updateDoc', docController.updateDoc);
 
 router.post('/addDoc', docController.addDoc);
 
+router.post('/delDoc', docController.delDoc);
+
 router.get('/getDocList', docController.getDocList);
 
 //------------------文章管理------------------------//

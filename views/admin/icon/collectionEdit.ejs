@@ -11,6 +11,7 @@
                 <div class="panel-body container-fluid">
                     <div class="col-lg-6">
                         <form class="form-horizontal" id="collectionEditForm">
+                            <input type="hidden" name="id" value="<%= collection.id %>">
                             <div class="form-group">
                                 <label class="control-label col-md-3">名称</label>
                                 <div class="col-md-9">
@@ -27,7 +28,7 @@
                                                 <% } %>
                                         >svg
                                         </option>
-                                        <option value="svg"
+                                        <option value="png"
                                                 <% if(collection.type == 'png'){ %>
                                                 selected="selected"
                                                 <% } %>
@@ -42,6 +43,13 @@
                                     <input class="form-control" name="attachment" id="attachmentUpload" type="file">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3"></label>
+                                <div class="col-md-9">
+                                    <button type="button" class="btn btn-primary" id="saveIconCollectionBtn">保存</button>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>

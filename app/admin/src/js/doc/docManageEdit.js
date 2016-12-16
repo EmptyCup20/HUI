@@ -43,7 +43,6 @@ define(["markdown", "fileupload"], function (markdown) {
             var that = this;
             $("#workImgUpload").fileupload({
                 url: "/admin/upload/imgUpload",
-                paramName: "img",
                 formData: {
                     unique: false,
                     name : "workImgUpload",
@@ -90,6 +89,7 @@ define(["markdown", "fileupload"], function (markdown) {
                 if (data.success) {
                     that.textField.val(data.data.content);
                     $('#coverImg').attr('src',data.data.cover_url);
+                    $('.work-info').val(data.data.info);
                     $('.work-title').val(data.data.title);
                     that.preview();
                 }
@@ -165,12 +165,17 @@ define(["markdown", "fileupload"], function (markdown) {
                 alert('请输入标题！');
                 return;
             }
+            if(!this.id && !$('.work-info').val()){
+                alert('请输入简介！');
+                return;
+            }
             if(!this.id && !$('#coverImg').attr('src')){
                 alert('请上传文章封面！');
                 return;
             }
             var fromData = {
                 title: $('.work-title').val(),
+                info : $('.work-info').val(),
                 cover_url: $('#coverImg').attr('src'),
                 content: this.textField.val()
             };

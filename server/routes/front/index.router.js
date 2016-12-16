@@ -3,11 +3,8 @@
  */
 var express = require("express");
 var router = express.Router();
+var indexController = require("../../controllers/resources/index.controller.js");
 
-router.get('/', function(req, res) {
-    res.render('index.ejs', {
-        model: 'index'
-    });
-});
+router.get('/', indexController.frontHome);
 
 module.exports = router;
