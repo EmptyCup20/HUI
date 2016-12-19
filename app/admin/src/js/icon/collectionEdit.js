@@ -51,7 +51,7 @@ define(["fileupload", "/admin/src/js/util.js"], function () {
                 url: "/admin/upload/imgUpload",
                 formData : {
                     name : "iconFile",
-                    type : "png,jpg"
+                    type : "png,jpg,svg"
                 },
                 done: function (t, result) {
                     if (result.result.success) {

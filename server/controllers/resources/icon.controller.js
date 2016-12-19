@@ -145,6 +145,7 @@ module.exports = {
             res.render('resource/iconfontType.ejs', {
                 model: "resource",
                 subModel: "iconfont",
+                url : collection[0].attachment_url,
                 collectionName: collection[0].name,
                 iconList: data
             });

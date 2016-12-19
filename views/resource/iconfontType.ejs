@@ -8,17 +8,28 @@
         <div class="h-container">
             <!--内容部分-->
             <div class="collection-detail">
-                <h4 class="block-collection-title">
-                    <span><%= collectionName %></span>
-                </h4>
-                <ul class="icons-container clearfix">
-                    <% iconList.forEach(function(value){ %>
-                    <li>
-                        <a href="<%- value.url %>"><img src=<%- value.url %> alt=""></a>
-                        <h5><%- value.name %></h5>
-                    </li>
-                    <% }) %>
-                </ul>
+                <div class="h-doc-section">
+                    <div class="h-panel">
+                        <div class="h-panel-header">
+                            <h4 class="h-panel-title">
+                                <%= collectionName %>
+                            </h4>
+                            <div class="h-panel-action">
+                                <a class="btn btn-download" href="<%- url %>">psd</a>
+                            </div>
+                        </div>
+                        <div class="h-panel-body">
+                            <ul class="icons-container clearfix">
+                                <% iconList.forEach(function(value){ %>
+                                <li>
+                                    <a href="<%- value.url %>"><img src=<%- value.url %> alt=""></a>
+                                    <h5><%- value.name %></h5>
+                                </li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
