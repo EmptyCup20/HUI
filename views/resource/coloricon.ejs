@@ -15,8 +15,8 @@
                     </h4>
                     <div class="icons-container">
                         <ul class="clearfix">
-                            <% icons.forEach(function(icon, index){ %>
-                                <% if(icon.collection_id == iconType.id) { %>
+                            <% var num = 0;icons.forEach(function(icon, index){ %>
+                                <% if(icon.collection_id == iconType.id && num < 16) { num ++ %>
                                 <li>
                                     <img src=<%- icon.url %> alt="">
                                     <h5><%- icon.name %></h5>

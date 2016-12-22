@@ -34,9 +34,9 @@ module.exports = {
      * 根据条件删除图标资源
      * @param iconObj
      */
-    delIcons : function(iconObj){
+    delIcons : function(iconId){
         return new Promise(function(resolve, reject) {
-            db_tools.remove('icon', iconObj.id).then(function (data) {
+            db_tools.remove('icon', iconId).then(function (data) {
                 resolve(data)
             }, function (err) {
                 reject(err);

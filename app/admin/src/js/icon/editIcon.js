@@ -56,23 +56,23 @@ define(["fileupload"],function () {
             $("[name=collection] option").hide();
             $("[name=collection] [data-type="+value+"]").show();
             //上传文件部分显示
-            $(".svg-space").hide();
-            $(".png-space").hide();
-            $(".psd-space").hide();
-            $(".zip-space").hide();
+            $(".js-svg-space").hide();
+            $(".js-png-space").hide();
+            $(".js-psd-space").hide();
+            $(".js-zip-space").hide();
             switch (value){
                 case "0":
-                    $(".svg-space").show();
-                    $(".png-space").show();
+                    $(".js-svg-space").show();
+                    $(".js-png-space").show();
                     break
                 case "1":
-                    $(".png-space").show();
+                    $(".js-png-space").show();
                     break
                 case "2":
-                    $(".psd-space").show();
+                    $(".js-psd-space").show();
                     break
                 case "3":
-                    $(".zip-space").show();
+                    $(".js-zip-space").show();
                     break
             }
         },

@@ -29,7 +29,10 @@ module.exports = {
         };
         co(function*() {
             var data = yield iconModel.addIcons(formData);
-            res.send(data)
+            res.send({
+                success: true,
+                data: data
+            })
         });
     },
     /**

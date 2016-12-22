@@ -10,8 +10,11 @@
 define(["markdown", "fileupload"], function (markdown) {
     var DocManage = Backbone.View.extend({
         events: {
+            //md文档预览
             "input #md_field": "preview",
+            //保存文档
             "click #doc_submit": "submit",
+            //获取并记录光标位置
             "blur #md_field": "getCursorPosition"
         },
         initialize: function (id) {
