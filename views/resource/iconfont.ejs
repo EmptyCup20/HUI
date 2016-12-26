@@ -4,14 +4,14 @@
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-block">
-        <div class="h-container">
-            <!--内容部分-->
+    <!--<div class="h-block">-->
+        <!--<div class="h-container">-->
+            <!--&lt;!&ndash;内容部分&ndash;&gt;-->
             <!--<div class="clearfix">-->
                 <!--<input type="text" placeholder="Search..." class="search">-->
             <!--</div>-->
-        </div>
-    </div>
+        <!--</div>-->
+    <!--</div>-->
     <div class="h-block">
         <div class="h-container clearfix">
             <% iconTypes.forEach(function(iconType){ %>
@@ -23,8 +23,8 @@
                     </h4>
                     <div class="icons-container">
                         <ul class="clearfix">
-                            <% icons.forEach(function(icon, index){ %>
-                                <% if(icon.collection_id == iconType.id && index < 21) { %>
+                            <% var num = 0;icons.forEach(function(icon, index){ %>
+                                <% if(icon.collection_id == iconType.id && num < 16) { num ++ %>
                                 <li>
                                     <img src=<%- icon.url %> alt="">
                                     <h5><%- icon.name %></h5>
