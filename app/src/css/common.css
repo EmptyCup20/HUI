@@ -993,6 +993,10 @@ select {
   margin-bottom: 20px;
   text-align: center;
 }
+.icons-container-coloricon {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .icons-container li img {
   height: 48px;
 }
