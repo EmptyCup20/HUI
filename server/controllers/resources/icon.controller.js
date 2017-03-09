@@ -163,14 +163,15 @@ module.exports = {
     getColorIconByCollection: function (req, res) {
         var typeId = req.params.typeId;
         co(function*() {
-            var collection = yield iconCollectionModel.getCollectionByQuery({id: typeId});
+            var collection = yield iconCollectionModel.getCollectionByQuery({_id: typeId});
             var data = yield iconModel.getIconsByQuery({
                 collection_id: typeId
             });
-            res.render('resource/iconfontType.ejs', {
+            res.render('resource/coloriconType.ejs', {
                 model: "resource",
                 subModel: "coloricon",
-                iconCollection: collection[0],
+                collectionName: collection[0].name,
+                url : collection[0].attachment_url,
                 iconList: data
             });
         });
