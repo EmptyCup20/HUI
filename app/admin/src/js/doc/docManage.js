@@ -75,22 +75,25 @@ define(["bsTable"], function (markdown) {
                 }]
             });
         },
-        delDoc : function(e){
+
+        delDoc: function (e) {
             var that = this;
             var el = $(e.currentTarget);
-            $.ajax({
-                url: "/admin/doc/delDoc",
-                method: "post",
-                data: {
-                    id: el.attr("data-rowid")
-                }
-            }).done(function (data) {
-                if (data.success) {
-                    alert("删除成功");
-                    el.parents("tr").remove()
-                }
-            })
-        }
+            if(confirm("确认删除？")){
+                $.ajax({
+                    url: "/admin/doc/delDoc",
+                    method: "post",
+                    data: {
+                        id: el.data("rowid")
+                    }
+                }).done(function (res) {
+                    if(res.success){
+                        alert("删除成功");
+                        el.parents("tr").remove();
+                    }
+                })
+            }
+        },
     });
     return DocManage;
 });
