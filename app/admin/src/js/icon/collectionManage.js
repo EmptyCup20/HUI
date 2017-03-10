@@ -4,7 +4,8 @@
 define(['bsTable'], function () {
     var IconCollection = Backbone.View.extend({
         events: {
-            "click #collectionList [data-action=del]": "delCollection",//删除图标库
+            // "click [data-action=delCollection]": "delCollection",//删除图标库
+            "click [data-action=del]": "delCollection",//删除图标库
             "click #collectionList [data-action=edit]": "editCollection"//编辑图标库
         },
 
@@ -55,7 +56,7 @@ define(['bsTable'], function () {
                         return "<button class='btn btn-sm btn-icon btn-flat btn-default' type='button' data-action='edit' data-rowid='" + rowData._id + "'>" +
                             "<i class='glyphicon glyphicon-edit'></i>" +
                             "</button>" +
-                            "<button class='btn btn-sm btn-icon btn-flat btn-default hidden' type='button' data-action='del' data-rowid='" + rowData._id + "'>" +
+                            "<button class='btn btn-sm btn-icon btn-flat btn-default' type='button' data-action='del' data-rowid='" + rowData._id + "'>" +
                             "<i class='glyphicon glyphicon-remove'></i>" +
                             "</button>";
                     }
@@ -65,24 +66,31 @@ define(['bsTable'], function () {
             });
         },
 
+        getDelResId:function(e){
+            var el = $(e.currentTarget);
+            this.$("[data-action=delCollection]").data("id",el.data("rowid"));
+        },
+
         /**
          * 删除图标库
          */
         delCollection: function (e) {
             var that = this;
             var el = $(e.currentTarget);
-            $.ajax({
-                url: "/admin/iconType/delIconCollection",
-                method: "post",
-                data: {
-                    id: el.attr("data-rowid")
-                }
-            }).done(function (data) {
-                if (data.success) {
-                    alert(data.message);
-                    that.table.bootstrapTable('refresh');
-                }
-            })
+            if(confirm("确认删除？")){
+                $.ajax({
+                    url: "/admin/iconType/delIconCollection",
+                    method: "post",
+                    data: {
+                        id: el.data("rowid")
+                    }
+                }).done(function (res) {
+                    alert(res.message);
+                    if(res.success){
+                        that.table.bootstrapTable("refresh");
+                    }
+                })
+            }
         },
 
         /**
