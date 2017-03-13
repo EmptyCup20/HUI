@@ -66,7 +66,8 @@ var formRequest = function (req, res) {
                     message: "上传成功！",
                     data: {
                         name: file.name.replace(/\.\w+$/, ''),
-                        url: fileServerPath + body.url
+                        url: fileServerPath + body.url,
+                        downloadUrl: fileServerPath + '/containers/download' + body.url
                     }
                 });
             } else {
