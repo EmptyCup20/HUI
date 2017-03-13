@@ -16,9 +16,9 @@
         <div class="h-container clearfix">
             <% iconTypes.forEach(function(iconType){ %>
             <div class="h-col-6">
-                <div class="block-collection">
+                <a class="block-collection" href="iconfont/type/<%= iconType.id %>">
                     <h4 class="block-collection-title">
-                        <span><a href="iconfont/type/<%= iconType.id %>"><%= iconType.name %></a></span>
+                        <span><%= iconType.name %></span>
                         <!--<i class="total-num"><a href="<%= iconType.attachment_url %>">下载</a></i>-->
                     </h4>
                     <div class="icons-container">
@@ -33,7 +33,7 @@
                             <% }) %>
                         </ul>
                     </div>
-                </div>
+                </a>
             </div>
             <% }) %>
         </div>
