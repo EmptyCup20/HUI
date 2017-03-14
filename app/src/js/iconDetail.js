@@ -7,5 +7,11 @@ $(function(){
     });
     $('.single-icon').mouseleave(function(){
         $(this).find('.icon-operation').slideUp();
+    });
+    $('#archiveDownload').on('click',function(){
+        var typeId = $('.collection-detail').data('typeid');
+        $.ajax({
+            url: ''
+        })
     })
 });

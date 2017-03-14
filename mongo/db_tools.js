@@ -83,7 +83,9 @@ var icon = new Schema({
 
     url: String,
 
-    downloadUrl: String
+    downloadUrl: String,
+
+    svgXML:String
 });
 
 var uikit_content = new Schema({

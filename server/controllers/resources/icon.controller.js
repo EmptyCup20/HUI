@@ -12,6 +12,12 @@ var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.
 var fileServerPath = settings.fileServerPath; //图片服务器路径
 var fileDocument = settings.fileDocument;//图片文件夹
 
+function getSvgXml(svgUrl,cb){
+    request.get(svgUrl,function(error,response,body){
+        cb && cb(body);
+    })
+}
+
 module.exports = {
     /**
      * 添加图标
@@ -20,20 +26,23 @@ module.exports = {
      */
     addIcon: function (req, res) {
         var params = req.body;
-        var formData = {
-            name: params.name,
-            url: params.url,
-            type: params.type,
-            collection_id: params.collection_id,
-            tags: params.tags,
-            downloadUrl: params.downloadUrl
-        };
-        co(function*() {
-            var data = yield iconModel.addIcons(formData);
-            res.send({
-                success: true,
-                data: data
-            })
+        getSvgXml(params.url,function(xml){
+            var formData = {
+                name: params.name,
+                url: params.url,
+                type: params.type,
+                collection_id: params.collection_id,
+                tags: params.tags,
+                downloadUrl: params.downloadUrl,
+                svgXML:xml
+            };
+            co(function*() {
+                var data = yield iconModel.addIcons(formData);
+                res.send({
+                    success: true,
+                    data: data
+                })
+            });
         });
     },
     /**
@@ -151,6 +160,7 @@ module.exports = {
                 subModel: "iconfont",
                 url : collection[0].attachment_url,
                 collectionName: collection[0].name,
+                typeId:typeId,
                 iconList: data
             });
         });
