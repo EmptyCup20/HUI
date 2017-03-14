@@ -951,6 +951,7 @@ select {
   transition: all .4s;
   cursor: pointer;
   text-decoration: none;
+  color: inherit;
 }
 .block-collection:first-child {
   margin-right: 30px;
