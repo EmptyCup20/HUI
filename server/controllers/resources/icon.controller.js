@@ -25,7 +25,8 @@ module.exports = {
             url: params.url,
             type: params.type,
             collection_id: params.collection_id,
-            tags: params.tags
+            tags: params.tags,
+            downloadUrl: params.downloadUrl
         };
         co(function*() {
             var data = yield iconModel.addIcons(formData);

@@ -81,7 +81,9 @@ var icon = new Schema({
 
     collection_id: String,
 
-    url: String
+    url: String,
+
+    downloadUrl: String
 });
 
 var uikit_content = new Schema({
