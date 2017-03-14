@@ -17,7 +17,7 @@
                         <ul class="clearfix">
                             <% var num = 0;icons.forEach(function(icon, index){ %>
                                 <% if(icon.collection_id == iconType.id && num < 9) { num ++ %>
-                                <li>
+                                <li class="col-xs-4">
                                     <img src=<%- icon.url %> alt="">
                                     <!--<h5><%- icon.name %></h5>-->
                                 </li>
