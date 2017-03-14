@@ -1103,12 +1103,18 @@ select {
   padding: 10px;
   transition: all .4s;
 }
+.block-list h1 {
+    font-size: 16px;
+}
 .block-list img {
-  width: 100%;
+  /*width: 100%;*/
   border-radius: 4px;
+    width: 300px;
+    height: 200px;
 }
 .block-list p {
   color: #a68b8b;
+    font-size: 13px;
 }
 .block-list h3 {
   text-overflow: ellipsis;
