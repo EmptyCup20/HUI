@@ -15,6 +15,10 @@ body {
   line-height: 1.42857;
   color: #333;
 }
+body a {
+  text-decoration: none;
+  color: inherit;
+}
 body,
 button,
 input,
@@ -718,6 +722,14 @@ select {
   margin: 0;
   max-width: 100%;
 }
+.h-panel .h-panel-back {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 22px 30px;
+  background: url(../image/arrow_left.png) no-repeat;
+  float: left;
+}
 .main-wrapper,
 .full-page {
   position: relative;
@@ -949,9 +961,9 @@ select {
   border-radius: 6px;
   background-color: #fff;
   transition: all .4s;
+  color: #333;
   cursor: pointer;
   text-decoration: none;
-  color: inherit;
 }
 .block-collection:first-child {
   margin-right: 30px;
@@ -985,6 +997,20 @@ select {
 }
 .icons-container li img {
   height: 48px;
+}
+.icons-container-coloricon {
+  padding: 10px 40px 40px 40px;
+}
+.icons-container-coloricon li {
+  margin-top: 10px;
+  padding-top: 20px;
+  text-align: center;
+}
+.icons-container-coloricon li a {
+  display: inline-block;
+}
+.icons-container-coloricon li img {
+  height: 60px;
 }
 .single-icon {
   position: relative;
@@ -1096,25 +1122,27 @@ select {
   visibility: hidden;
   overflow: hidden;
 }
+.work-block {
+  margin-bottom: 20px;
+}
 .block-list {
   display: block;
   text-decoration: none;
   color: #000;
-  padding: 10px;
   transition: all .4s;
+  height: 190px;
+  overflow: hidden;
 }
-.block-list h1 {
-    font-size: 16px;
+.h-row h1 {
+  font-size: 16px;
 }
 .block-list img {
-  /*width: 100%;*/
+  width: 100%;
   border-radius: 4px;
-    width: 300px;
-    height: 200px;
 }
-.block-list p {
-  color: #a68b8b;
-    font-size: 13px;
+.h-row p {
+  color: #9E9E9E;
+  font-size: 14px;
 }
 .block-list h3 {
   text-overflow: ellipsis;
