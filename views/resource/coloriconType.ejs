@@ -11,7 +11,7 @@
                 <div class="h-doc-section">
                     <div class="h-panel">
                         <div class="h-panel-header">
-                            <a class="h-panel-back" onclick="history.back(-1)"></a>
+                            <a class="h-panel-back" href="/resource/coloricon"></a>
                             <h4 class="h-panel-title">
                                 <%= collectionName %>
                             </h4>
@@ -22,7 +22,7 @@
                         <div class="h-panel-body">
                             <ul class="icons-container-coloricon clearfix">
                                 <% iconList.forEach(function(value){ %>
-                                <li>
+                                <li class="h-col-2">
                                     <a href="<%- value.url %>"><img src=<%- value.url %> alt=""></a>
                                     <h5><%- value.name %></h5>
                                 </li>
