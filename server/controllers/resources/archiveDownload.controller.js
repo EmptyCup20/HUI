@@ -2,33 +2,52 @@
  * Created by zhangxin14 on 2017/3/13.
  */
 var fs = require('fs');
+var iconModel = require("../../models/resources/icon.model");
+var iconCollectionModel = require("../../models/resources/iconCollection.model");
 var archiver = require('archiver');
-var path = require('path');
+var co = require('co');
 
-var output = fs.createWriteStream(path.join(__dirname, 'svgs.zip'));
-var archive = archiver('zip', {
-    zlib: {
-        level: 9
-    }
-});
+module.exports = {
+    archiveDownload: function (req, res) {
+        co(function*(){
+            var typeId = req.query.typeId;
 
-output.on('close', function() {
-    console.log(archive.pointer() + 'total bytes');
-});
+            //每次初始化archive
+            var archive = archiver('zip');
 
-archive.on('error', function(err) {
-    throw err;
-});
+            //监听错误事件
+            archive.on('error', function (err) {
+                console.log(err);
+            });
 
+            //监听打包完成的事件
+            archive.on('end', function () {
+                console.log('Archive wrote %d bytes', archive.pointer());
+            });
 
-archive.pipe(output);
+            //获取图标集合的名称作为压缩文件的文件名
+            var collectionInfo =yield iconCollectionModel.getCollectionByQuery({
+                _id: typeId
+            });
+            collectionInfo = collectionInfo[0].toObject();
+            res.attachment(collectionInfo.name + '.zip');
 
-fs.readFile('downlod.json', 'utf-8', function(err, doc) {
-    doc = JSON.parse(doc);
-    doc.forEach(function(svg, i) {
-        archive.append(svg.show_svg, {
-            name: svg.name + '_'+ svg.id + '.svg'
+            //将压缩文件的流赋值给res（res是一个writeStream）
+            archive.pipe(res);
+
+            //从数据库查询图标集合的图标，遍历进行打包
+            var icons = yield iconModel.getIconsByQuery({
+                collection_id: typeId
+            });
+            icons.forEach(function (svg) {
+                svg = svg.toObject();
+                archive.append(svg.svgXML, {
+                    name: svg.name + '_' + svg._id + '.svg'
+                });
+            });
+
+            //文件打包结束
+            archive.finalize();
         });
-    });
-    archive.finalize();
-});
+    }
+};

@@ -949,9 +949,9 @@ select {
   border-radius: 6px;
   background-color: #fff;
   transition: all .4s;
+  color: #333;
   cursor: pointer;
   text-decoration: none;
-  color: inherit;
 }
 .block-collection:first-child {
   margin-right: 30px;
@@ -985,6 +985,23 @@ select {
 }
 .icons-container li img {
   height: 48px;
+}
+.icons-container-coloricon {
+  padding: 10px 40px 40px 40px;
+}
+.icons-container-coloricon li {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+.icons-container-coloricon li a {
+  display: inline-block;
+}
+.icons-container-coloricon li img {
+  height: 60px;
 }
 .single-icon {
   position: relative;
@@ -1103,18 +1120,13 @@ select {
   padding: 10px;
   transition: all .4s;
 }
-.block-list h1 {
-    font-size: 16px;
-}
 .block-list img {
-  /*width: 100%;*/
+  width: 100%;
   border-radius: 4px;
-    width: 300px;
-    height: 200px;
+  height: 191px;
 }
 .block-list p {
   color: #a68b8b;
-    font-size: 13px;
 }
 .block-list h3 {
   text-overflow: ellipsis;
