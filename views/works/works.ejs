@@ -11,7 +11,7 @@
                     <a class="block-list" href="/works/workDetail/<%= value._id %>">
                         <img src="<%= value.cover_url %>" alt="">
                     </a>
-                    <h1 title="<%= value.title %>"><a href="/works/workDetail/<%= value._id %>"><%= value.title %></a></h1>
+                    <h3 title="<%= value.title %>"><a href="/works/workDetail/<%= value._id %>"><%= value.title %></a></h3>
                     <p>作者：<%= value.author %></p>
                     <p>创建时间：<%=moment(value.create_at).format('YYYY-MM-DD h:mm:ss') %></p>
                 </div>

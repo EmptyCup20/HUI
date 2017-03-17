@@ -38,6 +38,9 @@ var user = new Schema({
     create_time: String
 });
 
+/**
+ * HUI语言设计表
+ */
 var design_doc = new Schema({
     name: {
         type: String,

@@ -27,10 +27,10 @@ textarea {
   font-family: tahoma, "microsoft yahei", "微软雅黑";
 }
 h1 {
-  font-size: 32px;
+  font-size: 24px;
 }
 h3 {
-  font-size: 20px;
+  font-size: 18px;
 }
 h1,
 h2,
@@ -312,15 +312,16 @@ select {
   color: #fff;
 }
 .btn-download {
-  padding: 6px 22px;
+  padding: 7px 35px;
   color: #fff;
-  background: #62A8EA;
-  border-radius: 14px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background: #6ac9ff;
+  border-radius: 2px;
   text-decoration: none;
+  margin: 2px;
 }
 .btn-download:hover {
-  background: #89bceb;
+  background: #6ac9ff;
+  box-shadow: 0 2px 10px 0 rgba(106, 201, 255, 0.5);
 }
 [class^="gl-xs-"],
 [class^="lt-xs-"],
@@ -961,9 +962,9 @@ select {
   border-radius: 6px;
   background-color: #fff;
   transition: all .4s;
+  color: #333;
   cursor: pointer;
   text-decoration: none;
-  color: inherit;
 }
 .block-collection:first-child {
   margin-right: 30px;
@@ -1132,9 +1133,6 @@ select {
   transition: all .4s;
   height: 190px;
   overflow: hidden;
-}
-.h-row h1 {
-  font-size: 16px;
 }
 .block-list img {
   width: 100%;
