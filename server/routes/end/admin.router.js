@@ -4,6 +4,7 @@
 var iconTypeEndRouter = require("./iconManager/iconCollection.end.router.js");
 var iconEndRouter = require("./iconManager/icon.end.router.js");
 var docEndRouter = require("./docManager/doc.end.router.js");
+var designEndRouter = require("./designManager/design.end.router.js");
 var uikitEndRouter = require("./uikitManager/uikit.end.router.js");
 var uploadEndRouter = require("./uploadManager/upload.end.router.js");
 var express = require("express");
@@ -41,4 +42,8 @@ router.use('/upload', uploadEndRouter);
  */
 router.use('/doc', docEndRouter);
 
+/**
+ * 设计管理
+ */
+router.use('/design', designEndRouter);
 module.exports = router;

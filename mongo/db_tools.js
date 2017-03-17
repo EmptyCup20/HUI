@@ -42,12 +42,7 @@ var user = new Schema({
  * HUI语言设计表
  */
 var design_doc = new Schema({
-    name: {
-        type: String,
-        index: 1,
-        require: true,
-        unique: false
-    },
+    name: String,
     content: String
 });
 
