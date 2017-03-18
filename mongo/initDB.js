@@ -4,23 +4,28 @@
  * @date 2017-03-17
  */
 
-var db_tools = require('./db_tools');
-
 /**
  * 初始化hui语言集合
  */
 
-db_tools.add('design_doc',{
+db.design_docs.insert({
     name: '移动端',
     content: ''
 });
-db_tools.add('design_doc',{
+db.design_docs.insert({
     name: '平台',
     content: ''
 });
-db_tools.add('design_doc',{
+db.design_docs.insert({
     name: '大屏',
     content: ''
 });
 
-console.log('初始化成功');
+/**
+ * work_pool增加pageviews字段
+ */
+
+var works = db.work_pools.find();
+works.forEach(function(n){
+    db.work_pools.update({"_id": n._id},{"$set":{"pageviews":0}});
+});
