@@ -1170,3 +1170,34 @@ select {
   color: #fff;
   border-radius: 10px;
 }
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.h-search {
+  position: relative;
+}
+.h-search input {
+  width: 300px;
+  height: 40px;
+  padding-left: 20px;
+  line-height: 40px;
+  font-size: 13px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.2);
+}
+.h-search input:focus {
+  outline: none;
+  color: rgba(0, 0, 0, 0.8);
+}
+.h-search-icon {
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}

@@ -4,16 +4,12 @@
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <!--<div class="h-block">-->
-        <!--<div class="h-container">-->
-            <!--&lt;!&ndash;内容部分&ndash;&gt;-->
-            <!--<div class="clearfix">-->
-                <!--<input type="text" placeholder="Search..." class="search">-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="h-block">
         <div class="h-container clearfix">
+            <div class="h-search pull-right">
+                <input type="text" placeholder="图标名称/类型...">
+                <i class="icon-search h-search-icon"></i>
+            </div>
             <% iconTypes.forEach(function(iconType){ %>
             <div class="h-col-6">
                 <a class="block-collection" href="iconfont/type/<%= iconType.id %>">
