@@ -21,6 +21,9 @@ router.get('/', function (req, res) {
 });
 
 router.get('/workDetail/:id', function (req, res) {
+        db_tools.update('work_pool',{"_id": req.params.id},{
+            "$inc": {"pageviews":1}
+        });
         db_tools.queryByCondition('work_pool', {"_id": req.params.id}).then(function(data){
             var data = data.length ? data[0] : "";
             res.render('works/workDetail.ejs', {
@@ -32,7 +35,6 @@ router.get('/workDetail/:id', function (req, res) {
         },function(err){
             console.log(err);
         });
-
 });
 
 module.exports = router;
