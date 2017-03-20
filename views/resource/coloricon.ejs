@@ -6,6 +6,10 @@
     <% include ../resource/submenu.ejs %>
     <div class="h-block">
         <div class="h-container clearfix">
+            <div class="h-search pull-right">
+                <input type="text" placeholder="图标名称/类型...">
+                <i class="icon-search h-search-icon"></i>
+            </div>
             <% iconTypes.forEach(function(iconType){ %>
             <div class="h-col-6">
                 <a class="block-collection" href="coloricon/type/<%= iconType.id %>">

@@ -11,9 +11,9 @@ router.get('/getWork/:workPath', function (req, res) {
     res.render('admin/' + req.params.workPath);
 });
 
-router.get('/docManageEdit', docController.getEndDocManageEdit);
+// router.get('/docManageEdit', docController.getEndDocManageEdit);
 
-router.get('/docManage', docController.getEndDocManage);
+// router.get('/docManage', docController.getEndDocManage);
 
 router.get('/getDocById', docController.getDocById);
 

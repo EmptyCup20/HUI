@@ -3,8 +3,8 @@
  */
 var express = require("express");
 var router = express.Router();
-var docController = require("../../controllers/resources/doc.controller.js");
+var designController = require("../../controllers/resources/design.controller.js");
 
-router.get('/getDesign/:type', docController.getDesign);
+router.get('/getDesign/:type', designController.getDesign);
 
 module.exports = router;

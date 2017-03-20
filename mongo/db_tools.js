@@ -40,13 +40,11 @@ var user = new Schema({
     versionKey: false
 });
 
+/**
+ * HUI语言设计表
+ */
 var design_doc = new Schema({
-    name: {
-        type: String,
-        index: 1,
-        require: true,
-        unique: false
-    },
+    name: String,
     content: String
 },{
     versionKey: false
@@ -127,6 +125,10 @@ var work_pool = new Schema({
     info: String,
     content: String,
     cover_url: String,
+    pageviews: {
+        type: Number,
+        default: 0
+    },
     author: {
         type: String,
         default: 'admin'
@@ -341,6 +343,16 @@ Db_tools.pullSubDoc = function (collection, queryObj, subObj) {
                 resolve(doc);
             }
         })
+    });
+};
+
+
+Db_tools.update = function (collection,queryObj, updateObj){
+    var model = this.init(collection);
+    return new Promise(() => {
+        model.update(queryObj,updateObj,function(err,doc){
+            if(err) console.log(err);
+        });
     });
 };
 module.exports = Db_tools;
