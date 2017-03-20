@@ -36,6 +36,8 @@ var user = new Schema({
         default: '/images/default/avatar.jpg'
     },
     create_time: String
+},{
+    versionKey: false
 });
 
 var design_doc = new Schema({
@@ -46,6 +48,8 @@ var design_doc = new Schema({
         unique: false
     },
     content: String
+},{
+    versionKey: false
 });
 
 //图标库
@@ -57,11 +61,15 @@ var icon_collection = new Schema({
     },
 
     type: {
-        type: String,
+        type: Number,
         require: true
     },
 
+    tags: String,
+
     attachment_url: String
+},{
+    versionKey: false
 });
 
 //图标
@@ -73,7 +81,7 @@ var icon = new Schema({
     },
 
     type: {
-        type: String,
+        type: Number,
         require: true
     },
 
@@ -85,13 +93,17 @@ var icon = new Schema({
 
     downloadUrl: String,
 
-    svgXML:String
+    svgXML: String
+},{
+    versionKey: false
 });
 
 var uikit_content = new Schema({
     name: String,
     img_url: String,
     attachment_url: String
+},{
+    versionKey: false
 })
 
 var uikit = new Schema({
@@ -102,6 +114,8 @@ var uikit = new Schema({
     },
 
     content: [uikit_content]
+},{
+    versionKey: false
 })
 
 var work_pool = new Schema({
@@ -121,6 +135,8 @@ var work_pool = new Schema({
         type: Date,
         default: Date.now
     }
+},{
+    versionKey: false
 });
 
 var successMsg = {

@@ -14,11 +14,12 @@ gulp.task('lessToCss', function () {
 
 gulp.task('browser-sync',function(){
     browserSync.init({
-        proxy:"http://10.20.135.26:7080/",
+        proxy:"http://10.20.134.30:7080/",
         files:["app/src/css/**/*","views/**/*"],
         port: 7000
     });
-    gulp.watch('src/less/**/*', ['lessToCss']);
-})
+});
+
+gulp.watch('src/less/**/*', ['lessToCss']);
 
 gulp.task('dev', ['browser-sync','lessToCss']);

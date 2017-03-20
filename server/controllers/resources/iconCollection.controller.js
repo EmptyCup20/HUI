@@ -29,14 +29,16 @@ module.exports = {
      * @param req
      * @param res
      */
-    collectionEditRender: function (req, res) {
-        var collectionId = req.params.collectionId;
+    getCollectionInfo: function (req, res) {
+        var collectionId = req.query.id;
         co(function*() {
             var collection = yield iconCollectionModel.getCollectionByQuery({_id: collectionId});
             var icons = yield iconModel.getIconsByQuery({collection_id: collectionId});
-            res.render("admin/icon/collectionEdit", {
-                collection: collection[0],
-                icons: icons
+            collection = collection[0].toObject();
+            collection.icons = icons;
+            res.send({
+                success: true,
+                data: collection
             });
         })
     },
@@ -57,6 +59,17 @@ module.exports = {
         })
     },
 
+    addCollection: function (req, res) {
+        co(function*() {
+            var data = yield iconCollectionModel.addCollection(req.body);
+            res.send({
+                success: true,
+                message: "添加成功！",
+                data: data
+            });
+        });
+    },
+
     /**
      * 添加/修改图标库
      * @param req
@@ -73,7 +86,7 @@ module.exports = {
         var method = formData.id ? "edit" : "add";
         co(function*() {
             var data = yield iconCollectionModel.updateCollection(method, formData);
-            if(params.icons && params.icons.length > 0){
+            if (params.icons && params.icons.length > 0) {
                 params.icons.forEach(function (e) {
                     e.collection_id = data._id;
                 })
@@ -82,7 +95,7 @@ module.exports = {
                     success: true,
                     message: formData.id ? "修改成功" : "添加成功！"
                 });
-            }else{
+            } else {
                 res.send({
                     success: true,
                     message: formData.id ? "修改成功" : "添加成功！"

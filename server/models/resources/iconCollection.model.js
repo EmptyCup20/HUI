@@ -10,7 +10,7 @@ module.exports = {
      * @returns {Promise}
      */
     getCollectionByQuery: function (query) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             db_tools.queryByCondition('icon_collection', query).then(function (data) {
                 resolve(data)
             }, function (err) {
@@ -24,8 +24,23 @@ module.exports = {
      * @returns {Promise}
      */
     getCollectionByPage: function (query) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
             db_tools.query('icon_collection', query).then(function (data) {
+                resolve(data)
+            }, function (err) {
+                reject(err);
+            });
+        })
+    },
+
+    /**
+     * 添加图标库
+     * @param data
+     * @returns {Promise}
+     */
+    addCollection: function (data) {
+        return new Promise(function (resolve, reject) {
+            db_tools.add('icon_collection', data).then(function (data) {
                 resolve(data)
             }, function (err) {
                 reject(err);
@@ -38,8 +53,8 @@ module.exports = {
      * @param query
      * @returns {Promise}
      */
-    updateCollection : function(method, query){
-        return new Promise(function(resolve, reject) {
+    updateCollection: function (method, query) {
+        return new Promise(function (resolve, reject) {
             db_tools[method]('icon_collection', query).then(function (data) {
                 resolve(data)
             }, function (err) {
@@ -51,8 +66,8 @@ module.exports = {
      * 删除图标库
      * @param collectionId
      */
-    delCollection : function(collectionId){
-        return new Promise(function(resolve, reject) {
+    delCollection: function (collectionId) {
+        return new Promise(function (resolve, reject) {
             db_tools.remove('icon_collection', collectionId).then(function (data) {
                 resolve(data)
             }, function (err) {

@@ -9,7 +9,9 @@ router.get('/collectionManage', iconCltCtrl.render);
 
 router.get('/collectionAdd', iconCltCtrl.collectionAddRender);
 
-router.get('/collectionEdit/:collectionId', iconCltCtrl.collectionEditRender);
+router.get('/getCollectionInfo', iconCltCtrl.getCollectionInfo);
+
+router.post('/addIconCollection', iconCltCtrl.addCollection);
 
 router.post('/updateIconCollection', iconCltCtrl.updateCollection);
 
