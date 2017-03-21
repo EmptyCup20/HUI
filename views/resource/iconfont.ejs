@@ -5,11 +5,12 @@
     </div>
     <% include ../resource/submenu.ejs %>
     <div class="h-block">
-        <div class="h-container clearfix">
-            <div class="h-search pull-right">
-                <input type="text" placeholder="图标名称/类型...">
+        <div class="h-container">
+            <div class="h-search clearfix">
+                <input type="text" class="pull-right" placeholder="图标名称/类型...">
                 <i class="icon-search h-search-icon"></i>
             </div>
+            <div class="h-row">
             <% iconTypes.forEach(function(iconType){ %>
             <div class="h-col-6">
                 <a class="block-collection" href="iconfont/type/<%= iconType.id %>">
@@ -32,6 +33,7 @@
                 </a>
             </div>
             <% }) %>
+            </div>
         </div>
     </div>
     <% include ../common/footer.ejs %>

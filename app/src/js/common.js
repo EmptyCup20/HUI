@@ -63,5 +63,20 @@
                 speed: 800
             });
         });
+
+        //搜索按钮
+        $(".h-search-icon").on('click',function(){
+            var searchKey = $(".h-search input").val();
+            var url = window.location.pathname.indexOf('/search') !== -1 ? window.location.pathname.substr(0,window.location.pathname.indexOf('/search')) : window.location.pathname;
+            window.location.href = url + '/search?p=' + searchKey;
+        });
+
+        $(".h-search").on('keyup','input',function(e){
+            if(e.keyCode === 13){
+                var searchKey = $(this).val();
+                var url = window.location.pathname.indexOf('/search') !== -1 ? window.location.pathname.substr(0,window.location.pathname.indexOf('/search')) : window.location.pathname;
+                window.location.href = url + '/search?p=' + searchKey;
+            }
+        });
     })
 })(jQuery);

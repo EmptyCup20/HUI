@@ -7,6 +7,7 @@ var iconCtrl = require("../../controllers/resources/icon.controller.js");
 var archiveDownload = require("../../controllers/resources/archiveDownload.controller.js");
 var uikitCtrl = require("../../controllers/resources/uikit.controller.js");
 var animateCtrl = require("../../controllers/animate.controller.js");
+var searchCtrl = require("../../controllers/resources/search.controller.js");
 var co = require('co');
 
 
@@ -31,6 +32,11 @@ router.get('/coloricon/type/:typeId', iconCtrl.getColorIconByCollection);
 //--------------------动效资源---------------------
 
 router.get('/animate', animateCtrl.render);
+
+/**
+ * iconfont&coloricon搜索
+ */
+router.get('/:icontype/search',searchCtrl);
 
 /**
  * 所以资源详情页

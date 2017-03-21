@@ -92,7 +92,7 @@ module.exports = {
     getIconsById: function (req, res) {
         var iconId = req.params.iconId;
         co(function*() {
-            var data = yield iconModel.getIconById(iconId)
+            var data = yield iconModel.getIconById(iconId);
             res.render('resource/iconDetail.ejs', {
                 model: "resource",
                 results: data
@@ -108,10 +108,10 @@ module.exports = {
     getCollections: function (req, res) {
         co(function*() {
             var iconTypes = yield iconCollectionModel.getCollectionByQuery({
-                type: "svg"
+                type: 0
             });
             var icons = yield iconModel.getIconsByQuery({
-                type: "svg"
+                type: 0
             });
             res.render('resource/iconfont.ejs', {
                 model: "resource",
@@ -130,10 +130,10 @@ module.exports = {
     getColorIconCollections: function (req, res) {
         co(function*() {
             var iconTypes = yield iconCollectionModel.getCollectionByQuery({
-                type: "png"
+                type: 1
             });
             var icons = yield iconModel.getIconsByQuery({
-                type: "png"
+                type: 1
             });
             res.render('resource/coloricon.ejs', {
                 model: "resource",

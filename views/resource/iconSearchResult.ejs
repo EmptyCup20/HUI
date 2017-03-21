@@ -1,0 +1,50 @@
+<% include ../common/head.ejs %>
+<div class="h-bg">
+    <div class="main-top">
+        <% include ../common/header.ejs %>
+    </div>
+    <% include ../resource/submenu.ejs %>
+    <div class="h-block">
+        <div class="h-container">
+            <div class="h-search clearfix">
+                <input type="text" class="pull-right" value="<%- collectionName %>" placeholder="图标名称/类型...">
+                <i class="icon-search h-search-icon"></i>
+            </div>
+            <!--内容部分-->
+            <div class="collection-detail">
+                <div class="h-doc-section">
+                    <div class="h-panel">
+                        <div class="h-panel-header">
+                            <a class="h-panel-back" href="/resource/iconfont"></a>
+                            <h4 class="h-panel-title">
+                                搜索结果：<%= collectionName %>
+                            </h4>
+                        </div>
+                        <div class="h-panel-body">
+                            <ul class="icons-container clearfix">
+                                <% iconList.forEach(function(value){ %>
+                                <li class="single-icon">
+                                    <span>
+                                        <a href="<%- value.url %>"><img src=<%- value.url %> alt=""></a>
+                                        <h5><%- value.name %></h5>
+                                    </span>
+                                    <% if(subModel === 'iconfont'){%>
+                                        <div class="icon-operation">
+                                            <a class="icon-single-download" href=<%- value.downloadUrl %>>
+                                                <i class="icon-download-alt"></i>
+                                            </a>
+                                        </div>
+                                    <% } %>
+                                </li>
+                                <% });%>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../common/footer.ejs %>
+</div>
+<% include ../common/foot.ejs %>
+<script type="text/javascript" src="/src/js/icondetail.js"></script>
