@@ -32,7 +32,7 @@ db.work_pools.find().forEach(function(n){
 /**
  * 将type字段的值：svg和png改成0和1
  */
-db.icons.find({"type":"svg"}).forEach(function(n){
-    n.type = NumberInt(0);
+db.icons.find().forEach(function(n){
+    n.type = n.type == "svg" ? NumberInt(0) : NumberInt(1);
     db.icons.save(n);
 });
