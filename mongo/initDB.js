@@ -25,7 +25,14 @@ db.design_docs.insert({
  * work_pool增加pageviews字段
  */
 
-var works = db.work_pools.find();
-works.forEach(function(n){
-    db.work_pools.update({"_id": n._id},{"$set":{"pageviews":0}});
+db.work_pools.find().forEach(function(n){
+    db.work_pools.update({"_id": n._id},{"$set":{"pageviews":NumberInt(0)}});
+});
+
+/**
+ * 将type字段的值：svg和png改成0和1
+ */
+db.icons.find({"type":"svg"}).forEach(function(n){
+    n.type = NumberInt(0);
+    db.icons.save(n);
 });
