@@ -6,32 +6,34 @@
     <% include ../resource/submenu.ejs %>
     <div class="h-block">
         <div class="h-container clearfix">
-            <div class="h-search pull-right">
-                <input type="text" placeholder="图标名称/类型...">
+            <div class="h-search clearfix">
+                <input type="text" class="pull-right" placeholder="图标名称/类型...">
                 <i class="icon-search h-search-icon"></i>
             </div>
-            <% iconTypes.forEach(function(iconType){ %>
-            <div class="h-col-6">
-                <a class="block-collection" href="coloricon/type/<%= iconType.id %>">
-                    <h4 class="block-collection-title">
-                        <span><%= iconType.name %></span>
-                        <!--<% if(iconType.attachment_url){%><i class="total-num"><a href="<%= iconType.attachment_url %>">下载</a></i><%}%>-->
-                    </h4>
-                    <div class="icons-container-coloricon">
-                        <ul class="clearfix">
-                            <% var num = 0;icons.forEach(function(icon, index){ %>
+            <div class="h-row">
+                <% iconTypes.forEach(function(iconType){ %>
+                <div class="h-col-6">
+                    <a class="block-collection" href="coloricon/type/<%= iconType.id %>">
+                        <h4 class="block-collection-title">
+                            <span><%= iconType.name %></span>
+                            <!--<% if(iconType.attachment_url){%><i class="total-num"><a href="<%= iconType.attachment_url %>">下载</a></i><%}%>-->
+                        </h4>
+                        <div class="icons-container-coloricon">
+                            <ul class="clearfix">
+                                <% var num = 0;icons.forEach(function(icon, index){ %>
                                 <% if(icon.collection_id == iconType.id && num < 12) { num ++ %>
                                 <li class="h-col-4">
                                     <img src=<%- icon.url %> alt="">
                                     <!--<h5><%- icon.name %></h5>-->
                                 </li>
                                 <% } %>
-                            <% }) %>
-                        </ul>
-                    </div>
-                </a>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+                <% }) %>
             </div>
-            <% }) %>
         </div>
     </div>
     <% include ../common/footer.ejs %>

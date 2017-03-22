@@ -1,12 +1,12 @@
 @import "variables.less";
-@import "color.less";
+//@import "color.less";
 @import "base.less";
 @import "header.less";
 @import "banner.less";
 @import "footer.less";
 @import "form.less";
 @import "button.less";
-@import "grid.less";
+//@import "grid.less";
 @import "sidebar.less";
 @import "tabbar.less";
 @import "panel.less";
@@ -258,20 +258,15 @@
 }
 
 .block-collection {
-  width: 540px;
+  display: block;
   height: 540px;
   margin-bottom: 60px;
-  float: left;
   border-radius: 6px;
   background-color: #fff;
   transition: all .4s;
   color: #333;
   cursor: pointer;
   text-decoration: none;
-  &:first-child {
-    margin-right: 30px;
-    margin-left: 0;
-  }
   &:hover {
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
     transform: translateY(-2%);
@@ -495,4 +490,46 @@
 
 .dg-wrapper a img {
   height:100%;
+}
+
+
+.pagevews {
+  float: right;
+  padding: 2px 8px;
+  background: #e2d1d1;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 10px;
+}
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.h-search {
+  position: relative;
+  margin-bottom: 30px;
+}
+.h-search input {
+  width: 300px;
+  height: 40px;
+  padding-left: 20px;
+  line-height: 40px;
+  font-size: 13px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.2);
+}
+.h-search input:focus {
+  outline: none;
+  color: rgba(0, 0, 0, 0.8);
+}
+.h-search-icon {
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
