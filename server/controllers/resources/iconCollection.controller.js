@@ -111,12 +111,8 @@ module.exports = {
      */
     delCollection: function (req, res) {
         co(function*() {
-            var data = yield iconCollectionModel.delCollection(req.body.id);
-            res.send({
-                success: true,
-                message: "删除成功！",
-                data: data
-            });
+            var data = yield iconCollectionModel.delCollection(req.body.ids);
+            res.send(data);
         })
     }
 

@@ -6,8 +6,6 @@ var express = require("express");
 var router = express.Router();
 
 //------------------UIKIT管理------------------------//
-router.get('/', uikitCtrl.getEndPage);
-
 router.get('/getCategory', uikitCtrl.getCategory);
 
 router.get('/uikitEdit/:id', uikitCtrl.uikitEdit);

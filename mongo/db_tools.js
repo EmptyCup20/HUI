@@ -36,7 +36,7 @@ var user = new Schema({
         default: '/images/default/avatar.jpg'
     },
     create_time: String
-},{
+}, {
     versionKey: false
 });
 
@@ -46,7 +46,7 @@ var user = new Schema({
 var design_doc = new Schema({
     name: String,
     content: String
-},{
+}, {
     versionKey: false
 });
 
@@ -63,10 +63,8 @@ var icon_collection = new Schema({
         require: true
     },
 
-    tags: String,
-
     attachment_url: String
-},{
+}, {
     versionKey: false
 });
 
@@ -92,7 +90,7 @@ var icon = new Schema({
     downloadUrl: String,
 
     svgXML: String
-},{
+}, {
     versionKey: false
 });
 
@@ -100,7 +98,7 @@ var uikit_content = new Schema({
     name: String,
     img_url: String,
     attachment_url: String
-},{
+}, {
     versionKey: false
 })
 
@@ -112,7 +110,7 @@ var uikit = new Schema({
     },
 
     content: [uikit_content]
-},{
+}, {
     versionKey: false
 })
 
@@ -137,7 +135,7 @@ var work_pool = new Schema({
         type: Date,
         default: Date.now
     }
-},{
+}, {
     versionKey: false
 });
 
@@ -234,7 +232,26 @@ Db_tools.remove = function (collection, removeId) {
             }
         });
     })
-}
+};
+
+/**
+ * 根据id数组批量删除
+ * @param collection
+ * @param ids
+ * @returns {Promise}
+ */
+Db_tools.batchRemove = function (collection, ids) {
+    var model = this.init(collection);
+    return new Promise((resolve, reject) => {
+        model.remove({"_id": {$in: ids}}, function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(successMsg);
+            }
+        });
+    })
+};
 /**
  * [query description]
  * @author zhangxin14
@@ -247,10 +264,10 @@ Db_tools.remove = function (collection, removeId) {
 Db_tools.query = function (collection, queryObj) {
     var model = this.init(collection);
     var pageSize = Number(queryObj.pageSize);
-    var pageNumber = Number(queryObj.pageNumber);
+    var pageNo = Number(queryObj.pageNo);
     var query = model.find({});
     //开头跳过查询的调试
-    query.skip((pageNumber - 1) * pageSize);
+    query.skip((pageNo - 1) * pageSize);
     //最多显示条数
     query.limit(pageSize);
     //计算分页数据
@@ -347,11 +364,11 @@ Db_tools.pullSubDoc = function (collection, queryObj, subObj) {
 };
 
 
-Db_tools.update = function (collection,queryObj, updateObj){
+Db_tools.update = function (collection, queryObj, updateObj) {
     var model = this.init(collection);
     return new Promise(() => {
-        model.update(queryObj,updateObj,function(err,doc){
-            if(err) console.log(err);
+        model.update(queryObj, updateObj, function (err, doc) {
+            if (err) console.log(err);
         });
     });
 };
