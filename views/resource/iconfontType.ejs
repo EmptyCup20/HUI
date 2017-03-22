@@ -1,4 +1,5 @@
 <% include ../common/head.ejs %>
+<link href="/plugins/dialogeffects/css/dialog.css" rel="stylesheet" type="text/css">
 <div class="h-bg">
     <div class="main-top">
         <% include ../common/header.ejs %>
@@ -34,7 +35,7 @@
                                         </a>
                                     </div>
                                 </li>
-                                <% }) %>
+                                <% }); %>
                             </ul>
                         </div>
                     </div>
@@ -42,7 +43,28 @@
             </div>
         </div>
     </div>
+    <div id="archiveDownloadDialog" class="dialog">
+        <div class="h-panel-body">
+            <span class="color-block" style="background:#d81e06"></span>
+            <span class="color-block" style="background:#f4ea2a"></span>
+            <span class="color-block" style="background:#1afa29"></span>
+            <span class="color-block" style="background:#1296db"></span>
+            <span class="color-block" style="background:#13227a"></span>
+            <span class="color-block" style="background:#d4237a"></span>
+            <span class="color-block" style="background:#ffffff"></span>
+            <span class="color-block" style="background:#e6e6e6"></span>
+            <span class="color-block" style="background:#dbdbdb"></span>
+            <span class="color-block" style="background:#cdcdcd"></span>
+            <span class="color-block" style="background:#bfbfbf"></span>
+            <span class="color-block" style="background:#8a8a8a"></span>
+            <span class="color-block" style="background:#707070"></span>
+            <span class="color-block" style="background:#515151"></span>
+            <span class="color-block" style="background:#2c2c2c"></span>
+        </div>
+        <p><a class="btn btn-download" id="archiveDownload" href="javascript:void(0);">打包下载</a></p>
+    </div>
     <% include ../common/footer.ejs %>
 </div>
 <% include ../common/foot.ejs %>
+<script type="text/javascript" src="/plugins/dialogeffects/js/dialogZ.js"></script>
 <script type="text/javascript" src="/src/js/icondetail.js"></script>
