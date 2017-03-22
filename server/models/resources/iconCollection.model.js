@@ -66,12 +66,18 @@ module.exports = {
      * 删除图标库
      * @param collectionId
      */
-    delCollection: function (collectionId) {
+    delCollection: function (ids) {
+        var model = db_tools.init('icon_collection');
         return new Promise(function (resolve, reject) {
-            db_tools.remove('icon_collection', collectionId).then(function (data) {
-                resolve(data)
-            }, function (err) {
-                reject(err);
+            model.remove({"_id": {$in: ids}}, function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve({
+                        success: true,
+                        message: "删除成功！"
+                    });
+                }
             });
         })
     }

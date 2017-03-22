@@ -12,8 +12,8 @@ var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.
 var fileServerPath = settings.fileServerPath; //图片服务器路径
 var fileDocument = settings.fileDocument;//图片文件夹
 
-function getSvgXml(svgUrl,cb){
-    request.get(svgUrl,function(error,response,body){
+function getSvgXml(svgUrl, cb) {
+    request.get(svgUrl, function (error, response, body) {
         cb && cb(body);
     })
 }
@@ -26,7 +26,7 @@ module.exports = {
      */
     addIcon: function (req, res) {
         var params = req.body;
-        getSvgXml(params.url,function(xml){
+        getSvgXml(params.url, function (xml) {
             var formData = {
                 name: params.name,
                 url: params.url,
@@ -34,7 +34,7 @@ module.exports = {
                 collection_id: params.collection_id,
                 tags: params.tags,
                 downloadUrl: params.downloadUrl,
-                svgXML:xml
+                svgXML: xml
             };
             co(function*() {
                 var data = yield iconModel.addIcons(formData);
@@ -42,7 +42,7 @@ module.exports = {
                     success: true,
                     data: data
                 })
-            });
+            }).catch(err);
         });
     },
     /**
@@ -54,21 +54,27 @@ module.exports = {
         var params = req.body;
         co(function*() {
             //删除相应的图标
-            var data = yield iconModel.getIconById(params.id);
+            var data = yield iconModel.getIconsByQuery({"_id": {$in: params.ids}});
+            var delRes = yield iconModel.delIcons(params.ids);
 
-            var url = fileServerPath + "/containers/delete/" + fileDocument + "/" + data[0].url.replace(/.*\//,"")
-            request.get({
-                url: url
-            })
+            if (delRes.success) {
+                var files = [];
 
-            //删除字段
-            yield iconModel.delIcons(params.id);
+                data.forEach(function (e) {
+                    files.push(e.url.replace(/.*\//, ""));
+                });
 
-            res.send({
-                success: true,
-                message: "删除成功！"
-            });
-        });
+                request.post({
+                    url: fileServerPath + "/containers/delete",
+                    formData: {
+                        dirName: fileDocument,
+                        files: files
+                    }
+                });
+            }
+
+            res.send(delRes);
+        }).catch(err);
     },
     /**
      * 获取所有icons 的数据
@@ -81,7 +87,7 @@ module.exports = {
             res.render('admin/icon/iconManage.ejs', {
                 iconList: data
             });
-        });
+        }).catch(err);
     },
 
     /**
@@ -97,7 +103,7 @@ module.exports = {
                 model: "resource",
                 results: data
             });
-        });
+        }).catch(err);
     },
     /**
      * 获取svg图标集
@@ -119,7 +125,7 @@ module.exports = {
                 icons: icons,
                 iconTypes: iconTypes
             });
-        });
+        }).catch(err);
     },
 
     /**
@@ -141,7 +147,7 @@ module.exports = {
                 icons: icons,
                 iconTypes: iconTypes
             });
-        });
+        }).catch(err);
     },
     /**
      * 根据类型获取图标集
@@ -158,12 +164,12 @@ module.exports = {
             res.render('resource/iconfontType.ejs', {
                 model: "resource",
                 subModel: "iconfont",
-                url : collection[0].attachment_url,
+                url: collection[0].attachment_url,
                 collectionName: collection[0].name,
-                typeId:typeId,
+                typeId: typeId,
                 iconList: data
             });
-        });
+        }).catch(err);
     },
 
     /**
@@ -182,9 +188,9 @@ module.exports = {
                 model: "resource",
                 subModel: "coloricon",
                 collectionName: collection[0].name,
-                url : collection[0].attachment_url,
+                url: collection[0].attachment_url,
                 iconList: data
             });
-        });
+        }).catch(err);
     }
 }
