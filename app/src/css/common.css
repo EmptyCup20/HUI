@@ -717,6 +717,10 @@ select {
   position: relative;
   border-radius: 4px;
 }
+.single-icon svg {
+  width: 48px;
+  height: 48px;
+}
 .icon-operation {
   display: none;
   position: absolute;
@@ -907,6 +911,15 @@ select {
 }
 .color-block {
   display: inline-block;
-  height: 16px;
-  width: 16px;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}
+.color-select {
+  margin-right: 40px;
+}
+.preview-svg svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
 }

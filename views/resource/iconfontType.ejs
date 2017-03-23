@@ -1,5 +1,6 @@
 <% include ../common/head.ejs %>
 <link href="/plugins/dialogeffects/css/dialog.css" rel="stylesheet" type="text/css">
+<link href="/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css">
 <div class="h-bg">
     <div class="main-top">
         <% include ../common/header.ejs %>
@@ -24,13 +25,13 @@
                         <div class="h-panel-body">
                             <ul class="icons-container clearfix">
                                 <% iconList.forEach(function(value){ %>
-                                <li class="single-icon">
+                                <li class="single-icon" data-iconid = <%- value._id %>
                                     <span>
-                                        <a href="<%- value.url %>"><img src=<%- value.url %> alt=""></a>
+                                        <%- value.svgXML  %>
                                         <h5><%- value.name %></h5>
                                     </span>
                                     <div class="icon-operation">
-                                        <a class="icon-single-download" href=<%- value.downloadUrl %>>
+                                        <a class="icon-single-download" data-url=<%- value.url %>>
                                             <i class="icon-download-alt"></i>
                                         </a>
                                     </div>
@@ -43,28 +44,12 @@
             </div>
         </div>
     </div>
-    <div id="archiveDownloadDialog" class="dialog">
-        <div class="h-panel-body">
-            <span class="color-block" style="background:#d81e06"></span>
-            <span class="color-block" style="background:#f4ea2a"></span>
-            <span class="color-block" style="background:#1afa29"></span>
-            <span class="color-block" style="background:#1296db"></span>
-            <span class="color-block" style="background:#13227a"></span>
-            <span class="color-block" style="background:#d4237a"></span>
-            <span class="color-block" style="background:#ffffff"></span>
-            <span class="color-block" style="background:#e6e6e6"></span>
-            <span class="color-block" style="background:#dbdbdb"></span>
-            <span class="color-block" style="background:#cdcdcd"></span>
-            <span class="color-block" style="background:#bfbfbf"></span>
-            <span class="color-block" style="background:#8a8a8a"></span>
-            <span class="color-block" style="background:#707070"></span>
-            <span class="color-block" style="background:#515151"></span>
-            <span class="color-block" style="background:#2c2c2c"></span>
-        </div>
-        <p><a class="btn btn-download" id="archiveDownload" href="javascript:void(0);">打包下载</a></p>
+    <div id="downloadDialog" class="dialog">
+
     </div>
     <% include ../common/footer.ejs %>
 </div>
 <% include ../common/foot.ejs %>
 <script type="text/javascript" src="/plugins/dialogeffects/js/dialogZ.js"></script>
+<script type="text/javascript" src="/plugins/spectrum/spectrum.js"></script>
 <script type="text/javascript" src="/src/js/icondetail.js"></script>

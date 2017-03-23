@@ -44,7 +44,7 @@
     DialogZ.prototype.render = function(){
         var self = this;
         var _wrap = '<div class="dialog__overlay"></div><div class="dialog__content"></div>';
-        var _content = this.$element.children().clone();
+        var _content = this.options.content;
 
         this.$element.html(_wrap);
         this.$element.find('.dialog__content').append(_content);

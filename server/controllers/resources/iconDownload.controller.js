@@ -7,10 +7,15 @@ var iconCollectionModel = require("../../models/resources/iconCollection.model")
 var archiver = require('archiver');
 var co = require('co');
 
+function changeSvgColor(svgstr,color){
+    return svgstr.replace('#000','#'+color);
+}
+
 module.exports = {
     archiveDownload: function (req, res) {
         co(function*(){
-            var typeId = req.query.typeId;
+            var typeId = req.query.typeId,
+                color = req.query.color;
 
             //每次初始化archive
             var archive = archiver('zip');
@@ -41,13 +46,28 @@ module.exports = {
             });
             icons.forEach(function (svg) {
                 svg = svg.toObject();
-                archive.append(svg.svgXML, {
+                archive.append(changeSvgColor(svg.svgXML,color), {
                     name: svg.name + '_' + svg._id + '.svg'
                 });
             });
-
             //文件打包结束
             archive.finalize();
         });
+    },
+
+    iconDownload:function(req,res){
+        co(function*(){
+            var color = req.query.color;
+            var iconId = req.query.iconId;
+            var icon = yield iconModel.getIconsByQuery({
+                _id: iconId
+            });
+            icon = icon[0].toObject();
+
+            var iconBuffer = new Buffer(changeSvgColor(icon.svgXML,color));
+            res.attachment(icon.name + '.svg');
+            res.send(iconBuffer);
+
+        })
     }
 };

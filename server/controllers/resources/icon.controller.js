@@ -42,7 +42,7 @@ module.exports = {
                     success: true,
                     data: data
                 })
-            }).catch(err);
+            });
         });
     },
     /**
@@ -74,7 +74,7 @@ module.exports = {
             }
 
             res.send(delRes);
-        }).catch(err);
+        });
     },
     /**
      * 获取所有icons 的数据
@@ -87,7 +87,7 @@ module.exports = {
             res.render('admin/icon/iconManage.ejs', {
                 iconList: data
             });
-        }).catch(err);
+        });
     },
 
     /**
@@ -103,7 +103,7 @@ module.exports = {
                 model: "resource",
                 results: data
             });
-        }).catch(err);
+        });
     },
     /**
      * 获取svg图标集
@@ -125,7 +125,7 @@ module.exports = {
                 icons: icons,
                 iconTypes: iconTypes
             });
-        }).catch(err);
+        });
     },
 
     /**
@@ -147,7 +147,7 @@ module.exports = {
                 icons: icons,
                 iconTypes: iconTypes
             });
-        }).catch(err);
+        });
     },
     /**
      * 根据类型获取图标集
@@ -169,7 +169,7 @@ module.exports = {
                 typeId: typeId,
                 iconList: data
             });
-        }).catch(err);
+        });
     },
 
     /**
@@ -191,6 +191,6 @@ module.exports = {
                 url: collection[0].attachment_url,
                 iconList: data
             });
-        }).catch(err);
+        });
     }
 }

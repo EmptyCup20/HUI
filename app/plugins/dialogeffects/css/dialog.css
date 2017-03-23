@@ -36,7 +36,7 @@
 	width: 50%;
 	max-width: 560px;
 	min-width: 290px;
-	background: #fff;
+	background: #fafafa;
 	padding: 4em;
 	text-align: center;
 	position: relative;
@@ -48,14 +48,6 @@
 	pointer-events: auto;
 }
 
-/* Content */
-.dialog h2 {
-	margin: 0;
-	font-weight: 400;
-	font-size: 2em;
-	padding: 0 0 2em;
-	margin: 0;
-}
 
 .dialog.dialog--open .dialog__content,
 .dialog.dialog--close .dialog__content {
