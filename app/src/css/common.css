@@ -684,10 +684,10 @@ select {
   color: #000;
   text-decoration: none;
 }
-.icons-container {
+.icons-detail-container {
   padding: 10px 40px 40px 40px;
 }
-.icons-container li {
+.icons-detail-container li {
   display: inline-block;
   width: 100px;
   height: 100px;
@@ -696,8 +696,20 @@ select {
   margin-top: 10px;
   text-align: center;
 }
-.icons-container li img {
+.icons-container ul {
+  margin: 10px 34px;
+}
+.icons-container ul li {
+  text-align: center;
+  margin-top: 10px;
+  min-height: 100px;
+}
+.icon-block svg {
   height: 48px;
+  width: 48px;
+}
+.svg-wrap {
+  margin: 8px 0;
 }
 .icons-container-coloricon {
   padding: 10px 40px 40px 40px;

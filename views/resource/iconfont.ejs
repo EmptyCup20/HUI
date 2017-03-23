@@ -22,8 +22,10 @@
                         <ul class="clearfix">
                             <% var num = 0;icons.forEach(function(icon, index){ %>
                                 <% if(icon.collection_id == iconType.id && num < 16) { num ++ %>
-                                <li>
-                                    <img src=<%- icon.url %> alt="">
+                                <li class="h-col-3 icon-block">
+                                    <div class="svg-wrap">
+                                        <%- icon.svgXML %>
+                                    </div>
                                     <h5><%- icon.name %></h5>
                                 </li>
                                 <% } %>
