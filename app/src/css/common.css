@@ -697,7 +697,7 @@ select {
   text-align: center;
 }
 .icons-container ul {
-  margin: 10px 34px;
+  margin: 10px 40px;
 }
 .icons-container ul li {
   text-align: center;
@@ -705,8 +705,8 @@ select {
   min-height: 100px;
 }
 .icon-block svg {
-  height: 48px;
-  width: 48px;
+  height: 32px;
+  width: 32px;
 }
 .svg-wrap {
   margin: 8px 0;
@@ -730,8 +730,8 @@ select {
   border-radius: 4px;
 }
 .single-icon svg {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 }
 .icon-operation {
   display: none;
