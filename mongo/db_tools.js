@@ -148,6 +148,13 @@ var work_pool = new Schema({
     versionKey: false
 });
 
+var successMsg = {
+    "code": 0,
+    "message": null,
+    "data": null,
+    "success": true
+};
+
 //用于存储model
 var initModel = {};
 /**
