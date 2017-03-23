@@ -8,7 +8,14 @@ var archiver = require('archiver');
 var co = require('co');
 
 function changeSvgColor(svgstr,color){
-    return svgstr.replace('#000','#'+color);
+    if(svgstr.indexOf('fill') === -1){
+        var p = svgstr.indexOf('path') + 4,
+            b = svgstr.slice(0,p) + ' fill="#' + color +'"',
+            a = svgstr.slice(p);
+        return b.concat(a);
+    }else{
+        return svgstr.replace('#000','#'+color);
+    }
 }
 
 module.exports = {

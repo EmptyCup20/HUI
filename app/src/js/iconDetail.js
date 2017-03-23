@@ -86,6 +86,7 @@ $(function(){
     $('.icon-single-download').on('click',function(){
         var $svg = $(this).parents('.single-icon').find('svg').clone();
         iconId = $(this).parents('.single-icon').data('iconid');
+        $('#colorSelect').spectrum("set", $(this).css("background"));
         $(".preview-svg svg").remove();
         $(".preview-svg").append($svg[0]);
         $("#downloadDialog").dialogZ('show');

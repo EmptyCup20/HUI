@@ -1,4 +1,6 @@
 <% include ../common/head.ejs %>
+<link href="/plugins/dialogeffects/css/dialog.css" rel="stylesheet" type="text/css">
+<link href="/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css">
 <div class="h-bg">
     <div class="main-top">
         <% include ../common/header.ejs %>
@@ -23,14 +25,14 @@
                         <div class="h-panel-body">
                             <ul class="icons-container clearfix">
                                 <% iconList.forEach(function(value){ %>
-                                <li class="single-icon">
+                                <li class="single-icon" data-iconid = <%- value._id %>>
                                     <span>
-                                        <a href="<%- value.url %>"><img src=<%- value.url %> alt=""></a>
+                                         <%- value.svgXML  %>
                                         <h5><%- value.name %></h5>
                                     </span>
                                     <% if(subModel === 'iconfont'){%>
                                         <div class="icon-operation">
-                                            <a class="icon-single-download" href=<%- value.downloadUrl %>>
+                                            <a class="icon-single-download">
                                                 <i class="icon-download-alt"></i>
                                             </a>
                                         </div>
@@ -43,8 +45,11 @@
                 </div>
             </div>
         </div>
+        <div id="downloadDialog" class="dialog">
     </div>
     <% include ../common/footer.ejs %>
 </div>
 <% include ../common/foot.ejs %>
+<script type="text/javascript" src="/plugins/dialogeffects/js/dialogZ.js"></script>
+<script type="text/javascript" src="/plugins/spectrum/spectrum.js"></script>
 <script type="text/javascript" src="/src/js/icondetail.js"></script>
