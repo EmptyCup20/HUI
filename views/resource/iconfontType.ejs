@@ -25,11 +25,9 @@
                         <div class="h-panel-body">
                             <ul class="icons-detail-container clearfix">
                                 <% iconList.forEach(function(value){ %>
-                                <li class="single-icon" data-iconid = <%- value._id %>
-                                    <span>
+                                <li class="single-icon" data-iconid = <%- value._id %>>
                                         <%- value.svgXML  %>
                                         <h5><%- value.name %></h5>
-                                    </span>
                                     <div class="icon-operation">
                                         <a class="icon-single-download">
                                             <i class="icon-download-alt"></i>

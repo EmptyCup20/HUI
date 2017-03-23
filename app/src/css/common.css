@@ -686,9 +686,10 @@ select {
 }
 .icons-detail-container {
   padding: 10px 40px 40px 40px;
+  overflow: hidden;
 }
 .icons-detail-container li {
-  display: inline-block;
+  float: left;
   width: 100px;
   height: 100px;
   padding-top: 26px;
@@ -732,6 +733,7 @@ select {
 .single-icon svg {
   width: 32px;
   height: 32px;
+  margin-bottom: 10px;
 }
 .icon-operation {
   display: none;

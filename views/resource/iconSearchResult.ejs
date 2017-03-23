@@ -23,13 +23,11 @@
                             </h4>
                         </div>
                         <div class="h-panel-body">
-                            <ul class="icons-container clearfix">
+                            <ul class="icons-detail-container clearfix">
                                 <% iconList.forEach(function(value){ %>
                                 <li class="single-icon" data-iconid = <%- value._id %>>
-                                    <span>
                                          <%- value.svgXML  %>
                                         <h5><%- value.name %></h5>
-                                    </span>
                                     <% if(subModel === 'iconfont'){%>
                                         <div class="icon-operation">
                                             <a class="icon-single-download">
