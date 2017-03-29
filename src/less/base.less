@@ -21,6 +21,7 @@ body {
   }
 }
 
+
 body, button, input, select, textarea {
   font-family: tahoma, "microsoft yahei", "微软雅黑";
 }
@@ -55,7 +56,11 @@ ul, li {
 a, button, input[type="button"], input[type="submit"] {
   cursor: pointer;
 }
-
+button, input[type="button"]{
+  &:focus{
+    outline: none;
+  }
+}
 p {
   line-height: 1.8em;
 }
@@ -178,4 +183,8 @@ p {
 
 .bg-lightgray {
   background: @white-darken-4;
+}
+
+.hide{
+  display: none;
 }

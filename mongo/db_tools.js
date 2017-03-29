@@ -115,9 +115,13 @@ var uikit = new Schema({
 });
 
 var comment = new Schema({
+    content: String,
     replyer: String,
     replyTo: String,
-    reply_time: Date
+    reply_time: {
+        type: Date,
+        default: Date.now
+    }
 },{
     versionKey: false
 });
