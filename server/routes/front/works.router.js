@@ -37,4 +37,18 @@ router.get('/workDetail/:id', function (req, res) {
         });
 });
 
+router.post('/postComment',function(req,res){
+    db_tools.pushSubDoc('work_pool',{
+        _id:req.body.docId
+    },{
+        reply:{
+            content: req.body.comment,
+            replyer:req.body.username
+        }
+    }).then(function(data){
+        res.send(data);
+    },function(err){
+        res.send(err);
+    })
+});
 module.exports = router;
