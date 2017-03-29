@@ -4,6 +4,7 @@
 var db_tools = require("../../../mongo/db_tools");
 var iconModel = require("../../models/resources/icon.model");
 var iconCollectionModel = require("../../models/resources/iconCollection.model");
+var fileModel = require("../../models/resources/file.model");
 var request = require('request');
 var fs = require('fs');
 var co = require('co');
@@ -11,6 +12,10 @@ var co = require('co');
 var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
 var fileServerPath = settings.fileServerPath; //图片服务器路径
 var fileDocument = settings.fileDocument;//图片文件夹
+
+var onError = function (err) {
+    console.log(err);
+};
 
 function getSvgXml(svgUrl, cb) {
     request.get(svgUrl, function (error, response, body) {
@@ -25,24 +30,34 @@ module.exports = {
      * @param res
      */
     addIcon: function (req, res) {
-        var params = req.body;
-        getSvgXml(params.url, function (xml) {
-            var formData = {
-                name: params.name,
-                url: params.url,
-                type: params.type,
-                collection_id: params.collection_id,
-                tags: params.tags,
-                downloadUrl: params.downloadUrl,
-                svgXML: xml
-            };
-            co(function*() {
-                var data = yield iconModel.addIcons(formData);
-                res.send({
-                    success: true,
-                    data: data
-                })
-            }).catch(err);
+        var params = JSON.parse(req.body.icons);
+        var iconLen = params.length;
+        if (!iconLen) {
+            res.send({
+                success: false,
+                message: "请上传图标"
+            });
+            return;
+        }
+        params.forEach(function (icon) {
+            getSvgXml(icon.url, function (xml) {
+                var formData = {
+                    name: icon.name,
+                    url: icon.url,
+                    type: icon.type,
+                    collection_id: icon.collection_id,
+                    tags: icon.tags,
+                    downloadUrl: icon.downloadUrl,
+                    svgXML: xml
+                };
+                co(function*() {
+                    var data = yield iconModel.addIcons(formData);
+                    res.send({
+                        success: true,
+                        data: data
+                    })
+                }).catch(onError);
+            });
         });
     },
     /**
@@ -53,28 +68,9 @@ module.exports = {
     delIcon: function (req, res) {
         var params = req.body;
         co(function*() {
-            //删除相应的图标
-            var data = yield iconModel.getIconsByQuery({"_id": {$in: params.ids}});
             var delRes = yield iconModel.delIcons(params.ids);
-
-            if (delRes.success) {
-                var files = [];
-
-                data.forEach(function (e) {
-                    files.push(e.url.replace(/.*\//, ""));
-                });
-
-                request.post({
-                    url: fileServerPath + "/containers/delete",
-                    formData: {
-                        dirName: fileDocument,
-                        files: files
-                    }
-                });
-            }
-
             res.send(delRes);
-        }).catch(err);
+        }).catch(onError);
     },
     /**
      * 获取所有icons 的数据
@@ -87,7 +83,14 @@ module.exports = {
             res.render('admin/icon/iconManage.ejs', {
                 iconList: data
             });
-        }).catch(err);
+        }).catch(onError);
+    },
+
+    getIconsByCollection: function (req, res) {
+        co(function*() {
+            var collection = yield iconModel.getIconsByQuery({collection_id: req.query.id});
+            res.send(collection);
+        })
     },
 
     /**
@@ -103,7 +106,7 @@ module.exports = {
                 model: "resource",
                 results: data
             });
-        }).catch(err);
+        }).catch(onError);
     },
     /**
      * 获取svg图标集
@@ -125,7 +128,7 @@ module.exports = {
                 icons: icons,
                 iconTypes: iconTypes
             });
-        }).catch(err);
+        }).catch(onError);
     },
 
     /**
@@ -147,7 +150,7 @@ module.exports = {
                 icons: icons,
                 iconTypes: iconTypes
             });
-        }).catch(err);
+        }).catch(onError);
     },
     /**
      * 根据类型获取图标集
@@ -169,7 +172,7 @@ module.exports = {
                 typeId: typeId,
                 iconList: data
             });
-        }).catch(err);
+        }).catch(onError);
     },
 
     /**
@@ -191,6 +194,6 @@ module.exports = {
                 url: collection[0].attachment_url,
                 iconList: data
             });
-        }).catch(err);
+        }).catch(onError);
     }
 }

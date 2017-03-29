@@ -801,6 +801,11 @@ select {
   z-index: 10;
   transform: rotateY(0deg);
 }
+.h-doc-section {
+  background: #fff;
+  padding: 20px 30px;
+  margin-bottom: 50px;
+}
 .h-doc-section h1 {
   margin-top: 50px;
 }

@@ -10,4 +10,6 @@ var router = express.Router();
  */
 router.post('/imgUpload', uploadCtrl.imgUpload);
 
+router.post('/iconUpload', uploadCtrl.iconUpload);
+
 module.exports = router;

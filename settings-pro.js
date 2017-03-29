@@ -6,6 +6,7 @@ module.exports = {
     fileServerPath : "http://10.33.31.234:5566",
     //图片服务器目录
     fileDocument : "HUI",
+    iconPath: "icon",
     //数据库地址
     db : "mongodb://10.33.31.234/hui-pro",
 }

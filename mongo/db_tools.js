@@ -63,6 +63,8 @@ var icon_collection = new Schema({
         require: true
     },
 
+    attachment_name: String,
+
     attachment_url: String
 }, {
     versionKey: false
@@ -86,8 +88,6 @@ var icon = new Schema({
     collection_id: String,
 
     url: String,
-
-    downloadUrl: String,
 
     svgXML: String
 }, {
@@ -138,6 +138,8 @@ var work_pool = new Schema({
 }, {
     versionKey: false
 });
+
+
 
 var successMsg = {
     "code": 0,

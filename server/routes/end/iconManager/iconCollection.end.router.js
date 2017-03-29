@@ -5,6 +5,8 @@ var iconCltCtrl = require("../../../controllers/resources/iconCollection.control
 var express = require("express");
 var router = express.Router();
 
+router.get('/getIconCollectionInfo/:id', iconCltCtrl.getCollectionInfo);
+
 router.get('/collectionManage', iconCltCtrl.render);
 
 router.get('/collectionAdd', iconCltCtrl.collectionAddRender);
@@ -16,6 +18,8 @@ router.post('/addIconCollection', iconCltCtrl.addCollection);
 router.post('/updateIconCollection', iconCltCtrl.updateCollection);
 
 router.post('/delIconCollection', iconCltCtrl.delCollection);
+
+router.post('/uploadAttachment', iconCltCtrl.uploadAttachment);
 
 router.get('/getIconCollection', iconCltCtrl.getCollection);
 

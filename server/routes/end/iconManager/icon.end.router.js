@@ -14,4 +14,6 @@ router.post("/add", iconController.addIcon);
 
 router.post("/del", iconController.delIcon);
 
+router.get('/getIconsByCollection', iconController.getIconsByCollection);
+
 module.exports = router;

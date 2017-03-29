@@ -1,9 +1,17 @@
 /**
  * Created by zhengjunling on 2016/12/9.
  */
+var formidable = require("formidable");
+var request = require('request');
+var fs = require('fs');
+var fileModel = require("../../models/resources/file.model");
 var iconCollectionModel = require("../../models/resources/iconCollection.model");
 var iconModel = require("../../models/resources/icon.model");
 var co = require('co');
+
+var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
+var fileServerPath = settings.fileServerPath; //图片服务器路径
+var fileDocument = settings.fileDocument;//图片文件夹
 
 module.exports = {
     /**
@@ -30,16 +38,10 @@ module.exports = {
      * @param res
      */
     getCollectionInfo: function (req, res) {
-        var collectionId = req.query.id;
+        var collectionId = req.params.id;
         co(function*() {
             var collection = yield iconCollectionModel.getCollectionByQuery({_id: collectionId});
-            var icons = yield iconModel.getIconsByQuery({collection_id: collectionId});
-            collection = collection[0].toObject();
-            collection.icons = icons;
-            res.send({
-                success: true,
-                data: collection
-            });
+            res.send(collection);
         })
     },
 
@@ -62,11 +64,7 @@ module.exports = {
     addCollection: function (req, res) {
         co(function*() {
             var data = yield iconCollectionModel.addCollection(req.body);
-            res.send({
-                success: true,
-                message: "添加成功！",
-                data: data
-            });
+            res.send(data);
         });
     },
 
@@ -76,31 +74,9 @@ module.exports = {
      * @param res
      */
     updateCollection: function (req, res) {
-        var params = JSON.parse(req.body.collection);
-        var formData = {
-            id: params.id,
-            name: params.name,
-            type: params.type,
-            attachment_url: params.attachmentUrl
-        };
-        var method = formData.id ? "edit" : "add";
         co(function*() {
-            var data = yield iconCollectionModel.updateCollection(method, formData);
-            if (params.icons && params.icons.length > 0) {
-                params.icons.forEach(function (e) {
-                    e.collection_id = data._id;
-                })
-                iconModel.addIcons(params.icons);
-                res.send({
-                    success: true,
-                    message: formData.id ? "修改成功" : "添加成功！"
-                });
-            } else {
-                res.send({
-                    success: true,
-                    message: formData.id ? "修改成功" : "添加成功！"
-                });
-            }
+            var data = yield iconCollectionModel.updateCollection(req.body);
+            res.send(data);
         })
     },
 
@@ -114,6 +90,61 @@ module.exports = {
             var data = yield iconCollectionModel.delCollection(req.body.ids);
             res.send(data);
         })
-    }
+    },
 
+    uploadAttachment: function (req, res) {
+        var form = new formidable.IncomingForm();
+        form.encoding = 'utf-8';		//设置编辑
+        form.keepExtensions = true;	 //保留后缀
+        form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
+        form.multiples = true;
+        form.parse(req, function (err, fields, files) {
+            if (err) {
+                res.send({
+                    success: false,
+                    message: 'error:' + err
+                });
+                return;
+            }
+
+            var file = files[fields.name];
+            var fileType = file.name.replace(/^.+\./, '');
+            if (fields.type.indexOf(fileType.toLowerCase()) == -1) {
+                res.send({
+                    success: false,
+                    message: "上传文件格式不正确！"
+                });
+                return
+            }
+
+            fileModel.upload(file.path).then(function (data) {
+                if (data.type !== "success") {
+                    return res.send({
+                        success: false,
+                        message: "上传失败！请重试"
+                    });
+                }
+                co(function*() {
+                    var updateRes = yield iconCollectionModel.updateCollection({
+                        _id: fields.collection_id,
+                        attachment_url: fileServerPath + '/containers/download' + data.url,
+                        attachment_name: file.name
+                    });
+                    if (!updateRes.success) {
+                        return res.send({
+                            success: false,
+                            message: "上传失败！请重试"
+                        });
+                    }
+                    res.send(updateRes);
+                });
+            }, function (err) {
+                console.log("Upload error:" + err);
+                res.send({
+                    success: false,
+                    message: "上传失败！请重试"
+                });
+            });
+        });
+    }
 };
