@@ -36,3 +36,10 @@ db.icons.find().forEach(function(n){
     n.type = n.type == "svg" ? NumberInt(0) : NumberInt(1);
     db.icons.save(n);
 });
+
+/**
+ * 增加评论回复字段
+ */
+db.work_pools.find().forEach(function(n){
+    db.work_pools.update({"_id": n._id},{"$set":{"reply":[]}});
+});
