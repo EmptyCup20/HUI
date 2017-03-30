@@ -1,8 +1,8 @@
 /**
  * Created by zhengjunling on 2016/12/12.
  */
-var db_tools = require("../../mongo/db_tools");
 var co = require('co');
+var animateModel = require("../models/animate.model.js");
 
 
 module.exports = {
@@ -11,5 +11,16 @@ module.exports = {
             model: "resource",
             subModel: "animate"
         });
+    },
+
+    getAnimateList: function (req, res) {
+        var queryParams = {
+            pageSize: req.query.pageSize,
+            pageNo: req.query.pageNo
+        }
+        co(function*() {
+            var data = yield animateModel.getAnimateListByPage(queryParams);
+            res.send(data);
+        })
     }
 };

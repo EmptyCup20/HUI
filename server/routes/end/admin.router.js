@@ -8,6 +8,7 @@ var designEndRouter = require("./designManager/design.end.router.js");
 var uikitEndRouter = require("./uikitManager/uikit.end.router.js");
 var uploadEndRouter = require("./uploadManager/upload.end.router.js");
 var aboutRouter = require("./about/about.router");
+var animateRouter = require("./animate/animate.router");
 var express = require("express");
 var router = express.Router();
 
@@ -45,6 +46,8 @@ router.use('/doc', docEndRouter);
  * 设计管理
  */
 router.use('/design', designEndRouter);
+
+router.use('/animate', animateRouter);
 
 router.use('/about', aboutRouter);
 

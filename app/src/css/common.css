@@ -14,6 +14,7 @@ body {
   font-size: 14px;
   line-height: 1.42857;
   color: #333;
+  overflow-x: hidden;
 }
 body a {
   text-decoration: none;
@@ -451,7 +452,7 @@ select {
 }
 .main-top {
   position: relative;
-  min-height: 74px;
+  min-height: 600px;
   background: #000;
   color: #fff;
 }
@@ -532,9 +533,15 @@ select {
   margin-top: -74px;
   padding-top: 104px;
 }
+.h-intro-list {
+  width: 110%;
+}
 .h-cont-box {
-  padding: 0 20px;
+  float: left;
+  display: block;
+  width: 17.5%;
   margin-bottom: 30px;
+  margin-right: 10%;
   text-align: center;
   color: #7f7f7f;
 }

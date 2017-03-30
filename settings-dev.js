@@ -7,6 +7,7 @@ module.exports = {
     //图片服务器目录
     fileDocument: "img_source",
     iconPath: "icon",
+    psdPath: "psd",
     //数据库地址
     db: "mongodb://10.33.31.234/hui",
 }

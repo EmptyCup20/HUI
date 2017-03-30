@@ -3,10 +3,6 @@
  */
 (function ($) {
     $(function () {
-        $("#dg-container").gallery( {
-            current		: 0,	// index of current item
-        });
-
         var prev = $("#dg-container").find('nav').find('.dg-prev');
         var next = $("#dg-container").find('nav').find('.dg-next');
 
@@ -27,12 +23,6 @@
             $("#docInfo").html($livingEl.attr("data-info"));
             $("#docTitle").html($livingEl.attr("data-title")).attr("href", "/works/workDetail/" + $livingEl.attr("data-docid"));
         })
-
-        $.scrollify({
-            section: ".scroll-section",
-            scrollSpeed: 800,
-            setHeights: false
-        });
 
         $("#scrollToNext").on("click", function () {
             $.smoothScroll({

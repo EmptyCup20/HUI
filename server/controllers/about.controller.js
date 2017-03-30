@@ -19,7 +19,7 @@ module.exports = {
 
     update: function (req, res) {
         co(function*() {
-            var data = yield aboutModel.update(req.body.doc);
+            var data = yield aboutModel.update(req.body.content);
             res.send(data);
         });
     },
