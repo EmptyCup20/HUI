@@ -100,7 +100,7 @@ var uikit_content = new Schema({
     attachment_url: String
 }, {
     versionKey: false
-})
+});
 
 var uikit = new Schema({
     name: {
@@ -112,7 +112,19 @@ var uikit = new Schema({
     content: [uikit_content]
 }, {
     versionKey: false
-})
+});
+
+var comment = new Schema({
+    content: String,
+    replyer: String,
+    replyTo: String,
+    reply_time: {
+        type: Date,
+        default: Date.now
+    }
+},{
+    versionKey: false
+});
 
 var work_pool = new Schema({
     title: {
@@ -131,6 +143,7 @@ var work_pool = new Schema({
         type: String,
         default: 'admin'
     },
+    reply:[comment],
     create_at: {
         type: Date,
         default: Date.now
@@ -163,7 +176,7 @@ Db_tools.init = function (collection) {
         return initModel[collection];
     }
     return initModel[collection];
-}
+};
 
 /**
  * [add description]

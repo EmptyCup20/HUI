@@ -7,6 +7,7 @@ var db_tools = require('../../../mongo/db_tools');
 var moment = require('moment');
 var markdown = require("markdown").markdown;
 
+moment.locale('zh-cn');
 
 router.get('/', function (req, res) {
     db_tools.queryAll('work_pool').then(function (data) {
@@ -37,4 +38,22 @@ router.get('/workDetail/:id', function (req, res) {
         });
 });
 
+router.post('/postComment',function(req,res){
+    db_tools.pushSubDoc('work_pool',{
+        _id:req.body.docId
+    },{
+        reply:{
+            content: req.body.comment,
+            replyer:req.body.username,
+            replyTo: req.body.replyTo
+        }
+    }).then(function(data){
+        res.send({
+            success:true,
+            data:null
+        });
+    },function(err){
+        res.send(err);
+    })
+});
 module.exports = router;

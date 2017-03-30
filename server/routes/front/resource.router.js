@@ -4,7 +4,7 @@
 var express = require("express");
 var router = express.Router();
 var iconCtrl = require("../../controllers/resources/icon.controller.js");
-var archiveDownload = require("../../controllers/resources/archiveDownload.controller.js");
+var iconDownload = require("../../controllers/resources/iconDownload.controller.js");
 var uikitCtrl = require("../../controllers/resources/uikit.controller.js");
 var animateCtrl = require("../../controllers/animate.controller.js");
 var searchCtrl = require("../../controllers/resources/search.controller.js");
@@ -21,7 +21,8 @@ router.get('/uikit', uikitCtrl.getUikitPage);
 router.get('/iconfont', iconCtrl.getCollections);
 
 router.get('/iconfont/type/:typeId', iconCtrl.getIconByCollection);
-router.get('/iconfont/archiveDownload', archiveDownload.archiveDownload);
+router.get('/iconfont/archiveDownload', iconDownload.archiveDownload);
+router.get('/iconfont/iconDownload', iconDownload.iconDownload);
 
 //--------------------彩色图标---------------------
 
