@@ -8,7 +8,7 @@ var iconCollectionModel = db_tools.init('icon_collection');
 
 module.exports = {
     /**
-     * 获取图标id获取分类详情
+     * 根据图标库id获取图标库基本信息
      * @param query
      * @returns {Promise}
      */

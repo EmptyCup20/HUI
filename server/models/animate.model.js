@@ -6,9 +6,17 @@ var db = require('../../mongo/mongo');
 var co = require('co');
 
 var Animate = new db.Schema({
+    //标题
     title: String,
+    //附件名称
     attachment_name: String,
+    //附件地址
     attachment_url: String,
+    //封面
+    cover_img_url: String,
+    //内容
+    content: String,
+
     create_date: {
         type: Date,
         default: Date.now
@@ -24,6 +32,18 @@ var Animate = new db.Schema({
 var AnimateModel = db.model("animate", Animate);
 
 module.exports = {
+    getAnimateInfoById: function (id) {
+        return new Promise((resolve, reject) => {
+            AnimateModel.find({_id: id}).exec((err, doc) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doc[0]);
+                }
+            })
+        });
+    },
+
     getAnimateListByPage: function (queryObj) {
         var pageSize = Number(queryObj.pageSize);
         var pageNo = Number(queryObj.pageNo);
@@ -33,7 +53,7 @@ module.exports = {
         //最多显示条数
         query.limit(pageSize);
         //计算分页数据
-        return new Promise((resole, reject) => {
+        return new Promise((resolve, reject) => {
             query.sort('-create_at').exec(function (err, doc) {
                 if (err) {
                     reject(err);
@@ -41,7 +61,46 @@ module.exports = {
                     //计算数据总数
                     AnimateModel.find(function (err, result) {
                         var jsonArray = {code: 0, rows: doc, message: null, total: result.length, success: true};
-                        resole(jsonArray);
+                        resolve(jsonArray);
+                    });
+                }
+            });
+        })
+    },
+
+    add: function (data) {
+        return new Promise((resolve, reject) => {
+            AnimateModel.create(data, function (err, doc) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doc);
+                }
+            });
+        })
+    },
+
+    update: function (data) {
+        return new Promise((resolve, reject) => {
+            AnimateModel.findOneAndUpdate({_id: data._id}, {$set: data}, {new: true}, function (err, doc) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doc);
+                }
+            });
+        });
+    },
+
+    del: function (ids) {
+        return new Promise((resolve, reject) => {
+            AnimateModel.remove({"_id": {$in: ids}}, function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve({
+                        success: true,
+                        message: "删除成功！"
                     });
                 }
             });

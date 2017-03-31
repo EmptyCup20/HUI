@@ -2,7 +2,14 @@
  * Created by zhengjunling on 2016/12/12.
  */
 var co = require('co');
-var animateModel = require("../models/animate.model.js");
+var formidable = require("formidable");
+var request = require('request');
+var fs = require('fs');
+var util = require("../util");
+var fileModel = require("../models/resources/file.model");
+var animateModel = require("../models/animate.model");
+var settings = require('../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
+var fileServerPath = settings.fileServerPath; //图片服务器路径
 
 
 module.exports = {
@@ -22,5 +29,100 @@ module.exports = {
             var data = yield animateModel.getAnimateListByPage(queryParams);
             res.send(data);
         })
+    },
+
+    delAnimate: function (req, res) {
+        co(function*() {
+            var data = yield animateModel.del(req.body.ids);
+            res.send(data);
+        })
+    },
+
+    getAnimateInfo: function (req, res) {
+        co(function*() {
+            var data = yield animateModel.getAnimateInfoById(req.params.id);
+            res.send(data);
+        })
+    },
+
+    modify: function (req, res) {
+        var params = req.body;
+        animateModel.update(params).then(function (data) {
+            res.send(data);
+        }, function () {
+            res.send(util.resParse(false, "更新失败"));
+        })
+    },
+
+    saveAnimate: function (req, res) {
+        var params = req.body;
+        animateModel.add(params).then(function (data) {
+            res.send(data);
+        }, function () {
+            res.send(util.resParse(false, "添加失败"));
+        })
+    },
+
+    uploadCoverPic: function (req, res) {
+        var form = new formidable.IncomingForm();
+        form.encoding = 'utf-8';		//设置编辑
+        form.keepExtensions = true;	 //保留后缀
+        form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
+        form.multiples = true;
+        form.parse(req, function (err, fields, files) {
+            if (err) {
+                res.send({
+                    success: false,
+                    message: 'error:' + err
+                });
+                return;
+            }
+            var file = files[fields.name];
+            var fileType = file.name.replace(/^.+\./, '');
+            if (fields.type.indexOf(fileType.toLowerCase()) == -1) {
+                return res.send(util.resParse(false, "上传文件格式不正确！"));
+            }
+            fileModel.upload(file.path).then(function (data) {
+                if (data.type !== "success") {
+                    return res.send(util.resParse(false, "上传失败！请重试"));
+                }
+                res.send(util.resParse(true, "上传成功！", {
+                    cover_img_url: fileServerPath + data.url
+                }));
+            }, function (err) {
+                console.log("Upload error:" + err);
+                res.send(util.resParse(false, "上传失败！请重试"));
+            });
+        });
+    },
+
+    uploadAttachment: function (req, res) {
+        var form = new formidable.IncomingForm();
+        form.encoding = 'utf-8';		//设置编辑
+        form.keepExtensions = true;	 //保留后缀
+        form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
+        form.multiples = true;
+        form.parse(req, function (err, fields, files) {
+            if (err) {
+                res.send({
+                    success: false,
+                    message: 'error:' + err
+                });
+                return;
+            }
+            var file = files[fields.name];
+            fileModel.upload(file.path).then(function (data) {
+                if (data.type !== "success") {
+                    return res.send(util.resParse(false, "上传失败！请重试"));
+                }
+                res.send(util.resParse(true, "上传成功！", {
+                    attachment_url: fileServerPath + '/containers/download' + data.url,
+                    attachment_name: file.name
+                }));
+            }, function (err) {
+                console.log("Upload error:" + err);
+                res.send(util.resParse(false, "上传失败！请重试"));
+            });
+        });
     }
 };
