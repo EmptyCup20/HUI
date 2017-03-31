@@ -7,7 +7,7 @@ var co = require('co');
 
 var Animate = new db.Schema({
     title: String,
-    img_url: String,
+    attachment_name: String,
     attachment_url: String,
     create_date: {
         type: Date,
@@ -24,7 +24,7 @@ var Animate = new db.Schema({
 var AnimateModel = db.model("animate", Animate);
 
 module.exports = {
-    getAnimateListByPage:function(queryObj){
+    getAnimateListByPage: function (queryObj) {
         var pageSize = Number(queryObj.pageSize);
         var pageNo = Number(queryObj.pageNo);
         var query = AnimateModel.find({});

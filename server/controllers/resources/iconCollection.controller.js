@@ -20,7 +20,7 @@ module.exports = {
     getCollectionInfo: function (req, res) {
         var collectionId = req.params.id;
         co(function*() {
-            var collection = yield iconCollectionModel.getCollectionByQuery({_id: collectionId});
+            var collection = yield iconCollectionModel.getCollectionById(collectionId);
             res.send(collection);
         })
     },
