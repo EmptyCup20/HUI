@@ -4,36 +4,16 @@
 var formidable = require("formidable");
 var request = require('request');
 var fs = require('fs');
+var co = require('co');
 var fileModel = require("../../models/resources/file.model");
 var iconCollectionModel = require("../../models/resources/iconCollection.model");
-var iconModel = require("../../models/resources/icon.model");
-var co = require('co');
 
 var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
 var fileServerPath = settings.fileServerPath; //图片服务器路径
-var fileDocument = settings.fileDocument;//图片文件夹
 
 module.exports = {
     /**
-     * 图标库列表页面
-     * @param req
-     * @param res
-     */
-    render: function (req, res) {
-        res.render("admin/icon/collectionManage");
-    },
-
-    /**
-     * 添加图标库页面
-     * @param req
-     * @param res
-     */
-    collectionAddRender: function (req, res) {
-        res.render("admin/icon/collectionAdd");
-    },
-
-    /**
-     * 编辑图标库页面
+     * 获取图标库基本信息
      * @param req
      * @param res
      */
@@ -46,7 +26,7 @@ module.exports = {
     },
 
     /**
-     * 获取图标库
+     * 获取图标库列表
      * @param req
      * @param res
      */
@@ -61,6 +41,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 添加图标库
+     * @param req
+     * @param res
+     */
     addCollection: function (req, res) {
         co(function*() {
             var data = yield iconCollectionModel.addCollection(req.body);
@@ -69,7 +54,7 @@ module.exports = {
     },
 
     /**
-     * 添加/修改图标库
+     * 更新图标库信息
      * @param req
      * @param res
      */
@@ -92,6 +77,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 上传psd附件
+     * @param req
+     * @param res
+     */
     uploadAttachment: function (req, res) {
         var form = new formidable.IncomingForm();
         form.encoding = 'utf-8';		//设置编辑

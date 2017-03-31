@@ -5,22 +5,22 @@ var iconCltCtrl = require("../../../controllers/resources/iconCollection.control
 var express = require("express");
 var router = express.Router();
 
+//获取图标库列表
+router.get('/getIconCollection', iconCltCtrl.getCollection);
+
+//获取图标库基本信息
 router.get('/getIconCollectionInfo/:id', iconCltCtrl.getCollectionInfo);
 
-router.get('/collectionManage', iconCltCtrl.render);
-
-router.get('/collectionAdd', iconCltCtrl.collectionAddRender);
-
-router.get('/getCollectionInfo', iconCltCtrl.getCollectionInfo);
-
+//添加图标库
 router.post('/addIconCollection', iconCltCtrl.addCollection);
 
-router.post('/updateIconCollection', iconCltCtrl.updateCollection);
-
+//批量删除图标库
 router.post('/delIconCollection', iconCltCtrl.delCollection);
 
-router.post('/uploadAttachment', iconCltCtrl.uploadAttachment);
+//更新图标库基本信息
+router.post('/updateIconCollection', iconCltCtrl.updateCollection);
 
-router.get('/getIconCollection', iconCltCtrl.getCollection);
+//上传/更新psd附件
+router.post('/uploadAttachment', iconCltCtrl.uploadAttachment);
 
 module.exports = router;

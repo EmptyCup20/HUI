@@ -25,42 +25,6 @@ function getSvgXml(svgUrl, cb) {
 
 module.exports = {
     /**
-     * 添加图标
-     * @param req
-     * @param res
-     */
-    addIcon: function (req, res) {
-        var params = JSON.parse(req.body.icons);
-        var iconLen = params.length;
-        if (!iconLen) {
-            res.send({
-                success: false,
-                message: "请上传图标"
-            });
-            return;
-        }
-        params.forEach(function (icon) {
-            getSvgXml(icon.url, function (xml) {
-                var formData = {
-                    name: icon.name,
-                    url: icon.url,
-                    type: icon.type,
-                    collection_id: icon.collection_id,
-                    tags: icon.tags,
-                    downloadUrl: icon.downloadUrl,
-                    svgXML: xml
-                };
-                co(function*() {
-                    var data = yield iconModel.addIcons(formData);
-                    res.send({
-                        success: true,
-                        data: data
-                    })
-                }).catch(onError);
-            });
-        });
-    },
-    /**
      * 删除资源
      * @param req
      * @param res
@@ -70,19 +34,6 @@ module.exports = {
         co(function*() {
             var delRes = yield iconModel.delIcons(params.ids);
             res.send(delRes);
-        }).catch(onError);
-    },
-    /**
-     * 获取所有icons 的数据
-     * @param req
-     * @param res
-     */
-    getAllIcons: function (req, res) {
-        co(function*() {
-            var data = yield iconModel.getIconsByQuery({});
-            res.render('admin/icon/iconManage.ejs', {
-                iconList: data
-            });
         }).catch(onError);
     },
 
