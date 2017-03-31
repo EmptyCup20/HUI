@@ -5,7 +5,27 @@
     </div>
     <% include ../resource/submenu.ejs %>
     <div class="h-section  bg-lightgray">
-        <% include ../building.ejs %>
+        <!--内容部分-->
+        <div class="h-container">
+            <ul class="h-row">
+                <% data.forEach(function(item){ %>
+                <li class="h-col-4">
+                    <div class="h-panel h-panel-edge">
+                        <div class="h-panel-body">
+                            <div class="h-listbox-img">
+                                <img src="<%= item.cover_img_url %>">
+                            </div>
+                        </div>
+                        <div class="h-panel-header">
+                            <div class="h-panel-title">
+                                <%= item.title %>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
     </div>
     <% include ../common/footer.ejs %>
 </div>

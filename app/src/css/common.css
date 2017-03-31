@@ -413,8 +413,8 @@ select {
   position: relative;
   margin-bottom: 30px;
   background: #fff;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
+  transition: .3s;
 }
 .h-panel .h-panel-header .h-panel-title {
   margin: 0;
@@ -444,6 +444,12 @@ select {
   background: url(../image/arrow_left.png) no-repeat;
   float: left;
 }
+.h-panel:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+.h-panel.h-panel-edge .h-panel-body {
+  padding: 0;
+}
 .main-wrapper,
 .full-page {
   position: relative;
@@ -452,7 +458,7 @@ select {
 }
 .main-top {
   position: relative;
-  min-height: 600px;
+  min-height: 74px;
   background: #000;
   color: #fff;
 }
@@ -471,8 +477,11 @@ select {
 .main-top .btn-scroll-down:hover {
   opacity: 1;
 }
+.main-top.full-page {
+  min-height: 600px;
+}
 .h-container {
-  max-width: 1260px;
+  width: 1260px;
   margin: 0 auto;
   padding: 0 30px;
 }
@@ -534,14 +543,14 @@ select {
   padding-top: 104px;
 }
 .h-intro-list {
-  width: 110%;
+  margin-right: -120px;
 }
 .h-cont-box {
   float: left;
   display: block;
-  width: 17.5%;
+  width: 210px;
   margin-bottom: 30px;
-  margin-right: 10%;
+  margin-right: 120px;
   text-align: center;
   color: #7f7f7f;
 }
@@ -698,12 +707,11 @@ select {
   color: #000;
   text-decoration: none;
 }
-.icons-detail-container {
+.icons-container {
   padding: 10px 40px 40px 40px;
-  overflow: hidden;
 }
-.icons-detail-container li {
-  float: left;
+.icons-container li {
+  display: inline-block;
   width: 100px;
   height: 100px;
   padding-top: 26px;
@@ -711,20 +719,8 @@ select {
   margin-top: 10px;
   text-align: center;
 }
-.icons-container ul {
-  margin: 10px 40px;
-}
-.icons-container ul li {
-  text-align: center;
-  margin-top: 10px;
-  min-height: 100px;
-}
-.icon-block svg {
-  height: 32px;
-  width: 32px;
-}
-.svg-wrap {
-  margin: 8px 0;
+.icons-container li img {
+  height: 48px;
 }
 .icons-container-coloricon {
   padding: 10px 40px 40px 40px;
@@ -743,11 +739,6 @@ select {
 .single-icon {
   position: relative;
   border-radius: 4px;
-}
-.single-icon svg {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 10px;
 }
 .icon-operation {
   display: none;
@@ -942,108 +933,14 @@ select {
   color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
-.color-block {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
+.h-listbox-img {
+  position: relative;
+  padding-bottom: 56.25%;
+  overflow: hidden;
 }
-.color-select {
-  margin-right: 40px;
-}
-.preview-svg svg {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
-}
-/*评论*/
-.box-title {
-  text-align: center;
-  margin-bottom: 14px;
-}
-.comment-box,
-.comment-list {
-  width: 630px;
-  padding-bottom: 20px;
-}
-.comment-box {
-  margin: 0 auto;
-}
-.comment-list .item {
-  margin-bottom: 20px;
-}
-.comment-form {
-  margin-left: 15px;
-  margin-right: 15px;
-}
-.avatar {
-  float: left;
-  margin: 10px 12px;
-}
-.avatar img {
-  border-radius: 20px;
-}
-.content-input {
-  float: left;
-  height: 60px;
-  width: 540px;
-}
-.content-input:focus {
-  outline: none;
-  border: 1px solid #bdc6c9;
-}
-.content-input:hover {
-  border: 1px solid #bdc6c9;
-}
-.submit-action {
-  float: right;
-  margin-top: 10px;
-}
-.btn-submit {
-  padding: 6px 18px;
-  background-color: #6ac9ff;
-  border: 1px solid transparent;
-  color: #fff;
-}
-.btn-submit:hover {
-  background-color: #53baf4;
-}
-/*评论列表*/
-.content-box {
-  padding-left: 60px;
-  padding-top: 16px;
-}
-.content-box .username {
-  font-weight: bold;
-  font-size: 1em;
-}
-.content-box .content .content-text {
-  margin: .5em 0;
-  color: #333;
-}
-.content-box .footer .reply-btn {
-  background-color: transparent;
-  color: #767e8d;
-  padding: 0;
-  margin-right: 1rem;
-  border: none;
-}
-.content-box .footer .reply-date {
-  color: #909090;
-}
-.reply-form {
-  margin-top: 10px;
-}
-.reply-form .content-input {
-  width: 570px;
-}
-.btn-cancel {
-  padding: 6px 18px;
-  background-color: #b8ddf2;
-  border: 1px solid transparent;
-  color: #fff;
-  margin-right: 10px;
-}
-.btn-cancel:hover {
-  background-color: #53baf4;
+.h-listbox-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }

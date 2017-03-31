@@ -1,37 +1,45 @@
 .h-panel {
-  position: relative;
-  margin-bottom: 30px;
-  background: @white;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-  border-radius: @panel-border-radius;
-  .h-panel-header {
-    .h-panel-title {
-      margin: 0;
-      padding: 20px 30px;
-      font-size: 20px;
+    position: relative;
+    margin-bottom: 30px;
+    background: @white;
+    border-radius: @panel-border-radius;
+    transition: .3s;
+    .h-panel-header {
+        .h-panel-title {
+            margin: 0;
+            padding: 20px 30px;
+            font-size: 20px;
+        }
+        + .h-panel-body {
+            padding-top: 0;
+        }
+        .h-panel-action {
+            position: absolute;
+            right: 30px;
+            top: 25px;
+        }
     }
-    + .h-panel-body {
-      padding-top: 0;
+    .h-panel-body {
+        padding: 30px;
+        img {
+            margin: 0;
+            max-width: 100%;
+        }
     }
-    .h-panel-action {
-      position: absolute;
-      right: 30px;
-      top: 25px;
+    .h-panel-back {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin: 22px 30px;
+        background: url(../image/arrow_left.png) no-repeat;
+        float: left;
     }
-  }
-  .h-panel-body {
-    padding: 30px;
-    img {
-      margin: 0;
-      max-width: 100%;
+    &:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, .15);
     }
-  }
-  .h-panel-back {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin: 22px 30px;
-    background: url(../image/arrow_left.png) no-repeat;
-    float: left;
-  }
+    &.h-panel-edge {
+        .h-panel-body {
+            padding: 0;
+        }
+    }
 }

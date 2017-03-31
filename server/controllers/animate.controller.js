@@ -13,13 +13,31 @@ var fileServerPath = settings.fileServerPath; //图片服务器路径
 
 
 module.exports = {
-    render: function (req, res) {
-        res.render('resource/animate', {
-            model: "resource",
-            subModel: "animate"
-        });
+    /**
+     * 动效库页面渲染
+     * @param req
+     * @param res
+     */
+    renderList: function (req, res) {
+        var queryParams = {
+            pageSize: 20,
+            pageNo: req.query.page || 1
+        };
+        co(function*() {
+            var data = yield animateModel.getAnimateListByPage(queryParams);
+            res.render('resource/animate', {
+                model: "resource",
+                subModel: "animate",
+                data: data.rows
+            });
+        })
     },
 
+    /**
+     * 根据页码获取动效列表
+     * @param req
+     * @param res
+     */
     getAnimateList: function (req, res) {
         var queryParams = {
             pageSize: req.query.pageSize,
@@ -31,6 +49,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 删除动效
+     * @param req
+     * @param res
+     */
     delAnimate: function (req, res) {
         co(function*() {
             var data = yield animateModel.del(req.body.ids);
@@ -38,6 +61,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 根据id获取动效信息
+     * @param req
+     * @param res
+     */
     getAnimateInfo: function (req, res) {
         co(function*() {
             var data = yield animateModel.getAnimateInfoById(req.params.id);
@@ -45,6 +73,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 编辑动效信息
+     * @param req
+     * @param res
+     */
     modify: function (req, res) {
         var params = req.body;
         animateModel.update(params).then(function (data) {
@@ -54,6 +87,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 新增动效信息
+     * @param req
+     * @param res
+     */
     saveAnimate: function (req, res) {
         var params = req.body;
         animateModel.add(params).then(function (data) {
@@ -63,6 +101,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 上传动效封面
+     * @param req
+     * @param res
+     */
     uploadCoverPic: function (req, res) {
         var form = new formidable.IncomingForm();
         form.encoding = 'utf-8';		//设置编辑
@@ -96,6 +139,11 @@ module.exports = {
         });
     },
 
+    /**
+     * 上传动效附件
+     * @param req
+     * @param res
+     */
     uploadAttachment: function (req, res) {
         var form = new formidable.IncomingForm();
         form.encoding = 'utf-8';		//设置编辑

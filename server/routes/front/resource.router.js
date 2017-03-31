@@ -32,7 +32,7 @@ router.get('/coloricon/type/:typeId', iconCtrl.getColorIconByCollection);
 
 //--------------------动效资源---------------------
 
-router.get('/animate', animateCtrl.render);
+router.get('/animate', animateCtrl.renderList);
 
 /**
  * iconfont&coloricon搜索

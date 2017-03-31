@@ -20,7 +20,7 @@
 
 .main-top {
     position: relative;
-    min-height: 600px;
+    min-height: 74px;
     background: @dark-base;
     color: @white-base;
     .btn-scroll-down {
@@ -38,10 +38,13 @@
     .btn-scroll-down:hover {
         opacity: 1;
     }
+    &.full-page {
+        min-height: 600px;
+    }
 }
 
 .h-container {
-    max-width: 1260px;
+    width: 1260px;
     margin: 0 auto;
     padding: 0 30px;
 }
@@ -107,15 +110,15 @@
 }
 
 .h-intro-list {
-    width: 110%;
+    margin-right: -120px;
 }
 
 .h-cont-box {
     float: left;
     display: block;
-    width: 17.5%;
+    width: 210px;
     margin-bottom: 30px;
-    margin-right: 10%;
+    margin-right: 120px;
     text-align: center;
     color: @text-gray;
     .h-cont-icon {
@@ -548,4 +551,16 @@
     font-size: 22px;
     color: rgba(0, 0, 0, 0.2);
     cursor: pointer;
+}
+
+.h-listbox-img {
+    position: relative;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 }
