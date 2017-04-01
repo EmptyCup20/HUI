@@ -1,15 +1,68 @@
 /**
  * Created by xiangxiao3 on 2016/12/14.
  */
-var db_tools = require("../../../mongo/db_tools");
+var util = require("../util");
+var db = require('../../mongo/mongo');
+var co = require('co');
+var comment = new Schema({
+    content: String,
+    replyer: String,
+    replyTo: String,
+    reply_time: {
+        type: Date,
+        default: Date.now
+    }
+},{
+    versionKey: false
+});
+
+var Artical = new Schema({
+    title: {
+        type: String,
+        require: true,
+        unique: false
+    },
+    info: String,
+    content: String,
+    cover_url: String,
+    pageviews: {
+        type: Number,
+        default: 0
+    },
+    author: {
+        type: String,
+        default: 'admin'
+    },
+    reply:[comment],
+    create_at: {
+        type: Date,
+        default: Date.now
+    }
+}, {
+    versionKey: false
+});
+
+var ArticalModel = db.model("artical", Artical);
+
 module.exports = {
+    getArticalInfoById: function (id) {
+        return new Promise((resolve, reject) => {
+            AnimateModel.find({_id: id}).exec((err, doc) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doc[0]);
+                }
+            })
+        });
+    },
     /**
      * 添加文档
      * @param docObj object
      * @returns {Promise}
      */
-    addDoc : function(docObj){
-        return new Promise(function(resolve, reject) {
+    addDoc: function (docObj) {
+        return new Promise(function (resolve, reject) {
             db_tools.add('work_pool', docObj).then(function (data) {
                 resolve(data)
             }, function (err) {
@@ -22,8 +75,8 @@ module.exports = {
      * @param docObj object
      * @returns {Promise}
      */
-    updateDoc : function(docObj){
-        return new Promise(function(resolve, reject) {
+    updateDoc: function (docObj) {
+        return new Promise(function (resolve, reject) {
             db_tools.edit('work_pool', docObj).then(function (data) {
                 resolve(data)
             }, function (err) {
@@ -31,8 +84,8 @@ module.exports = {
             });
         })
     },
-    delDoc : function(docId){
-        return new Promise(function(resolve, reject) {
+    delDoc: function (docId) {
+        return new Promise(function (resolve, reject) {
             db_tools.remove('work_pool', docId).then(function (data) {
                 resolve(data)
             }, function (err) {
@@ -45,8 +98,8 @@ module.exports = {
      * @param query object
      * @returns {Promise}
      */
-    getAllDoc : function(query){
-        return new Promise(function(resolve, reject) {
+    getAllDoc: function (query) {
+        return new Promise(function (resolve, reject) {
             db_tools.query('work_pool', query).then(function (data) {
                 resolve(data)
             }, function (err) {
@@ -59,8 +112,8 @@ module.exports = {
      * @param docId
      * @returns {Promise}
      */
-    getDocByQuery : function(query){
-        return new Promise(function(resolve, reject) {
+    getDocByQuery: function (query) {
+        return new Promise(function (resolve, reject) {
             db_tools.queryByCondition('work_pool', query).then(function (data) {
                 resolve(data)
             }, function (err) {

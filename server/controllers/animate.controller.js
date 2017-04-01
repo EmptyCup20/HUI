@@ -39,6 +39,11 @@ module.exports = {
         })
     },
 
+    /**
+     * 动效详情页面渲染
+     * @param req
+     * @param res
+     */
     renderDetail: function (req, res) {
         co(function*() {
             var data = yield animateModel.getAnimateInfoById(req.params.id);

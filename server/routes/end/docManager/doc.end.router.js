@@ -25,6 +25,8 @@ router.post('/delDoc', docController.delDoc);
 
 router.get('/getDocList', docController.getDocList);
 
+router.get('/articalInfo/:id', animateCtrl.getArticalInfoById);
+
 //------------------文章管理------------------------//
 //router.get('/docManage', docController.getEndDoc);
 //

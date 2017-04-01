@@ -42,6 +42,8 @@ router.use('/upload', uploadEndRouter);
  */
 router.use('/doc', docEndRouter);
 
+router.use('/artical', docEndRouter);
+
 /**
  * 设计管理
  */

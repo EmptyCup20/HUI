@@ -6,13 +6,19 @@ var docModel = require("../../models/resources/doc.model.js");
 var markdown = require("markdown").markdown;
 
 module.exports = {
+    getArticalInfoById: function (req, res) {
+        co(function*() {
+            var data = yield docModel.getArticalInfoById(req.params.id);
+            res.send(data);
+        })
+    },
     /**
      * 根据id获取
      */
     getDocById: function (req, res) {
         var docId = req.query.id;
         co(function*() {
-            var data = yield docModel.getDocByQuery({_id : docId});
+            var data = yield docModel.getDocByQuery({_id: docId});
             res.send({
                 success: true,
                 data: data.length ? data[0] : null
@@ -30,7 +36,7 @@ module.exports = {
     },
 
     //添加文档
-    addDoc: function(req,res){
+    addDoc: function (req, res) {
         var docObj = req.body;
         co(function*() {
             var data = yield docModel.addDoc(docObj);
@@ -39,7 +45,7 @@ module.exports = {
     },
 
     //添加文档
-    delDoc: function(req,res){
+    delDoc: function (req, res) {
         var docId = req.body.id;
         co(function*() {
             var data = yield docModel.delDoc(docId);
