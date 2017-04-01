@@ -5,11 +5,14 @@ var co = require('co');
 var formidable = require("formidable");
 var request = require('request');
 var fs = require('fs');
+var showdown = require('showdown');
+var moment = require("moment");
 var util = require("../util");
 var fileModel = require("../models/resources/file.model");
 var animateModel = require("../models/animate.model");
 var settings = require('../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
 var fileServerPath = settings.fileServerPath; //图片服务器路径
+var converter = new showdown.Converter();
 
 
 module.exports = {
@@ -21,14 +24,30 @@ module.exports = {
     renderList: function (req, res) {
         var queryParams = {
             pageSize: 20,
-            pageNo: req.query.page || 1
+            pageNo: parseInt(req.query.page, 10) || 1
         };
         co(function*() {
             var data = yield animateModel.getAnimateListByPage(queryParams);
+            var totalPage = Math.ceil(data.total / queryParams.pageSize);
             res.render('resource/animate', {
                 model: "resource",
                 subModel: "animate",
-                data: data.rows
+                data: data.rows,
+                pageNo: queryParams.pageNo,
+                totalPage: totalPage
+            });
+        })
+    },
+
+    renderDetail: function (req, res) {
+        co(function*() {
+            var data = yield animateModel.getAnimateInfoById(req.params.id);
+            data.content = converter.makeHtml(data.content);
+            data.date = moment(data.update_date).format('YYYY-MM-DD');
+            res.render('resource/animateContent', {
+                model: "resource",
+                subModel: "animate",
+                data: data
             });
         })
     },

@@ -2,13 +2,18 @@
     position: relative;
     margin-bottom: 30px;
     background: @white;
-    border-radius: @panel-border-radius;
     transition: .3s;
     .h-panel-header {
         .h-panel-title {
             margin: 0;
             padding: 20px 30px;
             font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            a:hover{
+                color: #666;
+            }
         }
         + .h-panel-body {
             padding-top: 0;
@@ -35,7 +40,7 @@
         float: left;
     }
     &:hover {
-        box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+        box-shadow: 0 0 15px rgba(0, 0, 0, .2);
     }
     &.h-panel-edge {
         .h-panel-body {

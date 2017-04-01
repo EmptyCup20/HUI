@@ -413,13 +413,18 @@ select {
   position: relative;
   margin-bottom: 30px;
   background: #fff;
-  border-radius: 4px;
   transition: .3s;
 }
 .h-panel .h-panel-header .h-panel-title {
   margin: 0;
   padding: 20px 30px;
   font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.h-panel .h-panel-header .h-panel-title a:hover {
+  color: #666;
 }
 .h-panel .h-panel-header + .h-panel-body {
   padding-top: 0;
@@ -445,7 +450,7 @@ select {
   float: left;
 }
 .h-panel:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 .h-panel.h-panel-edge .h-panel-body {
   padding: 0;
@@ -829,17 +834,32 @@ select {
   padding: 20px 30px;
   margin-bottom: 50px;
 }
-.h-doc-section h1 {
+.h-doc-section .h-doc-title {
+  border-bottom: 1px solid #f5f5f5;
+  padding-bottom: 15px;
+}
+.h-doc-section .h-doc-title h1 {
+  margin: 0;
+  line-height: 20px;
+}
+.h-doc-section .h-doc-date {
+  margin-top: 10px;
+  color: #999;
+}
+.h-doc-section .h-doc-content {
   margin-top: 50px;
 }
-.h-doc-section h1:first-child {
+.h-doc-section .h-doc-content h1 {
+  margin-top: 50px;
+}
+.h-doc-section .h-doc-content h1:first-child {
   margin-top: 0;
 }
-.h-doc-section p {
+.h-doc-section .h-doc-content p {
   font-size: 14px;
   margin-bottom: 1em;
 }
-.h-doc-section img {
+.h-doc-section .h-doc-content img {
   max-width: 100%;
   margin: 2em 0;
 }
@@ -938,9 +958,53 @@ select {
   padding-bottom: 56.25%;
   overflow: hidden;
 }
+.h-listbox-img a {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .h-listbox-img img {
+  width: 100%;
+}
+.h-page {
+  margin-top: 10px;
+  text-align: center;
+}
+.page-btn {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 8px;
+  font-size: 50px;
+  color: #fff;
+  line-height: 36px;
+  text-align: center;
+  vertical-align: middle;
+}
+.page-btn:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .2;
+}
+.page-btn i {
+  position: relative;
+  top: -1px;
+}
+.page-btn a {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+  transition: .3s;
+}
+.page-btn a:hover {
+  background: #000;
+  opacity: .5;
 }

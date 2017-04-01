@@ -13,18 +13,38 @@
                     <div class="h-panel h-panel-edge">
                         <div class="h-panel-body">
                             <div class="h-listbox-img">
-                                <img src="<%= item.cover_img_url %>">
+                                <a href="/resource/animate/detail/<%= item._id %>">
+                                    <img src="<%= item.cover_img_url %>">
+                                </a>
                             </div>
                         </div>
                         <div class="h-panel-header">
                             <div class="h-panel-title">
-                                <%= item.title %>
+                                <a href="/resource/animate/detail/<%= item._id %>"><%= item.title %></a>
                             </div>
                         </div>
                     </div>
                 </li>
                 <% }) %>
             </ul>
+            <% if(totalPage > 1){ %>
+            <div class="h-page">
+                <div class="page-btn page-pre">
+                    <% if(pageNo === 1){ %>
+                    <i class="icon-angle-left"></i>
+                    <% }else{ %>
+                    <a href="/resource/animate?page=<%= pageNo - 1 %>"><i class="icon-angle-left"></i></a>
+                    <% } %>
+                </div>
+                <div class="page-btn page-next">
+                    <% if(pageNo === totalPage){ %>
+                    <i class="icon-angle-right"></i>
+                    <% }else{ %>
+                    <a href="/resource/animate?page=<%= pageNo + 1 %>"><i class="icon-angle-right"></i></a>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
         </div>
     </div>
     <% include ../common/footer.ejs %>

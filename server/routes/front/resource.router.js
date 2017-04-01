@@ -34,6 +34,8 @@ router.get('/coloricon/type/:typeId', iconCtrl.getColorIconByCollection);
 
 router.get('/animate', animateCtrl.renderList);
 
+router.get('/animate/detail/:id', animateCtrl.renderDetail);
+
 /**
  * iconfont&coloricon搜索
  */
