@@ -4,14 +4,12 @@
 var db_tools = require("../../../mongo/db_tools");
 var iconModel = require("../../models/resources/icon.model");
 var iconCollectionModel = require("../../models/resources/iconCollection.model");
-var fileModel = require("../../models/resources/file.model");
 var request = require('request');
+var EventProxy = require("eventproxy");
 var fs = require('fs');
 var co = require('co');
 
 var settings = require('../../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
-var fileServerPath = settings.fileServerPath; //图片服务器路径
-var fileDocument = settings.fileDocument;//图片文件夹
 
 var onError = function (err) {
     console.log(err);
@@ -66,20 +64,26 @@ module.exports = {
      * @returns {Promise}
      */
     getCollections: function (req, res) {
+        var ep = new EventProxy();
         co(function*() {
-            var iconTypes = yield iconCollectionModel.getCollectionByQuery({
+            var iconCollections = yield iconCollectionModel.getCollectionByQuery({
                 type: 0
             });
-            var icons = yield iconModel.getIconsByQuery({
-                type: 0
+            iconCollections.forEach(function (collection) {
+                co(function*() {
+                    var icons = yield iconModel.getIconsByQuery({collection_id: collection._id});
+                    collection.icons = icons;
+                    ep.emit('got_collectionIcons');
+                });
             });
-            res.render('resource/iconfont.ejs', {
-                model: "resource",
-                subModel: "iconfont",
-                icons: icons,
-                iconTypes: iconTypes
+            ep.after('got_collectionIcons', iconCollections.length, function () {
+                res.render('resource/iconfont.ejs', {
+                    model: "resource",
+                    subModel: "iconfont",
+                    iconTypes: iconCollections
+                });
             });
-        }).catch(onError);
+        });
     },
 
     /**
@@ -88,20 +92,26 @@ module.exports = {
      * @param res
      */
     getColorIconCollections: function (req, res) {
+        var ep = new EventProxy();
         co(function*() {
-            var iconTypes = yield iconCollectionModel.getCollectionByQuery({
+            var iconCollections = yield iconCollectionModel.getCollectionByQuery({
                 type: 1
             });
-            var icons = yield iconModel.getIconsByQuery({
-                type: 1
+            iconCollections.forEach(function (collection) {
+                co(function*() {
+                    var icons = yield iconModel.getIconsByQuery({collection_id: collection._id});
+                    collection.icons = icons;
+                    ep.emit('got_collectionIcons');
+                });
             });
-            res.render('resource/coloricon.ejs', {
-                model: "resource",
-                subModel: "coloricon",
-                icons: icons,
-                iconTypes: iconTypes
+            ep.after('got_collectionIcons', iconCollections.length, function () {
+                res.render('resource/coloricon.ejs', {
+                    model: "resource",
+                    subModel: "coloricon",
+                    iconTypes: iconCollections
+                });
             });
-        }).catch(onError);
+        });
     },
     /**
      * 根据类型获取图标集

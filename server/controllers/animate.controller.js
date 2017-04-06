@@ -29,6 +29,7 @@ module.exports = {
                 model: "resource",
                 subModel: "animate",
                 data: data.rows,
+                moment: moment,
                 pageNo: queryParams.pageNo,
                 totalPage: totalPage
             });

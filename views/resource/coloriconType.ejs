@@ -1,34 +1,34 @@
 <% include ../common/head.ejs %>
-<div class="h-bg">
+<div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-section minh-485">
+    <div class="h-section bg-lightgray">
         <div class="h-container">
             <!--内容部分-->
             <div class="collection-detail">
                 <div class="h-doc-section">
-                    <div class="h-panel">
-                        <div class="h-panel-header">
-                            <a class="h-panel-back" href="/resource/coloricon"></a>
-                            <h4 class="h-panel-title">
-                                <%= collectionName %>
-                            </h4>
-                            <div class="h-panel-action">
-                                <a class="btn btn-download" href="<%- url %>">psd</a>
-                            </div>
+                    <div class="h-doc-title clearfix">
+                        <div class="pull-left">
+                            <a class="btn-turnback" href="/resource/coloricon"><i class="icon-angle-left"></i></a>
+                            <h1 class="inline-block"><%= collectionName %></h1>
                         </div>
-                        <div class="h-panel-body">
-                            <ul class="icons-container-coloricon clearfix">
-                                <% iconList.forEach(function(value){ %>
-                                <li class="h-col-2">
-                                    <a href="<%- value.url %>"><img src=<%- value.url %> alt=""></a>
-                                    <h5><%- value.name %></h5>
-                                </li>
-                                <% }) %>
-                            </ul>
+                        <% if(url){ %>
+                        <div class="pull-right">
+                            <a class="btn btn-download" href="<%- url %>">psd</a>
                         </div>
+                        <% } %>
+                    </div>
+                    <div class="h-doc-content">
+                        <ul class="h-icon-list clearfix">
+                            <% iconList.forEach(function(value){ %>
+                            <li>
+                                <img src=<%- value.url %> alt="">
+                                <h5><%- value.name %></h5>
+                            </li>
+                            <% }) %>
+                        </ul>
                     </div>
                 </div>
             </div>

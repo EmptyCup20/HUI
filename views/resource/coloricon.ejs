@@ -1,10 +1,10 @@
 <% include ../common/head.ejs %>
-<div class="h-bg">
+<div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-block">
+    <div class="h-section bg-lightgray">
         <div class="h-container clearfix">
             <div class="h-search clearfix">
                 <input type="text" class="pull-right" placeholder="图标名称/类型...">
@@ -12,19 +12,21 @@
             </div>
             <div class="h-row">
                 <% iconTypes.forEach(function(iconType){ %>
-                <div class="h-col-6">
-                    <a class="block-collection" href="coloricon/type/<%= iconType.id %>">
-                        <h4 class="block-collection-title">
-                            <span><%= iconType.name %></span>
-                            <!--<% if(iconType.attachment_url){%><i class="total-num"><a href="<%= iconType.attachment_url %>">下载</a></i><%}%>-->
-                        </h4>
-                        <div class="icons-container-coloricon">
+                <% if(iconType.icons.length){ %>
+                <div class="h-col-4">
+                    <a class="h-panel block-collection" href="coloricon/type/<%= iconType.id %>">
+                        <div class="h-panel-header clearfix">
+                            <h4 class="h-panel-title pull-left"><%= iconType.name %></h4>
+                            <div class="pull-right">
+                                <span class="badge badge-info"><%= iconType.icons.length %></span>
+                            </div>
+                        </div>
+                        <div class="h-panel-body">
                             <ul class="clearfix">
-                                <% var num = 0;icons.forEach(function(icon, index){ %>
-                                <% if(icon.collection_id == iconType.id && num < 12) { num ++ %>
-                                <li class="h-col-4">
+                                <% var num = 0;iconType.icons.forEach(function(icon, index){ %>
+                                <% if(icon.collection_id == iconType.id && num < 16) { num++ %>
+                                <li class="h-col-3 h-icon-wrap">
                                     <img src=<%- icon.url %> alt="">
-                                    <!--<h5><%- icon.name %></h5>-->
                                 </li>
                                 <% } %>
                                 <% }) %>
@@ -32,6 +34,7 @@
                         </div>
                     </a>
                 </div>
+                <% } %>
                 <% }) %>
             </div>
         </div>

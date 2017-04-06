@@ -1,40 +1,41 @@
 <% include ../common/head.ejs %>
-<div class="h-bg">
+<div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-block">
+    <div class="h-section bg-lightgray">
         <div class="h-container">
             <div class="h-search clearfix">
                 <input type="text" class="pull-right" placeholder="图标名称/类型...">
                 <i class="icon-search h-search-icon"></i>
             </div>
             <div class="h-row">
-            <% iconTypes.forEach(function(iconType){ %>
-            <div class="h-col-6">
-                <a class="block-collection" href="iconfont/type/<%= iconType.id %>">
-                    <h4 class="block-collection-title">
-                        <span><%= iconType.name %></span>
-                        <!--<i class="total-num"><a href="<%= iconType.attachment_url %>">下载</a></i>-->
-                    </h4>
-                    <div class="icons-container">
-                        <ul class="clearfix">
-                            <% var num = 0;icons.forEach(function(icon, index){ %>
-                                <% if(icon.collection_id == iconType.id && num < 16) { num ++ %>
-                                <li class="h-col-3 icon-block">
-                                    <div class="svg-wrap">
-                                        <%- icon.svgXML %>
-                                    </div>
-                                    <h5><%- icon.name %></h5>
+                <% iconTypes.forEach(function(iconType){ %>
+                <% if(iconType.icons.length){ %>
+                <div class="h-col-4">
+                    <a class="h-panel block-collection" href="iconfont/type/<%= iconType.id %>">
+                        <div class="h-panel-header clearfix">
+                            <h3 class="h-panel-title pull-left"><%= iconType.name %></h3>
+                            <div class="pull-right">
+                                <span class="badge badge-info"><%= iconType.icons.length %></span>
+                            </div>
+                        </div>
+                        <div class="h-panel-body">
+                            <ul class="clearfix">
+                                <% var num = 0;iconType.icons.forEach(function(icon, index){ %>
+                                <% if(icon.collection_id == iconType.id && num < 16) { num++ %>
+                                <li class="h-col-3 h-icon-wrap">
+                                    <%- icon.svgXML %>
                                 </li>
                                 <% } %>
-                            <% }) %>
-                        </ul>
-                    </div>
-                </a>
-            </div>
-            <% }) %>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+                <% }) %>
             </div>
         </div>
     </div>

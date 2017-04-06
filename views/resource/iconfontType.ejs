@@ -1,51 +1,51 @@
 <% include ../common/head.ejs %>
 <link href="/plugins/dialogeffects/css/dialog.css" rel="stylesheet" type="text/css">
 <link href="/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css">
-<div class="h-bg">
+<div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-section minh-485">
+    <div class="h-section bg-lightgray">
         <div class="h-container">
             <!--内容部分-->
             <div class="collection-detail" data-typeId=<%- typeId %>>
                 <div class="h-doc-section">
-                    <div class="h-panel">
-                        <div class="h-panel-header">
-                            <a class="h-panel-back" href="/resource/iconfont"></a>
-                            <h4 class="h-panel-title">
-                                <%= collectionName %>
-                            </h4>
-                            <div class="h-panel-action">
-                                <a class="btn btn-download" href="<%- url %>">psd</a>
-                                <a class="btn btn-download" id="archiveDownload" href="javascript:void(0);">打包下载</a>
-                            </div>
+                    <div class="h-doc-title clearfix">
+                        <div class="pull-left">
+                            <a class="btn-turnback" href="/resource/iconfont"><i class="icon-angle-left"></i></a>
+                            <h1 class="inline-block"><%= collectionName %></h1>
                         </div>
-                        <div class="h-panel-body">
-                            <ul class="icons-detail-container clearfix">
-                                <% iconList.forEach(function(value){ %>
-                                <li class="single-icon" data-iconid = <%- value._id %>>
-                                        <%- value.svgXML  %>
-                                        <h5><%- value.name %></h5>
-                                    <div class="icon-operation">
-                                        <a class="icon-single-download">
-                                            <i class="icon-download-alt"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                                <% }); %>
-                            </ul>
+                        <div class="pull-right">
+                            <% if(url){ %>
+                            <a class="btn btn-download" href="<%- url %>">psd</a>
+                            <% } %>
+                            <a class="btn btn-download" id="archiveDownload" href="javascript:void(0);">打包下载</a>
                         </div>
+                    </div>
+                    <div class="h-doc-content">
+                        <ul class="h-icon-list clearfix">
+                            <% iconList.forEach(function(value){ %>
+                            <li data-iconid= <%- value._id %>>
+                                <%- value.svgXML %>
+                                <h5><%- value.name %></h5>
+                                <div class="icon-operation">
+                                    <a class="icon-single-download">
+                                        <i class="icon-download-alt"></i>
+                                    </a>
+                                </div>
+                            </li>
+                            <% }) %>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="downloadDialog" class="dialog">
-
-    </div>
     <% include ../common/footer.ejs %>
+</div>
+<div id="downloadDialog" class="dialog">
+
 </div>
 <% include ../common/foot.ejs %>
 <script type="text/javascript" src="/plugins/dialogeffects/js/dialogZ.js"></script>

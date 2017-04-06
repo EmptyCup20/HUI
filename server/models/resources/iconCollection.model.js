@@ -41,7 +41,7 @@ module.exports = {
     },
 
     /**
-     * 获取图表库列表
+     * 获取图标库列表
      * @param query
      * @returns {Promise}
      */
