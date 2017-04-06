@@ -4,37 +4,14 @@
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-section  bg-lightgray">
+    <div class="h-section bg-lightgray">
         <div class="h-container">
-            <!--内容部分-->
             <div class="h-row">
                 <div class="h-col-9">
                     <div class="h-doc-section">
-                        <% category.forEach(function(item){ %>
-                        <h1>
-                            <%= item.name %>
-                        </h1>
-                        <hr>
-                        <% item.content.forEach(function(subItem){ %>
-                        <h3 class="fictitious-anchor">
-                            <%= subItem.name %>
-                        </h3>
-                        <div class="h-panel">
-                            <div class="h-panel-header">
-                                <h4 class="h-panel-title">
-                                    <%= subItem.name %>
-                                </h4>
-                                <div class="h-panel-action">
-                                    <a class="btn btn-download" href="<%- subItem.img_url %>">png</a>
-                                    <a class="btn btn-download" href="<%- subItem.attachment_url %>">psd</a>
-                                </div>
-                            </div>
-                            <div class="h-panel-body">
-                                <img src="<%- subItem.img_url %>">
-                            </div>
+                        <div class="h-doc-content">
+                            <%- content %>
                         </div>
-                        <% }) %>
-                        <% }) %>
                     </div>
                 </div>
                 <div class="h-col-3">

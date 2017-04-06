@@ -5,10 +5,6 @@ var db_tools = require("../../../mongo/db_tools");
 var co = require('co');
 
 module.exports = {
-    getEndPage : function(req,res){
-        res.render('admin/uikit/uikit');
-    },
-
     getUikitPage: function (req, res) {
         co(function*() {
             var data = yield db_tools.queryAll('uikit');
@@ -18,6 +14,10 @@ module.exports = {
                 category: data
             });
         });
+    },
+
+    getContent:function(){
+
     },
 
     /**

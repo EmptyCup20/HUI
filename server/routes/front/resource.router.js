@@ -5,7 +5,7 @@ var express = require("express");
 var router = express.Router();
 var iconCtrl = require("../../controllers/resources/icon.controller.js");
 var iconDownload = require("../../controllers/resources/iconDownload.controller.js");
-var uikitCtrl = require("../../controllers/resources/uikit.controller.js");
+var uikitCtrl = require("../../controllers/uikit.controller.js");
 var animateCtrl = require("../../controllers/animate.controller.js");
 var searchCtrl = require("../../controllers/resources/search.controller.js");
 var co = require('co');
@@ -13,7 +13,7 @@ var co = require('co');
 
 //--------------------uikit---------------------
 
-router.get('/uikit', uikitCtrl.getUikitPage);
+router.get('/uikit', uikitCtrl.renderPage);
 
 
 //--------------------iconfont---------------------
