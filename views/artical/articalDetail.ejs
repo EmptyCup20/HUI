@@ -1,0 +1,78 @@
+<% include ../common/head.ejs %>
+<div class="main-wrapper">
+    <div class="main-top">
+        <% include ../common/header.ejs %>
+    </div>
+    <div class="h-section  bg-lightgray">
+        <!--内容部分-->
+        <div class="h-container">
+            <div class="h-doc-section">
+                <div class="h-doc-title clearfix">
+                    <div class="pull-left">
+                        <h1><%= data.title %></h1>
+                        <div class="h-doc-date">
+                            <%= data.date %>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <div class="artical-author">
+                            <img class="avatar" src="/src/image/admin_avatar.png">
+                            <span class="author-name" title="<%= data.author %>"><%= data.author %></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-doc-content">
+                    <%- data.content %>
+                </div>
+                <div class="h-comment">
+                    <div class="h-block-title">
+                        <span class="h--block-title-text"><%= data.reply.length %>条评论</span>
+                        <span class="h-block-line"></span>
+                    </div>
+                    <div class="h-comment-editor clearfix">
+                        <img class="avatar" src="/src/image/admin_avatar.png">
+                        <textarea class="comment-textarea" placeholder="说说你的看法"></textarea>
+                        <button class="btn btn-primary" type="button" data-action="submit">评论</button>
+                    </div>
+                    <script type="text/template">
+                        <div class="h-comment-editor clearfix">
+                            <img class="avatar" src="/src/image/admin_avatar.png">
+                            <textarea class="comment-textarea" placeholder="说说你的看法"></textarea>
+                            <button class="btn btn-primary" id="commentSubmit" type="button">评论</button>
+                        </div>
+                    </script>
+                    <div class="h-comment-list">
+                        <%# 对于评论按时间排序 %>
+                        <% for(var i = 0, len = data.reply.length; i < len; i++){ %>
+                        <div class="h-comment-item clearfix">
+                            <img class="avatar" src="/src/image/admin_avatar.png" alt="">
+                            <div class="comment-item-header">
+                                <strong class="comment-author">
+                                    <% if(data.reply[i].author){ %>
+                                    <%= data.reply[i].author %>
+                                    <% }else{ %>
+                                    游客
+                                    <% } %>
+                                </strong>
+                                <% if(data.reply[i].replyTo){ %>
+                                <span class="comment-item-split">回复</span><strong><%= data.reply[i].replyTo %></strong>
+                                <% } %>
+                            </div>
+                            <div class="comment-item-content">
+                                <%= data.reply[i].content %>
+                            </div>
+                            <div class="comment-item-footer">
+                                <span class="comment-date"><%= formate(data.reply[i].reply_time) %></span>
+                                <button class="comment-item-action" data-action="reply" data-commentid="<%= data.reply[i]._id %>">回复</button>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../common/footer.ejs %>
+</div>
+<% include ../common/foot.ejs %>
+<script type="text/javascript" src="/src/js/comment.js"></script>

@@ -30,7 +30,7 @@ app.use('/', require('./server/routes/front/index.router.js'));
 app.use('/index', require('./server/routes/front/index.router.js'));
 app.use('/design', require('./server/routes/front/design.router.js'));
 app.use('/resource', require('./server/routes/front/resource.router.js'));
-app.use('/works', require('./server/routes/front/works.router.js'));
+app.use('/artical', require('./server/routes/front/artical.router.js'));
 app.use('/about', require('./server/routes/front/about.router.js'));
 app.use('/login', require('./server/routes/login.router'));
 app.use('/admin', require('./server/routes/end/admin.router.js'));

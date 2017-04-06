@@ -8,7 +8,7 @@ var router = express.Router();
 /**
  * 资源上传管理
  */
-router.post('/imgUpload', uploadCtrl.imgUpload);
+router.post('/fileUpload', uploadCtrl.fileUpload);
 
 router.post('/iconUpload', uploadCtrl.iconUpload);
 

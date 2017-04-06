@@ -3,7 +3,6 @@
  */
 var util = require("../util");
 var db = require('../../mongo/mongo');
-var co = require('co');
 
 var Animate = new db.Schema({
     //标题
@@ -47,21 +46,25 @@ module.exports = {
     getAnimateListByPage: function (queryObj) {
         var pageSize = Number(queryObj.pageSize);
         var pageNo = Number(queryObj.pageNo);
-        var query = AnimateModel.find({});
+        var queryParams = queryObj.searchText ? {"title": new RegExp(queryObj.searchText)} : {};
+        var query = AnimateModel.find(queryParams);
         //开头跳过查询的调试
         query.skip((pageNo - 1) * pageSize);
         //最多显示条数
         query.limit(pageSize);
         //计算分页数据
         return new Promise((resolve, reject) => {
-            query.sort('-create_at').exec(function (err, doc) {
+            AnimateModel.count({}, function (err, count) {
                 if (err) {
                     reject(err);
                 } else {
-                    //计算数据总数
-                    AnimateModel.find(function (err, result) {
-                        var jsonArray = {code: 0, rows: doc, message: null, total: result.length, success: true};
-                        resolve(jsonArray);
+                    query.sort('-create_at').exec(function (err, doc) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            var jsonArray = {code: 0, rows: doc, message: null, total: count, success: true};
+                            resolve(jsonArray);
+                        }
                     });
                 }
             });

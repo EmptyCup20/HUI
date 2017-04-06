@@ -11,8 +11,6 @@ body {
   min-height: 100%;
   min-width: 1110px;
   background: #fff;
-  font-size: 14px;
-  line-height: 1.42857;
   color: #333;
   overflow-x: hidden;
 }
@@ -25,7 +23,7 @@ button,
 input,
 select,
 textarea {
-  font-family: tahoma, "microsoft yahei", "微软雅黑";
+  font: 14px/1.42857 tahoma, "microsoft yahei", "微软雅黑";
 }
 h1 {
   font-size: 24px;
@@ -276,7 +274,6 @@ textarea,
 select {
   border: 1px solid #e4eaec;
   line-height: 1.66667;
-  font-size: 12px;
   border-radius: 3px;
 }
 input,
@@ -313,6 +310,9 @@ select {
   line-height: 1.66667;
   font-size: 12px;
   border-radius: 3px;
+}
+.btn-default {
+  background: transparent;
 }
 .btn-primary {
   background: #62A8EA;
@@ -415,10 +415,12 @@ select {
   background: #fff;
   transition: .3s;
 }
+.h-panel .h-panel-header {
+  padding: 15px;
+}
 .h-panel .h-panel-header .h-panel-title {
-  margin: 0;
-  padding: 20px 30px;
-  font-size: 20px;
+  margin: 0 0 16px;
+  font-size: 16px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -454,6 +456,57 @@ select {
 }
 .h-panel.h-panel-edge .h-panel-body {
   padding: 0;
+}
+.h-comment-editor {
+  position: relative;
+  padding-left: 60px;
+}
+.h-comment-editor .avatar {
+  position: absolute;
+  left: 0;
+}
+.h-comment-editor .comment-textarea {
+  display: block;
+  width: 100%;
+}
+.h-comment-editor button {
+  margin: 10px 0 0 10px;
+  float: right;
+}
+.h-comment-item {
+  position: relative;
+  padding-left: 60px;
+  margin-top: 30px;
+  line-height: 24px;
+}
+.h-comment-item .avatar {
+  position: absolute;
+  left: 0;
+}
+.h-comment-item:hover .comment-item-action {
+  display: inline-block;
+}
+.h-comment-item .h-comment-editor {
+  margin-top: 20px;
+}
+.comment-item-content {
+  margin: 8px 0;
+}
+.comment-item-footer {
+  color: #999;
+}
+.comment-item-action {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  margin-left: 10px;
+}
+.comment-item-action:hover {
+  color: #444;
+}
+.comment-item-split {
+  margin: 0 10px;
 }
 .main-wrapper,
 .full-page {
@@ -831,7 +884,7 @@ select {
 }
 .h-doc-section {
   background: #fff;
-  padding: 20px 30px;
+  padding: 20px 30px 50px;
   margin-bottom: 50px;
 }
 .h-doc-section .h-doc-title {
@@ -843,11 +896,11 @@ select {
   line-height: 20px;
 }
 .h-doc-section .h-doc-date {
-  margin-top: 10px;
+  margin-top: 15px;
   color: #999;
 }
 .h-doc-section .h-doc-content {
-  margin-top: 50px;
+  margin: 50px 0 80px;
 }
 .h-doc-section .h-doc-content h1 {
   margin-top: 50px;
@@ -1007,4 +1060,51 @@ select {
 .page-btn a:hover {
   background: #000;
   opacity: .5;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  border-radius: 50%;
+}
+.artical-author {
+  float: left;
+  color: #777;
+  line-height: 40px;
+}
+.artical-author .author-name {
+  display: inline-block;
+  max-width: 100px;
+  vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.artical-date {
+  float: left;
+  margin-left: 15px;
+  color: #999;
+  line-height: 40px;
+}
+.h-doc-title .author-name {
+  max-width: none;
+}
+.h-block-title {
+  position: relative;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.h-block-title .h--block-title-text {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  background: #fff;
+  padding-right: 20px;
+}
+.h-block-title .h-block-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #e4eaec;
 }

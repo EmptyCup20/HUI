@@ -12,10 +12,4 @@ router.post('/delAnimate', animateCtrl.delAnimate);
 
 router.get('/getAnimateList', animateCtrl.getAnimateList);
 
-//上传附件
-router.post('/uploadCoverPic', animateCtrl.uploadCoverPic);
-
-//上传附件
-router.post('/uploadAttachment', animateCtrl.uploadAttachment);
-
 module.exports = router;

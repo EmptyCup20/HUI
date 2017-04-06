@@ -41,7 +41,7 @@ module.exports = {
     },
 
     /**
-     * 获取图标id获取分类详情
+     * 获取图表库列表
      * @param query
      * @returns {Promise}
      */
@@ -108,4 +108,4 @@ module.exports = {
             });
         })
     }
-}
+};

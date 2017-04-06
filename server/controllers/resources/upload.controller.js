@@ -172,7 +172,7 @@ module.exports = {
      * @param req
      * @param res
      */
-    imgUpload: function (req, res) {
+    fileUpload: function (req, res) {
         var form = new formidable.IncomingForm();
         form.encoding = 'utf-8';		//设置编辑
         form.keepExtensions = true;	 //保留后缀
@@ -187,7 +187,7 @@ module.exports = {
             }
             var file = files[fields.name];
             var fileType = file.name.replace(/^.+\./, '');
-            if (fields.type.indexOf(fileType.toLowerCase()) == -1) {
+            if (fields.type && fields.type.indexOf(fileType.toLowerCase()) == -1) {
                 res.send({
                     success: false,
                     message: "上传文件格式不正确！"

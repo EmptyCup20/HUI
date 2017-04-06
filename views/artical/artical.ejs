@@ -1,0 +1,58 @@
+<% include ../common/head.ejs %>
+<div class="main-wrapper">
+    <div class="main-top">
+        <% include ../common/header.ejs %>
+    </div>
+    <div class="h-section  bg-lightgray">
+        <!--内容部分-->
+        <div class="h-container">
+            <ul class="h-row">
+                <% data.forEach(function(item){ %>
+                <li class="h-col-4">
+                    <div class="h-panel h-panel-edge">
+                        <div class="h-panel-body">
+                            <div class="h-listbox-img">
+                                <a href="/artical/detail/<%= item._id %>">
+                                    <img src="<%= item.cover_url %>">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="h-panel-header">
+                            <h2 class="h-panel-title">
+                                <a href="/artical/detail/<%= item._id %>"><%= item.title %></a>
+                            </h2>
+                            <div class="artical-info clearfix">
+                                <div class="artical-author">
+                                    <img class="avatar" src="/src/image/admin_avatar.png">
+                                    <span class="author-name" title="<%= data.author %>"><%= item.author %></span>
+                                </div>
+                                <div class="artical-date"><%= formate(item.create_at) %></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <% }) %>
+            </ul>
+            <% if(totalPage > 1){ %>
+            <div class="h-page">
+                <div class="page-btn page-pre">
+                    <% if(pageNo === 1){ %>
+                    <i class="icon-angle-left"></i>
+                    <% }else{ %>
+                    <a href="/artical?page=<%= pageNo - 1 %>"><i class="icon-angle-left"></i></a>
+                    <% } %>
+                </div>
+                <div class="page-btn page-next">
+                    <% if(pageNo === totalPage){ %>
+                    <i class="icon-angle-right"></i>
+                    <% }else{ %>
+                    <a href="/artical?page=<%= pageNo + 1 %>"><i class="icon-angle-right"></i></a>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <% include ../common/footer.ejs %>
+</div>
+<% include ../common/foot.ejs %>

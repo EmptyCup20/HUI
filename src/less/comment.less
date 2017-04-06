@@ -1,0 +1,60 @@
+.h-comment-editor {
+    position: relative;
+    padding-left: 60px;
+    .avatar {
+        position: absolute;
+        left: 0;
+    }
+    .comment-textarea {
+        display: block;
+        width: 100%;
+    }
+    button {
+        margin: 10px 0 0 10px;
+        float: right;
+    }
+}
+
+.h-comment-list {
+}
+
+.h-comment-item {
+    position: relative;
+    padding-left: 60px;
+    margin-top: 30px;
+    line-height: 24px;
+    .avatar {
+        position: absolute;
+        left: 0;
+    }
+    &:hover .comment-item-action {
+        display: inline-block;
+    }
+
+    .h-comment-editor{
+        margin-top: 20px;
+    }
+}
+
+.comment-item-content {
+    margin: 8px 0;
+}
+
+.comment-item-footer {
+    color: #999;
+}
+
+.comment-item-action {
+    display: none;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    margin-left: 10px;
+    &:hover {
+        color: #444;
+    }
+}
+
+.comment-item-split {
+    margin: 0 10px;
+}
