@@ -1,47 +1,50 @@
-var db_tools = require("../../../mongo/db_tools");
+var db = require('../../../mongo/mongo');
+
+var DesignDoc = new db.Schema({
+    type: String,
+    content: String,
+    update_date: {
+        type: Date,
+        default: Date.now
+    }
+}, {
+    versionKey: false
+});
+
+var DesignModel = db.model("design_doc", DesignDoc);
+
 module.exports = {
     /**
      * 编辑文档
      * @param docObj object
      * @returns {Promise}
      */
-    updateDoc : function(docObj){
-        return new Promise(function(resolve, reject) {
-            db_tools.edit('design_doc', docObj).then(function (data) {
-                resolve(data)
-            }, function (err) {
-                reject(err);
+    modify: function (data) {
+        return new Promise((resolve, reject) => {
+            DesignModel.findOneAndUpdate({type: data.type}, {$set: data}, {new: true, upsert: true}, function (err, doc) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doc);
+                }
             });
-        })
+        });
     },
 
     /**
-     * 根据id获取内容
-     * @param docId
+     * 根据条件获取文档内容
+     * @param queryObj
      * @returns {Promise}
      */
-    getDocByQuery : function(query){
-        return new Promise(function(resolve, reject) {
-            db_tools.queryByCondition('design_doc', query).then(function (data) {
-                resolve(data)
-            }, function (err) {
-                reject(err);
-            });
-        })
-    },
-
-    /**
-     * 过滤所有文档信息，query为查询条件，
-     * @param query object
-     * @returns {Promise}
-     */
-    getAllDoc : function(query){
-        return new Promise(function(resolve, reject) {
-            db_tools.query('design_doc', query).then(function (data) {
-                resolve(data)
-            }, function (err) {
-                reject(err);
-            });
-        })
-    },
-}
+    getDocByQuery: function (queryObj) {
+        return new Promise((resolve, reject) => {
+            DesignModel.findOne(queryObj).exec((err, doc) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(doc);
+                }
+            })
+        });
+    }
+};

@@ -1,67 +1,47 @@
 var co = require('co');
+var showdown = require('showdown');
+var util = require("../../util");
 var designModel = require("../../models/resources/design.model.js");
-var markdown = require("markdown").markdown;
+var converter = new showdown.Converter();
 
 module.exports = {
     /**
      * 获取设计md
      * 这些id暂时先写死
      */
-    getDesign: function (req, res) {
-        var docName,type = req.params.type.toLowerCase().trim();
-        switch (type){
-            case "web" :
-                docName = "平台";
-                break;
-            case "mobile" :
-                docName = "移动端";
-                break;
-            case "ls" :
-                docName = "大屏端";
-                break;
-        }
+    renderPage: function (req, res) {
+        var type = req.params.type;
         co(function*() {
             var data = yield designModel.getDocByQuery({
-                name : docName
+                type: type
             });
+            var content = data ? converter.makeHtml(data.content) : "";
             res.render('design/design.ejs', {
-                content: markdown.toHTML(data[0].content),
+                content: content,
                 model: "design",
                 type: type
             });
         });
     },
 
-    /**
-     * 根据id获取
-     */
-    getDocById: function (req, res) {
-        var docId = req.query.id;
+    getDocInfo: function (req, res) {
         co(function*() {
-            var data = yield designModel.getDocByQuery({_id : docId});
-            res.send({
-                success: true,
-                data: data.length ? data[0] : null
+            var data = yield designModel.getDocByQuery({
+                type: req.params.type
             });
+            res.send(util.resParse(true, "", data || ""));
         });
     },
 
     //编辑文档
-    updateDoc: function (req, res) {
-        var docObj = req.body;
+    modify: function (req, res) {
+        var formData = {
+            type: req.body.type,
+            content: req.body.content
+        };
         co(function*() {
-            var data = yield designModel.updateDoc(docObj);
-            res.send(data)
-        });
-    },
-
-    /**
-     * 获取列表
-     */
-    getDocList: function (req, res) {
-        co(function*() {
-            var data = yield designModel.getAllDoc(req.query);
-            res.send(data)
+            var data = yield designModel.modify(formData);
+            res.send(util.resParse(true, "更新成功", data));
         });
     }
 }

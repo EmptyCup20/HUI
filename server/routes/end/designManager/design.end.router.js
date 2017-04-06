@@ -5,11 +5,8 @@ var designController = require("../../../controllers/resources/design.controller
 var express = require("express");
 var router = express.Router();
 
-router.get('/getDocById', designController.getDocById);
+router.get('/:type', designController.getDocInfo);
 
-router.post('/updateDoc', designController.updateDoc);
-
-router.get('/getDocList', designController.getDocList);
-
+router.post('/modify', designController.modify);
 
 module.exports = router;

@@ -5,6 +5,6 @@ var express = require("express");
 var router = express.Router();
 var designController = require("../../controllers/resources/design.controller.js");
 
-router.get('/getDesign/:type', designController.getDesign);
+router.get('/:type', designController.renderPage);
 
 module.exports = router;

@@ -403,6 +403,9 @@ select {
   background: #eee;
   color: #333;
 }
+.h-tabbar .h-categories.active-white li a.active {
+  background: #fff;
+}
 .h-tabbar.white {
   background: #fff;
 }
@@ -917,16 +920,9 @@ select {
   height: 190px;
   overflow: hidden;
 }
-.h-row h1 {
-  font-size: 16px;
-}
 .block-list img {
   width: 100%;
   border-radius: 4px;
-}
-.h-row p {
-  color: #9E9E9E;
-  font-size: 14px;
 }
 .block-list h3 {
   text-overflow: ellipsis;
@@ -1201,4 +1197,7 @@ select {
 }
 .dialog-action {
   text-align: center;
+}
+.design-page .h-doc-content {
+  margin: 0;
 }
