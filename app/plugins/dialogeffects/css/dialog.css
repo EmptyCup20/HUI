@@ -74,18 +74,31 @@
     /*animation-fill-mode: forwards;*/
 }
 
+.dialog__close {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -40px;
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    font-size: 32px;
+}
+
 /*.dialog.dialog--open .dialog__content {*/
-    /*-webkit-animation-name: anim-open;*/
-    /*animation-name: anim-open;*/
+/*-webkit-animation-name: anim-open;*/
+/*animation-name: anim-open;*/
 /*}*/
 
 /*.dialog.dialog--close .dialog__content {*/
-    /*-webkit-animation-name: anim-close;*/
-    /*animation-name: anim-close;*/
-    /*-webkit-animation-duration: 0.3s;*/
-    /*animation-duration: 0.3s;*/
-    /*-webkit-animation-timing-function: ease-out;*/
-    /*animation-timing-function: ease-out;*/
+/*-webkit-animation-name: anim-close;*/
+/*animation-name: anim-close;*/
+/*-webkit-animation-duration: 0.3s;*/
+/*animation-duration: 0.3s;*/
+/*-webkit-animation-timing-function: ease-out;*/
+/*animation-timing-function: ease-out;*/
 /*}*/
 
 /* Generated with Bounce.js. Edit at http://goo.gl/6iLZu5 */

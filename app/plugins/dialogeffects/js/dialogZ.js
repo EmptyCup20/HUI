@@ -43,7 +43,7 @@
 
     DialogZ.prototype.render = function () {
         var self = this;
-        var _wrap = '<div class="dialog__overlay"></div><div class="dialog__content"></div>';
+        var _wrap = '<div class="dialog__overlay"></div><div class="dialog__content"><a class="dialog__close">×</a></div>';
         var _content = this.options.content;
 
         this.$element.html(_wrap);
@@ -52,6 +52,10 @@
         // 给多个关闭的功能的元素绑定close事件
         this.$ctrlsClose.each(function () {
             $(this).on('click', this.close.bind(this));
+        });
+
+        this.$element.find('.dialog__close').on("click", function () {
+            self.close();
         });
 
         // esc键关闭dialog
