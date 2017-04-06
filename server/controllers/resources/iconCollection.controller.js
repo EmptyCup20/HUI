@@ -33,7 +33,8 @@ module.exports = {
     getCollection: function (req, res) {
         var queryParams = {
             pageSize: req.query.pageSize,
-            pageNo: req.query.pageNo
+            pageNo: req.query.pageNo,
+            searchText: req.query.search || ""
         }
         co(function*() {
             var data = yield iconCollectionModel.getCollectionByPage(queryParams);
