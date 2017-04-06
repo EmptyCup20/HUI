@@ -9,45 +9,100 @@
     <div class="h-section bg-lightgray">
         <div class="h-container">
             <!--内容部分-->
-            <div class="collection-detail" data-typeId=<%- typeId %>>
-                <div class="h-doc-section">
-                    <div class="h-doc-title clearfix">
-                        <div class="pull-left">
-                            <a class="btn-turnback" href="/resource/iconfont"><i class="icon-angle-left"></i></a>
-                            <h1 class="inline-block"><%= collectionName %></h1>
-                        </div>
-                        <div class="pull-right">
-                            <% if(url){ %>
-                            <a class="btn btn-download" href="<%- url %>">psd</a>
-                            <% } %>
-                            <a class="btn btn-download" id="archiveDownload" href="javascript:void(0);">打包下载</a>
-                        </div>
+            <div class="h-doc-section">
+                <div class="h-doc-title clearfix">
+                    <div class="pull-left">
+                        <a class="btn-turnback" href="/resource/iconfont"><i class="icon-angle-left"></i></a>
+                        <h1 class="inline-block" id="collectionName"><%= collectionName %></h1>
                     </div>
-                    <div class="h-doc-content">
-                        <ul class="h-icon-list clearfix">
-                            <% iconList.forEach(function(value){ %>
-                            <li data-iconid= <%- value._id %>>
-                                <%- value.svgXML %>
-                                <h5><%- value.name %></h5>
-                                <div class="icon-operation">
-                                    <a class="icon-single-download">
-                                        <i class="icon-download-alt"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <% }) %>
-                        </ul>
+                    <div class="pull-right">
+                        <% if(url){ %>
+                        <a class="btn btn-download" href="<%- url %>">psd</a>
+                        <% } %>
+                        <a class="btn btn-download" id="archiveDownload" data-id="<%= typeId %>" href="javascript:void(0);">打包下载</a>
                     </div>
+                </div>
+                <div class="h-doc-content">
+                    <ul class="h-icon-list clearfix">
+                        <% iconList.forEach(function(value){ %>
+                        <li>
+                            <%- value.svgXML %>
+                            <h5><%- value.name %></h5>
+                            <div class="icon-operation" data-iconid= <%- value._id %>>
+                                <a class="icon-single-download">
+                                    <i class="icon-download-alt"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <% }) %>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
     <% include ../common/footer.ejs %>
 </div>
-<div id="downloadDialog" class="dialog">
+<div class="dialog" id="downloadDialog"></div>
 
-</div>
+<script id="packDialogContent" type="text/html">
+    <div class="dialog-content">
+        <h3>{{name}}</h3>
+        <div class="color-choose clearfix">
+            <ul class="color-block-list clearfix">
+                <li style="background:#d81e06"></li>
+                <li style="background:#f4ea2a"></li>
+                <li style="background:#1afa29"></li>
+                <li style="background:#1296db"></li>
+                <li style="background:#13227a"></li>
+                <li style="background:#d4237a"></li>
+                <li style="background:#e6e6e6"></li>
+                <li style="background:#dbdbdb"></li>
+                <li style="background:#cdcdcd"></li>
+                <li style="background:#bfbfbf"></li>
+                <li style="background:#8a8a8a"></li>
+                <li style="background:#707070"></li>
+                <li style="background:#515151"></li>
+                <li style="background:#2c2c2c"></li>
+            </ul>
+            <input class="color-picker" type="text"/>
+        </div>
+    </div>
+    <div class="dialog-action">
+        <a class="btn btn-download" data-action="packDownload" data-id="{{id}}" href="javascript:void(0);">下载</a>
+    </div>
+</script>
+
+<script id="singleDialogContent" type="text/html">
+    <div class="dialog-content">
+        <h3>{{name}}</h3>
+        <div class="preview-svg"></div>
+        <div class="color-choose clearfix">
+            <ul class="color-block-list clearfix">
+                <li style="background:#d81e06"></li>
+                <li style="background:#f4ea2a"></li>
+                <li style="background:#1afa29"></li>
+                <li style="background:#1296db"></li>
+                <li style="background:#13227a"></li>
+                <li style="background:#d4237a"></li>
+                <li style="background:#e6e6e6"></li>
+                <li style="background:#dbdbdb"></li>
+                <li style="background:#cdcdcd"></li>
+                <li style="background:#bfbfbf"></li>
+                <li style="background:#8a8a8a"></li>
+                <li style="background:#707070"></li>
+                <li style="background:#515151"></li>
+                <li style="background:#2c2c2c"></li>
+            </ul>
+            <input class="color-picker" type="text"/>
+        </div>
+    </div>
+    <div class="dialog-action">
+        <a class="btn btn-download" data-action="singleDownload" data-id="{{_id}}" href="javascript:void(0);">下载</a>
+    </div>
+</script>
+
 <% include ../common/foot.ejs %>
 <script type="text/javascript" src="/plugins/dialogeffects/js/dialogZ.js"></script>
 <script type="text/javascript" src="/plugins/spectrum/spectrum.js"></script>
+<script type="text/javascript" src="/plugins/template.js"></script>
 <script type="text/javascript" src="/src/js/icondetail.js"></script>

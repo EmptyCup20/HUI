@@ -42,9 +42,9 @@ router.get('/animate/detail/:id', animateCtrl.renderDetail);
 router.get('/:icontype/search',searchCtrl);
 
 /**
- * 所以资源详情页
+ * 单个图标信息
  */
-router.get('/iconfont/detail/:iconId', iconCtrl.getIconsById);
+router.get('/iconfont/detail/:iconId', iconCtrl.getIconInfoById);
 
 //router.get('/getCollections', icon_source.getCollections);
 //router.get('/getIconByCollection', icon_source.getIconByCollection);

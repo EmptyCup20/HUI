@@ -29,7 +29,7 @@ module.exports = {
     getIconById: function (iconId) {
         return new Promise(function (resolve, reject) {
             db_tools.queryByCondition('icon', {_id: iconId}).then(function (data) {
-                resolve(data)
+                resolve(data[0])
             }, function (err) {
                 reject(err);
             });

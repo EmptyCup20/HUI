@@ -47,15 +47,12 @@ module.exports = {
      * @param req
      * @param res
      */
-    getIconsById: function (req, res) {
+    getIconInfoById: function (req, res) {
         var iconId = req.params.iconId;
         co(function*() {
             var data = yield iconModel.getIconById(iconId);
-            res.render('resource/iconDetail.ejs', {
-                model: "resource",
-                results: data
-            });
-        }).catch(onError);
+            res.send(data);
+        });
     },
     /**
      * 获取svg图标集
