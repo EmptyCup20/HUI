@@ -2,9 +2,33 @@
  * Created by xiangxiao3 on 2016/12/14.
  */
 var util = require("../../util");
-var db_tools = require("../../../mongo/db_tools");
+var db = require('../../../mongo/mongo');
+//图标库
+var icon_collection = new db.Schema({
+    name: {
+        type: String,
+        require: true,
+        unique: false
+    },
 
-var iconCollectionModel = db_tools.init('icon_collection');
+    type: {
+        type: Number,
+        require: true
+    },
+
+    attachment_name: String,
+
+    attachment_url: String,
+
+    create_at: {
+        type: Date,
+        default: Date.now
+    }
+}, {
+    versionKey: false
+});
+
+var IconCollectionModel = db.model("icon_collection", icon_collection);
 
 module.exports = {
     /**
@@ -14,7 +38,7 @@ module.exports = {
      */
     getCollectionById: function (id) {
         return new Promise((resolve, reject) => {
-            iconCollectionModel.find({_id: id}).exec((err, doc) => {
+            IconCollectionModel.find({_id: id}).exec((err, doc) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -30,7 +54,7 @@ module.exports = {
      */
     getCollectionByQuery: function (queryObj) {
         return new Promise((resolve, reject) => {
-            iconCollectionModel.find(queryObj).exec((err, doc) => {
+            IconCollectionModel.find(queryObj).exec((err, doc) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -41,18 +65,36 @@ module.exports = {
     },
 
     /**
-     * 获取图标id获取分类详情
+     * 获取图标库列表
      * @param query
      * @returns {Promise}
      */
-    getCollectionByPage: function (query) {
-        return new Promise(function (resolve, reject) {
-            db_tools.query('icon_collection', query).then(function (data) {
-                resolve(data)
-            }, function (err) {
-                reject(err);
+    getCollectionByPage: function (queryObj) {
+        var pageSize = Number(queryObj.pageSize);
+        var pageNo = Number(queryObj.pageNo);
+        var queryParams = queryObj.searchText ? {"name": new RegExp(queryObj.searchText)} : {};
+        var query = IconCollectionModel.find(queryParams);
+        //开头跳过查询的调试
+        query.skip((pageNo - 1) * pageSize);
+        //最多显示条数
+        query.limit(pageSize);
+        //计算分页数据
+        return new Promise((resolve, reject) => {
+            IconCollectionModel.count({}, function (err, count) {
+                if (err) {
+                    reject(err);
+                } else {
+                    query.sort('-create_at').exec(function (err, doc) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            var jsonArray = {code: 0, rows: doc, message: null, total: count, success: true};
+                            resolve(jsonArray);
+                        }
+                    });
+                }
             });
-        })
+        });
     },
 
     /**
@@ -62,7 +104,7 @@ module.exports = {
      */
     addCollection: function (data) {
         return new Promise((resolve, reject) => {
-            iconCollectionModel.create(data, function (err) {
+            IconCollectionModel.create(data, function (err) {
                 if (err) {
                     reject(util.resParse(false, err));
                 } else {
@@ -80,7 +122,7 @@ module.exports = {
      */
     updateCollection: function (params) {
         return new Promise((resolve, reject) => {
-            iconCollectionModel.findOneAndUpdate({_id: params._id}, {$set: params}, {new: true}, function (err) {
+            IconCollectionModel.findOneAndUpdate({_id: params._id}, {$set: params}, {new: true}, function (err) {
                 if (err) {
                     reject(util.resParse(false, err));
                 } else {
@@ -96,7 +138,7 @@ module.exports = {
      */
     delCollection: function (ids) {
         return new Promise((resolve, reject) => {
-            iconCollectionModel.remove({"_id": {$in: ids}}, function (err) {
+            IconCollectionModel.remove({"_id": {$in: ids}}, function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -108,4 +150,4 @@ module.exports = {
             });
         })
     }
-}
+};

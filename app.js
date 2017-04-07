@@ -3,7 +3,7 @@ var path = require('path');
 var app = express();
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var ConnectCas = require('connect-cas2');
+var ConnectCas = require('node-cas-client');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var MemoryStore = require('session-memory-store')(session);
@@ -24,7 +24,7 @@ app.use(session({
 }));
 
 var casClient = new ConnectCas({
-    debug: true,
+    debug: false,
     servicePrefix: 'http://localhost:7080',
     serverPath: 'https://ssouat.hikvision.com',
     paths: {
@@ -73,10 +73,9 @@ app.all('/admin/*', function (req, res, next) {
 });
 
 app.use('/', require('./server/routes/front/index.router.js'));
-app.use('/index', require('./server/routes/front/index.router.js'));
 app.use('/design', require('./server/routes/front/design.router.js'));
 app.use('/resource', require('./server/routes/front/resource.router.js'));
-app.use('/works', require('./server/routes/front/works.router.js'));
+app.use('/article', require('./server/routes/front/article.router.js'));
 app.use('/about', require('./server/routes/front/about.router.js'));
 app.use('/login', require('./server/routes/login.router'));
 app.use('/admin', require('./server/routes/end/admin.router.js'));

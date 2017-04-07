@@ -2,7 +2,7 @@
  * Created by zhangxin14 on 2017/3/29.
  */
 $(function(){
-    $('.js-comment-block').on('click','.btn-submit',function(){
+    $('#commentSubmit').on('click',function(){
         var pathArr = window.location.pathname.split('/');
         var replyTo = $(this).closest('.content-box').find('h6').text();
         $.ajax({

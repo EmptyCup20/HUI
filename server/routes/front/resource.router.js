@@ -5,7 +5,7 @@ var express = require("express");
 var router = express.Router();
 var iconCtrl = require("../../controllers/resources/icon.controller.js");
 var iconDownload = require("../../controllers/resources/iconDownload.controller.js");
-var uikitCtrl = require("../../controllers/resources/uikit.controller.js");
+var uikitCtrl = require("../../controllers/uikit.controller.js");
 var animateCtrl = require("../../controllers/animate.controller.js");
 var searchCtrl = require("../../controllers/resources/search.controller.js");
 var co = require('co');
@@ -13,7 +13,7 @@ var co = require('co');
 
 //--------------------uikit---------------------
 
-router.get('/uikit', uikitCtrl.getUikitPage);
+router.get('/uikit', uikitCtrl.renderPage);
 
 
 //--------------------iconfont---------------------
@@ -42,9 +42,9 @@ router.get('/animate/detail/:id', animateCtrl.renderDetail);
 router.get('/:icontype/search',searchCtrl);
 
 /**
- * 所以资源详情页
+ * 单个图标信息
  */
-router.get('/iconfont/detail/:iconId', iconCtrl.getIconsById);
+router.get('/iconfont/detail/:iconId', iconCtrl.getIconInfoById);
 
 //router.get('/getCollections', icon_source.getCollections);
 //router.get('/getIconByCollection', icon_source.getIconByCollection);

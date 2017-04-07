@@ -4,14 +4,10 @@
 var co = require('co');
 var formidable = require("formidable");
 var request = require('request');
-var fs = require('fs');
 var showdown = require('showdown');
 var moment = require("moment");
 var util = require("../util");
-var fileModel = require("../models/resources/file.model");
 var animateModel = require("../models/animate.model");
-var settings = require('../../settings' + (process.env.MODEL ? "-" + process.env.MODEL : "-dev"));
-var fileServerPath = settings.fileServerPath; //图片服务器路径
 var converter = new showdown.Converter();
 
 
@@ -24,7 +20,7 @@ module.exports = {
     renderList: function (req, res) {
         var queryParams = {
             pageSize: 20,
-            pageNo: parseInt(req.query.page, 10) || 1
+            pageNo: Number(req.query.page) || 1
         };
         co(function*() {
             var data = yield animateModel.getAnimateListByPage(queryParams);
@@ -33,12 +29,18 @@ module.exports = {
                 model: "resource",
                 subModel: "animate",
                 data: data.rows,
+                moment: moment,
                 pageNo: queryParams.pageNo,
                 totalPage: totalPage
             });
         })
     },
 
+    /**
+     * 动效详情页面渲染
+     * @param req
+     * @param res
+     */
     renderDetail: function (req, res) {
         co(function*() {
             var data = yield animateModel.getAnimateInfoById(req.params.id);
@@ -60,8 +62,9 @@ module.exports = {
     getAnimateList: function (req, res) {
         var queryParams = {
             pageSize: req.query.pageSize,
-            pageNo: req.query.pageNo
-        }
+            pageNo: req.query.pageNo,
+            searchText: req.query.search || ""
+        };
         co(function*() {
             var data = yield animateModel.getAnimateListByPage(queryParams);
             res.send(data);
@@ -118,78 +121,5 @@ module.exports = {
         }, function () {
             res.send(util.resParse(false, "添加失败"));
         })
-    },
-
-    /**
-     * 上传动效封面
-     * @param req
-     * @param res
-     */
-    uploadCoverPic: function (req, res) {
-        var form = new formidable.IncomingForm();
-        form.encoding = 'utf-8';		//设置编辑
-        form.keepExtensions = true;	 //保留后缀
-        form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
-        form.multiples = true;
-        form.parse(req, function (err, fields, files) {
-            if (err) {
-                res.send({
-                    success: false,
-                    message: 'error:' + err
-                });
-                return;
-            }
-            var file = files[fields.name];
-            var fileType = file.name.replace(/^.+\./, '');
-            if (fields.type.indexOf(fileType.toLowerCase()) == -1) {
-                return res.send(util.resParse(false, "上传文件格式不正确！"));
-            }
-            fileModel.upload(file.path).then(function (data) {
-                if (data.type !== "success") {
-                    return res.send(util.resParse(false, "上传失败！请重试"));
-                }
-                res.send(util.resParse(true, "上传成功！", {
-                    cover_img_url: fileServerPath + data.url
-                }));
-            }, function (err) {
-                console.log("Upload error:" + err);
-                res.send(util.resParse(false, "上传失败！请重试"));
-            });
-        });
-    },
-
-    /**
-     * 上传动效附件
-     * @param req
-     * @param res
-     */
-    uploadAttachment: function (req, res) {
-        var form = new formidable.IncomingForm();
-        form.encoding = 'utf-8';		//设置编辑
-        form.keepExtensions = true;	 //保留后缀
-        form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
-        form.multiples = true;
-        form.parse(req, function (err, fields, files) {
-            if (err) {
-                res.send({
-                    success: false,
-                    message: 'error:' + err
-                });
-                return;
-            }
-            var file = files[fields.name];
-            fileModel.upload(file.path).then(function (data) {
-                if (data.type !== "success") {
-                    return res.send(util.resParse(false, "上传失败！请重试"));
-                }
-                res.send(util.resParse(true, "上传成功！", {
-                    attachment_url: fileServerPath + '/containers/download' + data.url,
-                    attachment_name: file.name
-                }));
-            }, function (err) {
-                console.log("Upload error:" + err);
-                res.send(util.resParse(false, "上传失败！请重试"));
-            });
-        });
     }
 };

@@ -18,10 +18,11 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="h-panel-header">
-                            <div class="h-panel-title">
+                        <div class="h-panel-header clearfix">
+                            <div class="h-panel-title pull-left">
                                 <a href="/resource/animate/detail/<%= item._id %>"><%= item.title %></a>
                             </div>
+                            <span class="update-date pull-right"><%= moment(item.update_date).format('YYYY-MM-DD') %></span>
                         </div>
                     </div>
                 </li>

@@ -10,9 +10,13 @@
             <li><a class="<% if(model == 'design'){ %>active<% } %>" href="/design/getDesign/web">HUI设计语言</a></li>
             <li><a class="<% if(model == 'resource'){ %>active<% } %>" href="/resource/uikit">资源库</a></li>
             <li><a class="<% if(model == 'front-end'){ %>active<% } %>" href="http://10.20.134.55:4000/">前端开发</a></li>
-            <li><a class="<% if(model == 'works'){ %>active<% } %>" href="/works">作品池</a></li>
+            <li><a class="<% if(model == 'article'){ %>active<% } %>" href="/article">作品池</a></li>
             <li><a class="<% if(model == 'about'){ %>active<% } %>" href="/about">关于我们</a></li>
-            <li><a  href="/login">登录</a></li>
+            <% if(loginUser){%>
+                <li><a href="/logout"><span style="margin-right: 8px;"><%= loginUser %></span>退出</a></li>
+            <%}else{%>
+                <li><a  href="/login">登录</a></li>
+            <%}%>
         </ul>
     </div>
 </div>

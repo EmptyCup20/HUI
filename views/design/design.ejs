@@ -8,10 +8,16 @@
     </div>
     <div class="h-tabbar">
         <div class="h-container">
-            <ul class="h-categories">
-                <li><a href="/design/getDesign/mobile" <%if(type=="mobile"){%>class="active"<%}%>>移动端</a></li>
-                <li><a href="/design/getDesign/web" <%if(type=="web"){%>class="active"<%}%>>平台</a></li>
-                <li><a href="/design/getDesign/ls" <%if(type=="ls"){%>class="active"<%}%>>大屏</a></li>
+            <ul class="h-categories active-white">
+                <li><a href="/design/mobile" <% if(type == "mobile"){ %>class="active"
+                            <% } %>
+                    >移动端</a></li>
+                <li><a href="/design/web" <% if(type == "web"){ %>class="active"
+                            <% } %>
+                    >web</a></li>
+                <li><a href="/design/largeScreen" <% if(type == "largeScreen"){ %>class="active"
+                            <% } %>
+                    >大屏</a></li>
             </ul>
         </div>
     </div>
@@ -20,7 +26,9 @@
             <div class="h-row">
                 <div class="h-col-9">
                     <div class="h-doc-section">
-                        <%- content %>
+                        <div class="h-doc-content">
+                            <%- content %>
+                        </div>
                     </div>
                 </div>
                 <div class="h-col-3">

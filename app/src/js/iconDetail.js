@@ -1,95 +1,105 @@
 /**
  * Created by zhangxin14 on 2017/3/13.
  */
-$(function(){
-    var iconId;
+(function ($) {
+    $(function () {
+        var $downloadDialog = $("#downloadDialog");
 
-    $('.single-icon').mouseenter(function(){
-        $(this).find('.icon-operation').slideDown(100);
-    });
-    $('.single-icon').mouseleave(function(){
-        $(this).find('.icon-operation').slideUp(100);
-    });
-    $("#downloadDialog").dialogZ({
-        content:'<div class="h-panel-body">'+
-                    '<div class="preview-svg"></div>'+
-                    '<div class="color-list">' +
-                        '<span class="color-block" style="background:#d81e06"></span>'+
-                        '<span class="color-block" style="background:#f4ea2a"></span>'+
-                        '<span class="color-block" style="background:#1afa29"></span>'+
-                        '<span class="color-block" style="background:#1296db"></span>'+
-                        '<span class="color-block" style="background:#13227a"></span>'+
-                        '<span class="color-block" style="background:#d4237a"></span>'+
-                        '<span class="color-block" style="background:#e6e6e6"></span>'+
-                        '<span class="color-block" style="background:#dbdbdb"></span>'+
-                        '<span class="color-block" style="background:#cdcdcd"></span>'+
-                        '<span class="color-block" style="background:#bfbfbf"></span>'+
-                        '<span class="color-block" style="background:#8a8a8a"></span>'+
-                        '<span class="color-block" style="background:#707070"></span>'+
-                        '<span class="color-block" style="background:#515151"></span>'+
-                        '<span class="color-block" style="background:#2c2c2c"></span>'+
-                    '</div>'+
-                '</div>'+
-                '<h2>'+
-                    '<input type="text" id="colorSelect" />' +
-                    '<a class="btn btn-download" id="download" href="javascript:void(0);">下载</a>'+
-                '</h2>'
-    });
+        $downloadDialog.dialogZ();
 
-    function getColor(){
-        var color = $('#colorSelect').spectrum("get");
-        return color.toHex();
-    }
+        //设置颜色
+        $(".color-block").on('click', function () {
+            $('#colorSelect').spectrum("set", $(this).css("background"));
+            setSvgColor()
+        });
 
-    function setSvgColor(){
-        var $path = $(".preview-svg path");
-        if($path.length){
-            $path.css('fill', '#' + getColor());
-        }
-    }
 
-    //初始化颜色选择器
-    $('#colorSelect').spectrum({
-        color: '#000',
-        preferredFormat: "hex",
-        showInput: true,
-        allowEmpty:true,
-        cancelText: "取消",
-        chooseText: "确定",
-        className: 'color-select',
-        change: setSvgColor
-    });
+        //下载
+        $('#download').on('click', function () {
+            if ($(".preview-svg svg").length) {
+                window.location.href = '/resource/iconfont/iconDownload?iconId=' + iconId + '&color=' + getColor()
+            } else {
+                var typeId = $('.collection-detail').data('typeid');
+                window.location.href = '/resource/iconfont/archiveDownload?typeId=' + typeId + '&color=' + getColor()
+            }
+        });
 
-    //设置颜色
-    $(".color-block").on('click',function() {
-        $('#colorSelect').spectrum("set", $(this).css("background"));
-        setSvgColor()
-    });
+        //打开dialog
+        $('#archiveDownload').on('click', function () {
+            var collectionId = $(this).data("id");
+            var collectionName = $("#collectionName").text();
+            var html = template('packDialogContent', {
+                id: collectionId,
+                name: collectionName
+            });
+            $downloadDialog.dialogZ('setContent', html);
+            //初始化颜色选择器
+            initColorPicker();
+            $downloadDialog.dialogZ('show');
+        });
 
-    //打开dialog
-    $('#archiveDownload').on('click',function(){
-        $("#downloadDialog").find('svg').remove();
-        $("#downloadDialog").dialogZ('show');
-    });
+        $(".h-icon-list").on("click", ".icon-single-download", function () {
+            var iconId = $(this).parent().data('iconid');
+            getIconInfo(iconId, function (data) {
+                var html = template('singleDialogContent', data);
+                $downloadDialog.dialogZ('setContent', html);
+                $downloadDialog.find(".preview-svg").html(data.svgXML);
+                //初始化颜色选择器
+                initColorPicker();
+                $downloadDialog.dialogZ('show');
+            });
+        });
 
-    //下载
-    $('#download').on('click',function(){
-        if($(".preview-svg svg").length){
+        $(document).on("click", ".color-block-list>li", function () {
+            $('.color-picker', $downloadDialog).spectrum("set", $(this).css("background"));
+            setSvgColor();
+        });
+
+        //单个下载
+        $(document).on("click", "[data-action=singleDownload]", function () {
+            var iconId = $(this).data("id");
             window.location.href = '/resource/iconfont/iconDownload?iconId=' + iconId + '&color=' + getColor()
-        }else{
-            var typeId = $('.collection-detail').data('typeid');
-            window.location.href = '/resource/iconfont/archiveDownload?typeId=' + typeId + '&color=' + getColor()
+        });
+
+        //打包下载
+        $(document).on("click", "[data-action=packDownload]", function () {
+            var collectionId = $(this).data("id");
+            window.location.href = '/resource/iconfont/archiveDownload?typeId=' + collectionId + '&color=' + getColor()
+        });
+
+        function initColorPicker() {
+            $('.color-picker', $downloadDialog).spectrum({
+                color: '#000',
+                preferredFormat: "hex",
+                showInput: true,
+                allowEmpty: true,
+                cancelText: "取消",
+                chooseText: "确定",
+                className: 'color-select',
+                change: setSvgColor
+            });
+        }
+
+        function getColor() {
+            var color = $('.color-picker', $downloadDialog).spectrum("get");
+            return color.toHex();
+        }
+
+        function setSvgColor() {
+            var $path = $(".preview-svg path", $downloadDialog);
+            if ($path.length) {
+                $path.css('fill', '#' + getColor());
+            }
         }
     });
 
-    //单个icon下载
-    $('.icon-single-download').on('click',function(){
-        var $svg = $(this).parents('.single-icon').find('svg').clone();
-        iconId = $(this).parents('.single-icon').data('iconid');
-        $('#colorSelect').spectrum("set", $(this).css("background"));
-        $(".preview-svg svg").remove();
-        $(".preview-svg").append($svg[0]);
-        $("#downloadDialog").dialogZ('show');
-    })
+    function getIconInfo(id, callback) {
+        $.ajax({
+            url: "/resource/iconfont/detail/" + id
+        }).done(function (res) {
+            callback && callback(res);
+        })
+    }
 
-});
+
+})(jQuery);

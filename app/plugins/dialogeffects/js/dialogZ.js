@@ -41,9 +41,9 @@
     };
 
 
-    DialogZ.prototype.render = function(){
+    DialogZ.prototype.render = function () {
         var self = this;
-        var _wrap = '<div class="dialog__overlay"></div><div class="dialog__content"></div>';
+        var _wrap = '<div class="dialog__overlay"></div><div class="dialog__content"><a class="dialog__close">×</a></div>';
         var _content = this.options.content;
 
         this.$element.html(_wrap);
@@ -52,6 +52,10 @@
         // 给多个关闭的功能的元素绑定close事件
         this.$ctrlsClose.each(function () {
             $(this).on('click', this.close.bind(this));
+        });
+
+        this.$element.find('.dialog__close').on("click", function () {
+            self.close();
         });
 
         // esc键关闭dialog
@@ -66,6 +70,11 @@
         if ($oDialogOVerlay.length) {
             $oDialogOVerlay.on('click', this.close.bind(this));
         }
+    };
+
+    DialogZ.prototype.setContent = function (content) {
+        this.options.content = content || this.options.content;
+        this.render();
     };
 
 
@@ -128,6 +137,7 @@
             if (typeof option === 'string') data[option](params);
         })
     }
+
     //将`DialogZ`这个原型方法赋值给`old`,做一个备份,防止有其他插件名称也为`DialogZ`,而造成冲突
     var old = $.fn.dialogZ;
     //对`DialogZ`的原型方法赋值
