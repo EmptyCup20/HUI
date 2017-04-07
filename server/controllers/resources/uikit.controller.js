@@ -11,7 +11,8 @@ module.exports = {
             res.render('resource/uikit', {
                 model: "resource",
                 subModel: "uikit",
-                category: data
+                category: data,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         });
     },
@@ -113,7 +114,8 @@ module.exports = {
                 _id: categoryId
             })
             res.render('admin/uikit/uikitEdit.ejs', {
-                data: data[0]
+                data: data[0],
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         });
     },

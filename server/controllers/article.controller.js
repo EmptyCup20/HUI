@@ -23,7 +23,8 @@ module.exports = {
                 data: data.rows,
                 formate: util.formatShowDate,
                 pageNo: queryParams.pageNo,
-                totalPage: totalPage
+                totalPage: totalPage,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         }, function () {
             res.render('article/article', {
@@ -31,7 +32,8 @@ module.exports = {
                 data: [],
                 formate: util.formatShowDate,
                 pageNo: 1,
-                totalPage: 1
+                totalPage: 1,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         });
     },
@@ -45,6 +47,7 @@ module.exports = {
                 model: "article",
                 data: data,
                 formate: util.formatShowDate,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         })
     },

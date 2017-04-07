@@ -77,7 +77,8 @@ module.exports = {
                 res.render('resource/iconfont.ejs', {
                     model: "resource",
                     subModel: "iconfont",
-                    iconTypes: iconCollections
+                    iconTypes: iconCollections,
+                    loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
                 });
             });
         });
@@ -105,7 +106,8 @@ module.exports = {
                 res.render('resource/coloricon.ejs', {
                     model: "resource",
                     subModel: "coloricon",
-                    iconTypes: iconCollections
+                    iconTypes: iconCollections,
+                    loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
                 });
             });
         });
@@ -128,7 +130,8 @@ module.exports = {
                 url: collection[0].attachment_url,
                 collectionName: collection[0].name,
                 typeId: typeId,
-                iconList: data
+                iconList: data,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         }).catch(onError);
     },
@@ -150,7 +153,8 @@ module.exports = {
                 subModel: "coloricon",
                 collectionName: collection[0].name,
                 url: collection[0].attachment_url,
-                iconList: data
+                iconList: data,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         }).catch(onError);
     }

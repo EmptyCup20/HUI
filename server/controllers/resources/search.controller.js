@@ -16,7 +16,8 @@ function search(req,res){
             model: "resource",
             subModel: req.params.icontype,
             collectionName: searchKey,
-            iconList: data
+            iconList: data,
+            loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
         });
     });
 }
