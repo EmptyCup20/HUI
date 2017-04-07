@@ -58,11 +58,15 @@ module.exports = {
      * @param res
      */
     addComment: function (req, res) {
+        if(!req.session.cas || !req.session.cas.user){
+            res.send(util.resParse(false, "未登录，请登录后评论"));
+            return;
+        }
         co(function*() {
             var formData = {
                 replyTo: req.body.replyTo || null,
                 content: req.body.message,
-                author: req.body.author || null
+                author: req.session.cas.user || null
             };
             var articleId = req.params.id;
             articleModel.insertComment({_id: articleId}, {reply: formData}).then(function (data) {

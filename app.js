@@ -36,7 +36,6 @@ var casClient = new ConnectCas({
         proxyCallback: ''
     },
     match: [
-        'api',
         'login'
     ],
     redirect: false,
