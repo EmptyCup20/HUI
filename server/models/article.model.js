@@ -15,7 +15,7 @@ var comment = new db.Schema({
     versionKey: false
 });
 
-var Artical = new db.Schema({
+var Article = new db.Schema({
     title: {
         type: String,
         require: true,
@@ -41,7 +41,7 @@ var Artical = new db.Schema({
     versionKey: false
 });
 
-var ArticalModel = db.model("artical", Artical);
+var ArticleModel = db.model("article", Article);
 
 module.exports = {
     /**
@@ -49,9 +49,9 @@ module.exports = {
      * @param id
      * @returns {Promise}
      */
-    getArticalInfoById: function (id) {
+    getArticleInfoById: function (id) {
         return new Promise((resolve, reject) => {
-            ArticalModel.find({_id: id}).exec((err, doc) => {
+            ArticleModel.find({_id: id}).exec((err, doc) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -65,18 +65,18 @@ module.exports = {
      * 根据页码获取文章列表
      * @returns {Promise}
      */
-    getArticalListByPage: function (queryObj) {
+    getArticleListByPage: function (queryObj) {
         var pageSize = Number(queryObj.pageSize);
         var pageNo = Number(queryObj.pageNo);
         var queryParams = queryObj.searchText ? {"title": new RegExp(queryObj.searchText)} : {};
-        var query = ArticalModel.find(queryParams);
+        var query = ArticleModel.find(queryParams);
         //开头跳过查询的调试
         query.skip((pageNo - 1) * pageSize);
         //最多显示条数
         query.limit(pageSize);
         //计算分页数据
         return new Promise((resolve, reject) => {
-            ArticalModel.count({}, function (err, count) {
+            ArticleModel.count({}, function (err, count) {
                 if (err) {
                     reject(err);
                 } else {
@@ -97,7 +97,7 @@ module.exports = {
 
     insertComment: function (queryObj, subObj) {
         return new Promise((resolve, reject) => {
-            ArticalModel.findOneAndUpdate(queryObj, {$push: subObj}, {new: true, upsert: true}, function (err, doc) {
+            ArticleModel.findOneAndUpdate(queryObj, {$push: subObj}, {new: true, upsert: true}, function (err, doc) {
                 if (err) {
                     reject(err);
                 } else {
@@ -114,7 +114,7 @@ module.exports = {
      */
     add: function (data) {
         return new Promise((resolve, reject) => {
-            ArticalModel.create(data, function (err, doc) {
+            ArticleModel.create(data, function (err, doc) {
                 if (err) {
                     reject(err);
                 } else {
@@ -131,7 +131,7 @@ module.exports = {
      */
     del: function (ids) {
         return new Promise((resolve, reject) => {
-            ArticalModel.remove({"_id": {$in: ids}}, function (err) {
+            ArticleModel.remove({"_id": {$in: ids}}, function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -148,7 +148,7 @@ module.exports = {
      */
     modify: function (data) {
         return new Promise((resolve, reject) => {
-            ArticalModel.findOneAndUpdate({_id: data._id}, {$set: data}, {new: true}, function (err, doc) {
+            ArticleModel.findOneAndUpdate({_id: data._id}, {$set: data}, {new: true}, function (err, doc) {
                 if (err) {
                     reject(err);
                 } else {

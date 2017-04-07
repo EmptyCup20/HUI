@@ -1050,18 +1050,18 @@ select {
   margin-right: 12px;
   border-radius: 50%;
 }
-.artical-info {
+.article-info {
   margin-top: 10px;
 }
-.artical-author {
+.article-author {
   float: left;
   color: #777;
   line-height: 40px;
 }
-.artical-author .avatar {
+.article-author .avatar {
   vertical-align: middle;
 }
-.artical-author .author-name {
+.article-author .author-name {
   display: inline-block;
   max-width: 100px;
   vertical-align: middle;
@@ -1069,7 +1069,7 @@ select {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.artical-date {
+.article-date {
   float: left;
   margin-left: 15px;
   color: #999;

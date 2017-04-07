@@ -3,6 +3,8 @@ var path = require('path');
 var app = express();
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+//var cookieParser = require('cookie-parser');
 
 global.basePath = path.join(__dirname, '/');
 
@@ -14,6 +16,13 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+//app.use(cookieParser());
+//app.use(session({
+//    secret: '12345',
+//    cookie: {maxAge: 24 * 60 * 60 * 1000},
+//    resave: false
+//}));
 
 //设置跨域访问
 app.all('/admin/*', function (req, res, next) {
@@ -30,7 +39,7 @@ app.use('/', require('./server/routes/front/index.router.js'));
 app.use('/index', require('./server/routes/front/index.router.js'));
 app.use('/design', require('./server/routes/front/design.router.js'));
 app.use('/resource', require('./server/routes/front/resource.router.js'));
-app.use('/artical', require('./server/routes/front/artical.router.js'));
+app.use('/article', require('./server/routes/front/article.router.js'));
 app.use('/about', require('./server/routes/front/about.router.js'));
 app.use('/login', require('./server/routes/login.router'));
 app.use('/admin', require('./server/routes/end/admin.router.js'));

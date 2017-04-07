@@ -12,21 +12,21 @@
                     <div class="h-panel h-panel-edge">
                         <div class="h-panel-body">
                             <div class="h-listbox-img">
-                                <a href="/artical/detail/<%= item._id %>">
+                                <a href="/article/detail/<%= item._id %>">
                                     <img src="<%= item.cover_url %>">
                                 </a>
                             </div>
                         </div>
                         <div class="h-panel-header">
                             <h2 class="h-panel-title">
-                                <a href="/artical/detail/<%= item._id %>"><%= item.title %></a>
+                                <a href="/article/detail/<%= item._id %>"><%= item.title %></a>
                             </h2>
-                            <div class="artical-info clearfix">
-                                <div class="artical-author">
+                            <div class="article-info clearfix">
+                                <div class="article-author">
                                     <img class="avatar" src="/src/image/admin_avatar.png">
                                     <span class="author-name" title="<%= data.author %>"><%= item.author %></span>
                                 </div>
-                                <div class="artical-date"><%= formate(item.create_at) %></div>
+                                <div class="article-date"><%= formate(item.create_at) %></div>
                             </div>
                         </div>
                     </div>
@@ -39,14 +39,14 @@
                     <% if(pageNo === 1){ %>
                     <i class="icon-angle-left"></i>
                     <% }else{ %>
-                    <a href="/artical?page=<%= pageNo - 1 %>"><i class="icon-angle-left"></i></a>
+                    <a href="/article?page=<%= pageNo - 1 %>"><i class="icon-angle-left"></i></a>
                     <% } %>
                 </div>
                 <div class="page-btn page-next">
                     <% if(pageNo === totalPage){ %>
                     <i class="icon-angle-right"></i>
                     <% }else{ %>
-                    <a href="/artical?page=<%= pageNo + 1 %>"><i class="icon-angle-right"></i></a>
+                    <a href="/article?page=<%= pageNo + 1 %>"><i class="icon-angle-right"></i></a>
                     <% } %>
                 </div>
             </div>

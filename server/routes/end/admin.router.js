@@ -3,8 +3,7 @@
  */
 var iconTypeEndRouter = require("./iconManager/iconCollection.end.router.js");
 var iconEndRouter = require("./iconManager/icon.end.router.js");
-//var docEndRouter = require("./docManager/doc.end.router.js");
-var articalRouter = require("./artical.router");
+var articleRouter = require("./article.router");
 var designEndRouter = require("./designManager/design.end.router.js");
 var uikitEndRouter = require("./uikitManager/uikit.end.router.js");
 var uploadEndRouter = require("./uploadManager/upload.end.router.js");
@@ -17,11 +16,6 @@ var router = express.Router();
  * 图标类型管理
  */
 router.use('/iconCollection', iconTypeEndRouter);
-
-/**
- * 图标类型管理
- */
-//router.use('/iconType', iconTypeEndRouter);
 
 /**
  * 图标管理
@@ -41,9 +35,7 @@ router.use('/upload', uploadEndRouter);
 /**
  * 文章管理
  */
-//router.use('/doc', docEndRouter);
-
-router.use('/artical', articalRouter);
+router.use('/article', articleRouter);
 
 /**
  * 设计管理

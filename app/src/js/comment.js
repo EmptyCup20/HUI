@@ -57,7 +57,7 @@
 
     function submitReply(message, replyTo) {
         $.ajax({
-            url: "/artical/api/comment/" + urlhash,
+            url: "/article/api/comment/" + urlhash,
             method: "POST",
             data: {
                 message: message,
