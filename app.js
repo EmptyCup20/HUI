@@ -26,7 +26,7 @@ app.use(session({
 var casClient = new ConnectCas({
     debug: false,
     servicePrefix: 'http://localhost:7080',
-    serverPath: 'https://ssouat.hikvision.com',
+    serverPath: 'https://sso.hikvision.com',
     paths: {
         validate: '/login/validate',
         serviceValidate: '/serviceValidate',
