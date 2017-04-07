@@ -35,18 +35,17 @@ var casClient = new ConnectCas({
         logout: '/logout',
         proxyCallback: ''
     },
-    ignore: [
-        'favicon',
-        'design',
-        '/',
-        'resource',
-        'article',
-        'about'
+    match: [
+        'api',
+        'login'
     ],
     redirect: false,
     gateway: false,
     renew: false,
     slo: true,
+    requestCert: true,
+    rejectUnauthorized: false,
+    restletIntegration:'',
     cache: {
         enable: false,
         ttl: 5 * 60 * 1000,
