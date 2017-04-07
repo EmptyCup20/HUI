@@ -10,4 +10,6 @@ module.exports = {
     psdPath: "psd",
     //数据库地址
     db: "mongodb://10.33.31.234/hui",
+    adminLoginPath: "http://10.20.134.30:7001/login",
+    adminIndexPath: "http://10.20.134.30:7001"
 }

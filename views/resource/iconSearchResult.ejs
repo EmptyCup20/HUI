@@ -1,53 +1,105 @@
 <% include ../common/head.ejs %>
 <link href="/plugins/dialogeffects/css/dialog.css" rel="stylesheet" type="text/css">
 <link href="/plugins/spectrum/spectrum.css" rel="stylesheet" type="text/css">
-<div class="h-bg">
+<div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-block">
+    <div class="h-section bg-lightgray">
         <div class="h-container">
             <div class="h-search clearfix">
                 <input type="text" class="pull-right" value="<%- collectionName %>" placeholder="图标名称/类型...">
                 <i class="icon-search h-search-icon"></i>
             </div>
-            <!--内容部分-->
-            <div class="collection-detail">
-                <div class="h-doc-section">
-                    <div class="h-panel">
-                        <div class="h-panel-header">
-                            <a class="h-panel-back" href="/resource/iconfont"></a>
-                            <h4 class="h-panel-title">
-                                搜索结果：<%= collectionName %>
-                            </h4>
-                        </div>
-                        <div class="h-panel-body">
-                            <ul class="icons-detail-container clearfix">
-                                <% iconList.forEach(function(value){ %>
-                                <li class="single-icon" data-iconid = <%- value._id %>>
-                                         <%- value.svgXML  %>
-                                        <h5><%- value.name %></h5>
-                                    <% if(subModel === 'iconfont'){%>
-                                        <div class="icon-operation">
-                                            <a class="icon-single-download">
-                                                <i class="icon-download-alt"></i>
-                                            </a>
-                                        </div>
-                                    <% } %>
-                                </li>
-                                <% });%>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="h-doc-section">
+                <div class="h-doc-title">
+                    <h1>搜索结果：<%= collectionName %></h1>
+                </div>
+                <!--内容部分-->
+                <div class="h-doc-content">
+                    <ul class="h-icon-list clearfix">
+                        <% iconList.forEach(function(value){ %>
+                        <li>
+                            <%- value.svgXML %>
+                            <h5><%- value.name %></h5>
+                            <% if(subModel === 'iconfont'){ %>
+                            <div class="icon-operation">
+                                <a class="icon-single-download">
+                                    <i class="icon-download-alt"></i>
+                                </a>
+                            </div>
+                            <% } %>
+                        </li>
+                        <% }); %>
+                    </ul>
                 </div>
             </div>
         </div>
         <div id="downloadDialog" class="dialog">
+        </div>
+        <% include ../common/footer.ejs %>
     </div>
-    <% include ../common/footer.ejs %>
 </div>
+<div class="dialog" id="downloadDialog"></div>
+<script id="packDialogContent" type="text/html">
+    <div class="dialog-content">
+        <h3>{{name}}</h3>
+        <div class="color-choose clearfix">
+            <ul class="color-block-list clearfix">
+                <li style="background:#d81e06"></li>
+                <li style="background:#f4ea2a"></li>
+                <li style="background:#1afa29"></li>
+                <li style="background:#1296db"></li>
+                <li style="background:#13227a"></li>
+                <li style="background:#d4237a"></li>
+                <li style="background:#e6e6e6"></li>
+                <li style="background:#dbdbdb"></li>
+                <li style="background:#cdcdcd"></li>
+                <li style="background:#bfbfbf"></li>
+                <li style="background:#8a8a8a"></li>
+                <li style="background:#707070"></li>
+                <li style="background:#515151"></li>
+                <li style="background:#2c2c2c"></li>
+            </ul>
+            <input class="color-picker" type="text"/>
+        </div>
+    </div>
+    <div class="dialog-action">
+        <a class="btn btn-download" data-action="packDownload" data-id="{{id}}" href="javascript:void(0);">下载</a>
+    </div>
+</script>
+
+<script id="singleDialogContent" type="text/html">
+    <div class="dialog-content">
+        <h3>{{name}}</h3>
+        <div class="preview-svg"></div>
+        <div class="color-choose clearfix">
+            <ul class="color-block-list clearfix">
+                <li style="background:#d81e06"></li>
+                <li style="background:#f4ea2a"></li>
+                <li style="background:#1afa29"></li>
+                <li style="background:#1296db"></li>
+                <li style="background:#13227a"></li>
+                <li style="background:#d4237a"></li>
+                <li style="background:#e6e6e6"></li>
+                <li style="background:#dbdbdb"></li>
+                <li style="background:#cdcdcd"></li>
+                <li style="background:#bfbfbf"></li>
+                <li style="background:#8a8a8a"></li>
+                <li style="background:#707070"></li>
+                <li style="background:#515151"></li>
+                <li style="background:#2c2c2c"></li>
+            </ul>
+            <input class="color-picker" type="text"/>
+        </div>
+    </div>
+    <div class="dialog-action">
+        <a class="btn btn-download" data-action="singleDownload" data-id="{{_id}}" href="javascript:void(0);">下载</a>
+    </div>
+</script>
 <% include ../common/foot.ejs %>
 <script type="text/javascript" src="/plugins/dialogeffects/js/dialogZ.js"></script>
 <script type="text/javascript" src="/plugins/spectrum/spectrum.js"></script>
+<script type="text/javascript" src="/plugins/template.js"></script>
 <script type="text/javascript" src="/src/js/icondetail.js"></script>

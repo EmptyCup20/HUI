@@ -9,9 +9,12 @@ var uikitEndRouter = require("./uikitManager/uikit.end.router.js");
 var uploadEndRouter = require("./uploadManager/upload.end.router.js");
 var aboutRouter = require("./about/about.router");
 var animateRouter = require("./animate/animate.router");
+var userCtrl = require('../../controllers/user.controller');
 var express = require("express");
 var router = express.Router();
 
+
+router.use('/login', userCtrl.login);
 /**
  * 图标类型管理
  */
