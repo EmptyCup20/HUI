@@ -1,7 +1,7 @@
 var co = require('co');
 var showdown = require('showdown');
-var util = require("../../util");
-var designModel = require("../../models/resources/design.model.js");
+var util = require("../util");
+var designModel = require("../models/design.model.js");
 var converter = new showdown.Converter();
 
 module.exports = {
@@ -19,7 +19,8 @@ module.exports = {
             res.render('design/design.ejs', {
                 content: content,
                 model: "design",
-                type: type
+                type: type,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         });
     },

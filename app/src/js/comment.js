@@ -67,7 +67,7 @@
             if (res.success) {
                 window.location.reload();
             } else {
-                alert("评论提交失败！请重试");
+                alert(res.message);
             }
         })
     }

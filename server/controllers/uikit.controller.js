@@ -13,7 +13,8 @@ module.exports = {
             res.render('resource/uikit.ejs', {
                 model: "resource",
                 subModel: "uikit",
-                content: converter.makeHtml(data.data)
+                content: converter.makeHtml(data.data),
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         })
     },

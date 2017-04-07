@@ -12,7 +12,8 @@ module.exports = {
             var data = yield aboutModel.getContent();
             res.render('about/about.ejs', {
                 model: "about",
-                content: converter.makeHtml(data.data)
+                content: converter.makeHtml(data.data),
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         })
     },

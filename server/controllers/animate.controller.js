@@ -31,7 +31,8 @@ module.exports = {
                 data: data.rows,
                 moment: moment,
                 pageNo: queryParams.pageNo,
-                totalPage: totalPage
+                totalPage: totalPage,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         })
     },
@@ -49,7 +50,8 @@ module.exports = {
             res.render('resource/animateContent', {
                 model: "resource",
                 subModel: "animate",
-                data: data
+                data: data,
+                loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         })
     },

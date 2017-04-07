@@ -3,7 +3,7 @@
  */
 var express = require("express");
 var router = express.Router();
-var designController = require("../../controllers/resources/design.controller.js");
+var designController = require("../../controllers/design.controller.js");
 
 router.get('/:type', designController.renderPage);
 
