@@ -26,9 +26,12 @@ app.use(session({
     name: 'NSESSIONID',
     secret: 'Hello I am a long long long secret',
     cookie: {
-        maxAge: 24 * 60 * 60 * 1000
+        maxAge: 24 * 60 * 60 * 1000,
+        domain: "http://10.20.134.30"
     },
-    store: new MemoryStore()  // or other session store
+    store: new MemoryStore(),  // or other session store
+    resave: false,
+    saveUninitialized: true
 }));
 
 var casClient = new ConnectCas({
@@ -75,8 +78,9 @@ app.use(casClient.core());
 
 //设置跨域访问
 app.all('/admin/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With, accept, origin, content-type");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, accept, origin, content-type, x-access-token");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.header("X-Powered-By", ' 3.2.1');
     next();
@@ -88,7 +92,7 @@ app.use('/resource', require('./server/routes/front/resource.router.js'));
 app.use('/article', require('./server/routes/front/article.router.js'));
 app.use('/about', require('./server/routes/front/about.router.js'));
 app.use('/login', require('./server/routes/login.router'));
-app.use('/admin', require('./server/routes/end/admin.router.js'));
+app.use('/admin', userCtrl.userValid, require('./server/routes/end/admin.router.js'));
 app.use('/logout', function (req, res) {
     var fromWhere = req.get('Referer');
     var fromWhereUri = url.parse(fromWhere);
