@@ -15,12 +15,6 @@ var onError = function (err) {
     console.log(err);
 };
 
-function getSvgXml(svgUrl, cb) {
-    request.get(svgUrl, function (error, response, body) {
-        cb && cb(body);
-    })
-}
-
 module.exports = {
     /**
      * 删除资源

@@ -14,7 +14,7 @@ var express = require("express");
 var router = express.Router();
 
 
-router.use('/login', userCtrl.login);
+router.use('/signin', userCtrl.login);
 /**
  * 图标类型管理
  */
