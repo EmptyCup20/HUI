@@ -88,7 +88,7 @@ app.use('/resource', require('./server/routes/front/resource.router.js'));
 app.use('/article', require('./server/routes/front/article.router.js'));
 app.use('/about', require('./server/routes/front/about.router.js'));
 app.use('/login', require('./server/routes/login.router'));
-app.use('/admin', userCtrl.userValid, require('./server/routes/end/admin.router.js'));
+app.use('/admin', require('./server/routes/end/admin.router.js'));
 app.use('/logout', function (req, res) {
     var fromWhere = req.get('Referer');
     var fromWhereUri = url.parse(fromWhere);

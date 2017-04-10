@@ -28,7 +28,7 @@ module.exports = {
         if (!req.session.username) {
             if (req.url.indexOf("/signin") !== -1) {
                 next();
-            } else {
+            }else {
                 res.send({
                     success: false,
                     code: "unlogin"
