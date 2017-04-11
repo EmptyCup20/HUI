@@ -96,7 +96,7 @@
 
         $doc.on("click", ".light-box-close", function (e) {
             $lightbox.hide();
-            $body.removeClass("lightbox-open");
+            $body.removeClass("lightbox-open lightbox-zoomed");
             e.stopPropagation();
         });
 
@@ -107,7 +107,7 @@
 
         $doc.on("click", ".light-box", function () {
             $lightbox.hide();
-            $body.removeClass("lightbox-open");
+            $body.removeClass("lightbox-open lightbox-zoomed");
         })
     })
 })(jQuery);
