@@ -6,8 +6,8 @@ var express = require("express");
 var router = express.Router();
 
 //------------------UIKIT管理------------------------//
-router.get('/getContent', uikitCtrl.getContent);
+router.get('/', uikitCtrl.getContent);
 
-router.post('/modify', uikitCtrl.modify);
+router.post('/', uikitCtrl.modify);
 
 module.exports = router;

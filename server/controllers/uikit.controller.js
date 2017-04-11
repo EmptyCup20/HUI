@@ -13,7 +13,8 @@ module.exports = {
             res.render('resource/uikit.ejs', {
                 model: "resource",
                 subModel: "uikit",
-                content: converter.makeHtml(data.data),
+                content: converter.makeHtml(data.content),
+                attachment_url: data.attachment_url,
                 loginUser: req.session.cas && req.session.cas.user ? req.session.cas.user : null
             });
         })
@@ -21,7 +22,7 @@ module.exports = {
 
     modify: function (req, res) {
         co(function*() {
-            var data = yield uikitModel.modify({content: req.body.content});
+            var data = yield uikitModel.modify(req.body);
             res.send(data);
         });
     },

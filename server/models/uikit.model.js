@@ -7,6 +7,8 @@ var co = require('co');
 
 var Uikit = new db.Schema({
     content: String,
+    attachment_url: String,
+    attachment_name: String,
     update_date: {
         type: Date,
         default: Date.now
@@ -32,11 +34,15 @@ module.exports = {
 
     getContent: function () {
         return new Promise((resolve, reject) => {
-            UikitModel.findOne(null, {content: 1, _id: 0}, function (err, data) {
+            UikitModel.findOne(null, {_id: 0}, function (err, data) {
                 if (err) {
                     reject(util.resParse(false, err));
                 } else {
-                    resolve(util.resParse(true, "", data ? data.content : ""));
+                    resolve(data || {
+                            content: "",
+                            attachment_url: "",
+                            attachment_name: ""
+                        });
                 }
             });
         });
