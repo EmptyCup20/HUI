@@ -13,7 +13,9 @@ var co = require('co');
 
 //--------------------uikit---------------------
 
-router.get('/uikit', uikitCtrl.renderPage);
+router.get('/uikit', uikitCtrl.renderList);
+
+router.get('/uikit/detail/:id', uikitCtrl.renderDetail);
 
 
 //--------------------iconfont---------------------
@@ -39,7 +41,7 @@ router.get('/animate/detail/:id', animateCtrl.renderDetail);
 /**
  * iconfont&coloricon搜索
  */
-router.get('/:icontype/search',searchCtrl);
+router.get('/:icontype/search', searchCtrl);
 
 /**
  * 单个图标信息

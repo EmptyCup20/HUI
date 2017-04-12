@@ -6,8 +6,14 @@ var express = require("express");
 var router = express.Router();
 
 //------------------UIKIT管理------------------------//
-router.get('/', uikitCtrl.getContent);
+router.get('/uikitInfo/:id', uikitCtrl.getUikitInfo);
 
-router.post('/', uikitCtrl.modify);
+router.put('/uikitInfo/:id', uikitCtrl.modify);
+
+router.post('/uikitInfo', uikitCtrl.save);
+
+router.post('/del', uikitCtrl.del);
+
+router.get('/getUikitList', uikitCtrl.getUikitList);
 
 module.exports = router;

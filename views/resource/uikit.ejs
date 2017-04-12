@@ -1,38 +1,53 @@
 <% include ../common/head.ejs %>
-<link href="/plugins/dialogeffects/css/dialog.css" rel="stylesheet" type="text/css">
 <div class="main-wrapper">
     <div class="main-top">
         <% include ../common/header.ejs %>
     </div>
     <% include ../resource/submenu.ejs %>
-    <div class="h-section bg-lightgray">
+    <div class="h-section  bg-lightgray">
+        <!--内容部分-->
         <div class="h-container">
-            <div class="h-row">
-                <div class="h-col-9">
-                    <div class="h-doc-section">
-                        <div class="h-doc-title clearfix">
-                            <div class="pull-left">
-                                <h1>UIKIT</h1>
-                            </div>
-                            <div class="pull-right">
-                                <a class="btn btn-download" href="<%- attachment_url %>">下载</a>
+            <ul class="h-row">
+                <% data.forEach(function(item){ %>
+                <li class="h-col-4">
+                    <div class="h-panel h-panel-edge">
+                        <div class="h-panel-body">
+                            <div class="h-listbox-img">
+                                <a href="/resource/uikit/detail/<%= item._id %>">
+                                    <img src="<%= item.cover_img_url %>">
+                                </a>
                             </div>
                         </div>
-                        <div class="h-doc-content img-lightbox">
-                            <%- content %>
+                        <div class="h-panel-header clearfix">
+                            <div class="h-panel-title pull-left">
+                                <a href="/resource/uikit/detail/<%= item._id %>"><%= item.title %></a>
+                            </div>
+                            <span class="update-date pull-right"><%= moment(item.update_date).format('YYYY-MM-DD') %></span>
                         </div>
                     </div>
+                </li>
+                <% }) %>
+            </ul>
+            <% if(totalPage > 1){ %>
+            <div class="h-page">
+                <div class="page-btn page-pre">
+                    <% if(pageNo === 1){ %>
+                    <i class="icon-angle-left"></i>
+                    <% }else{ %>
+                    <a href="/resource/uikit?page=<%= pageNo - 1 %>"><i class="icon-angle-left"></i></a>
+                    <% } %>
                 </div>
-                <div class="h-col-3">
-                    <div class="h-sidebar">
-                        <ul class="nav h-sidenav">
-                        </ul>
-                    </div>
+                <div class="page-btn page-next">
+                    <% if(pageNo === totalPage){ %>
+                    <i class="icon-angle-right"></i>
+                    <% }else{ %>
+                    <a href="/resource/uikit?page=<%= pageNo + 1 %>"><i class="icon-angle-right"></i></a>
+                    <% } %>
                 </div>
             </div>
+            <% } %>
         </div>
     </div>
     <% include ../common/footer.ejs %>
 </div>
 <% include ../common/foot.ejs %>
-<script type="text/javascript" src="/plugins/dialogeffects/js/dialogZ.js"></script>

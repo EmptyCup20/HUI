@@ -2,7 +2,6 @@
  * Created by zhengjunling on 2016/12/12.
  */
 var co = require('co');
-var formidable = require("formidable");
 var request = require('request');
 var showdown = require('showdown');
 var moment = require("moment");

@@ -43,7 +43,7 @@
                     </script>
                     <div class="h-comment-list">
                         <%# 对于评论按时间排序 %>
-                        <% for(var i = 0, len = data.reply.length; i < len; i++){ %>
+                        <% for(var i = data.reply.length - 1; i >= 0; i--){ %>
                         <div class="h-comment-item clearfix">
                             <img class="avatar" src="/src/image/admin_avatar.png" alt="">
                             <div class="comment-item-header">
